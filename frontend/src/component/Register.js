@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import '../Register.css'; // Tạo file CSS nếu cần
+import React, { useState } from "react";
+import "../Register.css"; // Tạo file CSS nếu cần
 
 function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (email === '' || password === '' || confirmPassword === '') {
-      setErrorMessage('Vui lòng nhập đầy đủ thông tin.');
+
+    if (email === "" || password === "" || confirmPassword === "") {
+      setErrorMessage("Vui lòng nhập đầy đủ thông tin.");
     } else if (password !== confirmPassword) {
-      setErrorMessage('Mật khẩu và xác nhận mật khẩu không khớp.');
+      setErrorMessage("Mật khẩu và xác nhận mật khẩu không khớp.");
     } else {
-      setErrorMessage('');
+      setErrorMessage("");
       // Ở đây bạn có thể gọi API để xử lý đăng ký
-      console.log('Email:', email, 'Password:', password);
+      console.log("Email:", email, "Password:", password);
     }
   };
 

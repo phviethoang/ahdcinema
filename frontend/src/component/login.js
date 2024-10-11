@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../login.css"; // Optional nếu bạn muốn thêm CSS riêng
-import { Google } from "./icon";
+import { Apple, Google, Microsoft } from "./icon";
+import { Link } from "react-router-dom";
 // import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
 function Login() {
@@ -58,12 +59,12 @@ function Login() {
           />
         </div>
         {errorMessage && <p className="error">{errorMessage}</p>}
-        <p className="register-link">
-          <a href="/register">Quên mật khẩu?</a>
+        <p className="forgot-password-link">
+          <Link to="/forgot-password">Quên mật khẩu</Link>
         </p>
         <button type="submit">Đăng nhập</button>
         <p className="register-link">
-          Bạn chưa có tài khoản? <a href="/register">Đăng ký</a>
+          Bạn chưa có tài khoản? <Link to="/register">Đăng ký</Link>
         </p>
 
         <div className="social-login">
@@ -73,11 +74,11 @@ function Login() {
             Continue with Google
           </button>
           <button className="microsoft-login">
-            <img src="microsoft-icon-url" alt="Microsoft" />
+            <Microsoft />
             Continue with Microsoft Account
           </button>
           <button className="apple-login">
-            <img src="apple-icon-url" alt="Apple" />
+            <Apple />
             Continue with Apple
           </button>
         </div>
