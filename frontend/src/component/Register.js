@@ -1,65 +1,156 @@
 import React, { useState } from "react";
-import "../Register.css"; // Tạo file CSS nếu cần
+import "../Register.css"; // Import file CSS để tạo giao diện giống mẫu
+import { Link } from "react-router-dom";
+const RegisterForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    birthday: "",
+    gender: "",
+    phoneNumber: "",
+    captcha: "",
+  });
 
-function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (email === "" || password === "" || confirmPassword === "") {
-      setErrorMessage("Vui lòng nhập đầy đủ thông tin.");
-    } else if (password !== confirmPassword) {
-      setErrorMessage("Mật khẩu và xác nhận mật khẩu không khớp.");
+    // Lấy các trường nhập liệu từ form
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+
+    // Nếu mật khẩu không khớp
+    if (formData.password !== formData.confirmPassword) {
+      confirmPasswordInput.setCustomValidity("Mật khẩu không trùng khớp"); // Thiết lập thông báo lỗi
     } else {
-      setErrorMessage("");
-      // Ở đây bạn có thể gọi API để xử lý đăng ký
-      console.log("Email:", email, "Password:", password);
+      confirmPasswordInput.setCustomValidity(""); // Xóa thông báo lỗi nếu khớp
+      console.log("Form Data Submitted:", formData);
     }
+
+    // Đảm bảo rằng form vẫn có thể submit nếu các giá trị đúng
+    confirmPasswordInput.reportValidity();
   };
 
   return (
-    <div className="register-container">
-      <h2>Đăng Ký</h2>
+    <div className="register-form">
       <form onSubmit={handleSubmit}>
+        <h2>Đăng Ký</h2>
+
         <div className="form-group">
-          <label>Email:</label>
+          <label>Họ tên</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Email</label>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Nhập email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
         </div>
+
         <div className="form-group">
-          <label>Password:</label>
+          <label>Mật khẩu</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Nhập mật khẩu"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
         </div>
+
         <div className="form-group">
-          <label>Confirm Password:</label>
+          <label>Xác nhận mật khẩu</label>
           <input
             type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Xác nhận mật khẩu"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+            id="confirmPassword"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Ngày sinh</label>
+          <input
+            type="date"
+            name="birthday"
+            value={formData.birthday}
+            onChange={handleChange}
             required
           />
         </div>
-        {errorMessage && <p className="error">{errorMessage}</p>}
-        <button type="submit">Đăng ký</button>
+
+        <div className="form-group">
+          <label>Giới tính</label>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Chọn giới tính</option>
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+            <option value="other">Khác</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Số điện thoại</label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/*} <div className="form-group">
+          <label>Mã xác thực</label>
+          <input
+            type="text"
+            name="captcha"
+            value={formData.captcha}
+            onChange={handleChange}
+            required
+          />
+          {/* Bạn có thể thay bằng một hình ảnh captcha thực tế 
+        </div> */}
+
+        <div className="form-group">
+          <input type="checkbox" required />
+          <label>
+            Tôi cam kết tuân theo chính sách bảo mật và điều khoản sử dụng
+          </label>
+        </div>
+
+        <button type="submit" className="submit-button">
+          Đăng Ký
+        </button>
       </form>
+      <p className="login-link">
+        <Link to="/login">Đã có tài khoản</Link>
+      </p>
     </div>
   );
-}
+};
 
-export default Register;
+export default RegisterForm;

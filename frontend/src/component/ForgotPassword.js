@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../forgot-password.css"; // Optional nếu bạn muốn thêm CSS riêng
+import { Link } from "react-router-dom";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,9 @@ function ForgotPassword() {
 
   return (
     <div className="forgot-password-container">
+      <p className="back">
+        <Link to="/login">back</Link>
+      </p>
       <h2>Quên mật khẩu</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../login.css"; // Optional nếu bạn muốn thêm CSS riêng
-import { Apple, Google, Microsoft } from "./icon";
+import { Apple, Facebook, Google, Microsoft } from "./icon";
 import { Link } from "react-router-dom";
 // import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
@@ -39,7 +39,7 @@ function Login() {
       <h2>Đăng Nhập</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Username:</label>
+          <label>Tài khoản:</label>
           <input
             type="text"
             value={email}
@@ -49,7 +49,7 @@ function Login() {
           />
         </div>
         <div className="form-group">
-          <label>Password:</label>
+          <label>Mật khẩu:</label>
           <input
             type="password"
             value={password}
@@ -73,13 +73,9 @@ function Login() {
             <Google />
             Continue with Google
           </button>
-          <button className="microsoft-login">
-            <Microsoft />
-            Continue with Microsoft Account
-          </button>
-          <button className="apple-login">
-            <Apple />
-            Continue with Apple
+          <button className="facebook-login">
+            <Facebook />
+            Continue with Facebook
           </button>
         </div>
       </form>
