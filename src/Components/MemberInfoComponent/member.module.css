@@ -1,0 +1,267 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    font-size: 14px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+}
+
+/* Định nghĩa cho các nhóm */
+.formRow {
+    display: flex;
+    flex-wrap: wrap; /* Để đảm bảo các trường có thể xuống dòng */
+    margin-bottom: 10px; /* Khoảng cách giữa các hàng */
+    position: relative;
+}
+
+.formGroup {
+    flex: 1 1 45%; /* Mỗi nhóm chiếm khoảng 45% chiều rộng */
+    margin-right: 20px; /* Khoảng cách bên phải */
+    gap:1vw;
+}
+
+/* Đảm bảo nhóm cuối cùng không có khoảng cách bên phải */
+.formGroup:last-child {
+    margin-right: 0; 
+}
+
+/* Đảm bảo nhóm địa chỉ chiếm toàn bộ chiều rộng */
+.formGroup.full-width {
+    flex: 1 1 100%; /* Nhóm chiếm toàn bộ chiều rộng */
+}
+
+/* Đảm bảo căn chỉnh nội dung bên trong các nhóm */
+.formGroup label {
+    display: block; /* Đảm bảo nhãn và input nằm trên cùng một cột */
+    margin-bottom: 5px; /* Khoảng cách giữa nhãn và input */
+    font-weight: bold; /* Đậm chữ */
+}
+
+input, select {
+    width: 100%; /* Đảm bảo input và select chiếm toàn bộ chiều rộng nhóm */
+    padding: 10px; /* Khoảng cách bên trong */
+    margin-bottom: 0px; /* Khoảng cách giữa các trường */
+    border: 1px solid #ccc; /* Viền cho input */
+    border-radius: 4px; /* Bo góc cho input */
+}
+
+
+
+/* Các nút */
+.profilePictureBtn{
+    background-color: #9058FF;
+    color: rgb(255, 255, 255);
+    padding: 1vw 2vw;
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+
+/* Đảm bảo các trường xếp theo chiều dọc khi màn hình hẹp */
+@media (max-width: 600px) {
+    .form-group {
+        flex: 1 1 100%; /* Chiếm toàn bộ chiều rộng khi màn hình hẹp */
+        margin-right: 0; /* Không có khoảng cách bên phải */
+    }
+}
+
+/* Căn chỉnh cho phần tải ảnh */
+.imageUploadContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10vw;
+}
+
+
+
+
+.imagePreview {
+    width: 200px; /* Chiều rộng khung hình */
+    height: 200px; /* Chiều cao khung hình */
+    background-color: #f0f0f0; /* Màu nền khung hình */
+    border: 2px solid #ccc; /* Viền cho khung hình */
+    border-radius: 8px; /* Bo góc cho khung hình */
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    cursor: pointer; /* Hiệu ứng chuột khi hover */
+    position: relative; /* Để sử dụng cho hiệu ứng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho khung */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+
+.imagePreview span {
+    color: #666;
+}
+
+
+.highlight {
+    color: red; /* Đổi màu chữ */
+    font-weight: bold; /* In đậm chữ */
+    font-size: 20px; /* Thay đổi kích thước chữ */
+}
+
+.input{
+    max-width: 80%; /* Cập nhật để phù hợp với datalist */
+}
+
+.address {
+    resize: none;
+    height: 100px; /* Chiều cao */
+    width: 100%; /* Chiều rộng */
+    padding: 10px; /* Khoảng cách bên trong */
+    border: 1px solid #ccc; /* Viền */
+    border-radius: 4px; /* Bo góc */
+    box-sizing: border-box; /* Bao gồm padding và border trong width và height */
+    text-align: left; /* Căn chỉnh văn bản sang trái */
+    position: relative;
+    margin-top: 5px;
+    justify-content: top;
+}
+
+.updateButton{
+    color:#fff;
+    background-color: #9058FF	;
+    width:200px;
+    height:50px;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    display: block; /* Đặt nút thành khối */
+    margin: 0 auto;
+    cursor:pointer;
+}
+.updateButton:hover,.profilePictureBtn:hover{
+    background-color:#2b8cda;
+}
+
+.inputIcon {
+    display: flex; /* Sử dụng flexbox để căn giữa icon và input */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc; /* Đường viền cho hộp */
+    padding: 0px; /* Padding cho hộp */
+    border-radius: 4px; /* Bo góc cho hộp */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển đổi cho đường viền */
+    
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng của form-group */
+    min-width: 0;
+}
+
+/* .inputIcon:hover,input:hover,select:hover {
+    border-color: #007bff; /* Đổi màu đường viền khi hover */
+/*} */
+
+
+input[id="phone"], 
+input[id="cmnd"],
+input[id="dob"],
+/* input[id="district"], */
+select[id="gender"],
+input[id="email"] {
+    border: none; 
+    outline: none;
+    flex: 1; /* Đảm bảo input chiếm đủ không gian còn lại */
+    padding: 8px; /* Padding cho input */
+    font-size: 16px; /* Kích thước chữ trong input */
+    color: #333; /* Màu chữ trong input */
+    min-width: 200px; /* Kích thước tối thiểu cho input */
+}
+
+
+.icon {
+    margin-right: 8px; /* Khoảng cách giữa icon và input */
+    margin-left: 2px;
+    background-color: #007bff; /* Màu nền cho icon */
+    color: #fff; /* Màu cho icon */
+    border-radius: 20%; /* Bo góc để tạo thành hình tròn */
+    padding: 8px; /* Khoảng cách bên trong icon */
+    font-size: 12px; /* Kích thước icon */
+    display: flex; /* Sử dụng flex để căn giữa hình ảnh bên trong */
+}
+
+/* Overlay làm mờ nền */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Nền đen với độ mờ 50% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(5px);  */
+    /* Làm mờ nền phía sau */
+    z-index: 1000; /* Đảm bảo overlay nằm trên cùng */
+  }
+  
+  /* Nội dung modal */
+  .modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  /* Nút đóng modal */
+  .closeButton {
+    position: absolute;
+    top: 1vw;
+    right: 2vw;
+    font-size: 3vw;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .closeButton:hover{
+    color:red ;
+  }
+  
+  /* Styling cho form trong modal */
+  .modalContent form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .modalContent form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .modalContent form input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .modalContent form button {
+    padding: 10px 20px;
+    background-color: #2b8cda;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .modalContent form button:hover {
+    background-color: #45a049;
+  }

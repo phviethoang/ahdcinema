@@ -1,0 +1,667 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 3vw;
+    background-color: #f4f4f4;
+    font-size: 1.5vw;
+}
+.theaterWrap{
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.titleAhdCinema{
+    display: flex;
+    overflow: hidden;
+    align-items: center; 
+    justify-content: center;
+    
+}
+.titleAhdCinema h2 {
+    font-size: 6vw;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #4a5560, #00ced1);
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1vw;
+
+    /* Viền ngoài 3D cho chữ */
+    text-shadow: 0.5vw  0.5vw  0vw rgba(0, 0, 0, 0.5),   /* Bóng đổ chính */
+                 -0.01vw -0.01vw 0vw rgba(255, 255, 255, 0.6);  /* Viền sáng ở trên */
+}
+
+.titleAhdCinema h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4), transparent 70%);
+    filter: blur(5px); 
+    z-index: -1;
+}
+
+
+
+
+
+
+.theaterListPreview {
+    max-width: 100%;
+    background-color: #262323;
+    display: flex;
+    flex-direction: column;  /* Sắp xếp các phần tử con theo cột */
+    width: 100%;    /* Giới hạn chiều rộng */
+    padding: 4vw;   /*Khoảng cách giữa nội dung và viền*/
+    box-sizing: border-box;  /* Bao gồm padding trong kích thước */
+}
+.theaterShowtimeCenter{
+    overflow: hidden;
+    gap:5vw;
+}
+
+.cinemasByProvince{
+    text-align: center;
+}
+.cinemasByProvince, .cinemasList {
+    margin-left:1.5vw;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cinemasByProvince li, .cinemasList li {
+    color: #ffffff;
+    padding: 1vw 1vw;
+    flex: 1 1 20%;  /* Mỗi phần tử chiếm khoảng 30% chiều rộng, nhưng có thể co dãn */
+    box-sizing: border-box;  /* Bao gồm padding vào kích thước */
+    list-style-type: none; /* Bỏ dấu chấm bên trái danh sách */
+    gap: 1vw;
+    cursor: pointer; /* Hiển thị con trỏ chuột khi hover */
+    position: relative; /* Đặt position để có thể sử dụng cho underline */
+}
+
+
+.cinemasByProvince li:hover,
+.cinemasList li:hover {
+    color: red;
+    cursor: pointer;
+}
+
+
+.underline {
+    position: absolute; /* Đặt vị trí tuyệt đối cho gạch chân */
+    left: 0; /* Căn trái */
+    bottom: 0.5vw; /* Căn dưới cho gạch chân */
+    height: 0.1vw; /* Chiều cao của gạch chân */
+    width: 100%; /* Chiều rộng của gạch chân */
+    background-color: red; /* Màu gạch chân */
+    transform: scaleX(0); /* Bắt đầu với chiều rộng 0 để tạo hiệu ứng xuất hiện */
+    animation: appear 0.3s forwards; /* Hiệu ứng xuất hiện */
+}
+
+@keyframes appear {
+    to {
+        transform: scaleX(1); /* Cuối cùng chiều rộng 100% */
+    }
+}
+
+@keyframes disappear {
+    to {
+        transform: scaleX(0); /* Cuối cùng chiều rộng 0% để tạo hiệu ứng biến mất */
+    }
+}
+
+
+
+
+
+
+.theaterContainerProductPreview{
+    display: flex;
+    flex-direction: column;  /* Sắp xếp các phần tử con theo cột */
+    width: 100%;    /* Giới hạn chiều rộng */
+    padding: 1vw;   /*Khoảng cách giữa nội dung và viền*/
+    box-sizing: border-box;  /* Bao gồm padding trong kích thước */
+    justify-content: center;
+    align-items: center,
+}
+
+
+.theaterLine {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between;
+
+}
+
+.line {
+    flex-grow: 1; /* Để .line chiếm hết không gian còn lại */
+    height: 0.1vw; /* Đặt chiều cao cho đường kẻ */
+    background-color: black; /* Sử dụng background-color thay cho border-top để dễ hiển thị */
+}
+
+
+
+.theaterTitle {
+    font-size: 4vw; /* Kích thước chữ */
+    font-weight: bold;
+    color: transparent; /* Để thấy hiệu ứng background */
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center; /* Căn giữa chữ */
+    background: linear-gradient(135deg, #0b12d5 50%, transparent 25%, transparent 50%, #165269 50%, #2c11de 75%, transparent 75%, transparent); /* Hiệu ứng sọc */
+    background-size: 1vw 1vw; /* Kích thước của sọc */
+    -webkit-background-clip: text; /*Clip chữ bằng background*/
+    filter: drop-shadow(0.3vw 0.3vw 0.1vw rgba(0, 0, 0, 0.5)); /* Hiệu ứng bóng đổ */
+}
+
+/* Hiệu ứng sọc cho chữ */
+.theaterTitle::before {
+    content: "THEATER";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(135deg, white 0%, white 1%, transparent 1%, transparent 3%); /* Hiệu ứng sọc trắng */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    z-index: -1; /* Đưa background ra phía sau chữ */
+}
+
+/* Thêm hiệu ứng hover cho chữ */
+.theaterTitle:hover {
+    transform: scale(1.05); /* Phóng to chữ khi hover */
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+}
+
+.theaterContainerProductPreview h3 {
+    text-align: center; /* Căn giữa văn bản trong thẻ h3 */
+    /* style={{color:"gray",fontSize: "24px"} */
+    color:gray;
+    font-size:4.5vw;
+}
+
+
+/*  */
+
+/* Slide */
+/*  */
+
+/* CSS cho nút Previous */
+.carouselControlPrev {
+    width: 4vw;  
+    height: 6vw;
+    color:#ddd;
+    position: absolute;
+    top: 50%; /* Đặt nút ở giữa theo chiều dọc */
+    left: 0; 
+    transform: translateY(-50%); /* Căn chỉnh giữa theo trục Y */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+    border-radius: 1vw 0 0 1vw;
+    z-index: 1; /* Đảm bảo nút hiển thị phía trên các slide */
+  }
+
+  /* CSS cho nút Next */
+  .carouselControlNext {
+    width: 4vw;  
+    height: 6vw;
+    color:#ddd;
+    position: absolute;
+    top: 50%; /* Đặt nút ở giữa theo chiều dọc */
+    right: 0;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+    border-radius: 0 1vw 1vw 0;
+    z-index: 1; /* Đảm bảo nút hiển thị phía trên các slide */
+  }
+
+  /* Hiệu ứng hover */
+  .carouselControlPrev:hover,
+  .carouselControlNext:hover {
+    background-color: lightblue;
+    transition: background-color 0.3s;
+  }
+
+
+.slider-container {
+    position: relative;
+    max-width: 100%; /* Tối đa chiều rộng 100% */
+    height: auto; /* Tự động dựa theo nội dung */
+}
+
+.content-overlay {
+    font-size: 1.5vw; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%; 
+    background: rgba(0, 0, 0, 0.6); 
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Bao gồm padding trong kích thước */
+}
+
+.button-content-overlay {
+    flex: 1 1 45%; /* Khoảng 45% không gian mỗi phần tử */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.slick-dots {
+    bottom: 0.5vw; 
+    list-style: none;
+    display: flex !important;
+    justify-content: center;
+}
+
+.slick-dots li button:before {
+    font-size: 0.8vw;
+    color: white;
+    opacity: 0.75;
+}
+
+.slick-dots li.slick-active button:before {
+    color: red;
+    opacity: 1;
+}
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+/*  */
+
+/* Product */
+/*  */
+
+.productCollateral {
+    padding: 2vw; /* Khoảng cách cho toàn bộ khối */
+    background-color: #f9f9f9; /* Màu nền khối */
+    border-radius: 3%; /* Bo góc cho khối */
+    box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    margin: 1vw; /* Khoảng cách ngoài khối */
+    width:100%;
+}
+
+.toggleTabs {
+    display: flex; /* Sắp xếp các tab theo hàng */
+    margin-bottom: 1vw; /* Khoảng cách dưới cùng của các tab */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabItem {
+    padding: 2vw 3vw; /* Khoảng cách cho các tab */
+    cursor: pointer; /* Hiển thị con trỏ khi hover */
+    border-radius: 20%; /* Bo góc cho tab */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển màu nền và chữ */
+    font-size: 1.5vw; /* Kích thước chữ */
+    margin-right: 10px; /* Khoảng cách giữa các tab */
+    color: #333; /* Màu chữ mặc định */
+    background-color: #e0e0e0; /* Màu nền mặc định cho tab */
+    
+}
+
+.tabItem:hover {
+    background-color: #d0d0d0; /* Màu nền khi hover */
+}
+
+.tabCurrent {
+    background-color: #007bff; /* Màu nền cho tab đang chọn */
+    color: white; /* Màu chữ cho tab đang chọn */
+    font-weight: bold; /* Đậm chữ cho tab đang chọn */
+}
+
+.tabContent {
+    padding: 20px; /* Khoảng cách cho nội dung */
+    border: 1px solid #ddd; /* Đường viền cho nội dung */
+    border-radius: 5px; /* Bo góc cho nội dung */
+    background-color: white; /* Nền trắng cho nội dung */
+    /* width:60%; */
+}
+
+
+
+
+/*  */
+/* DateScroller */
+/*  */
+
+
+.days {
+    display: flex; /* Đảm bảo sử dụng flexbox */
+    flex-direction: row;
+    gap:0.3vw;
+    justify-content: center;  
+    
+}
+.dateScroller {
+    display: flex; 
+    flex-direction: row;
+    gap: 10px;
+}
+.dayBlock{
+    color:#000000;
+    background-color: #ffffff;
+    border-radius: 10%;
+    height:6vw;
+    width:8vw;
+    display: flex;
+    flex: 0 1 8vw;
+    flex-direction: row;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin:0.4vw;
+    /* gap:0.5vw; */
+    border-radius: 15%;
+    box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2); 
+    border: 0.3vw solid #000000;
+}
+.dayBlock:hover{
+    cursor: pointer;
+    background-color: lightblue;
+}
+.monthAndDweek{
+    font-size: 2vw;
+}
+.Day{
+    font-size: 3vw;
+}
+.dateScroller{
+    margin-left:0;
+    margin-right:0;
+    display:flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.buttonLeft, .buttonRight {
+    color:#ddd;
+    background-color: #000000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+    padding: 0.3vw;
+    width:5%
+}
+
+
+.buttonLeft{
+    border-radius: 1vw 0 0 1vw;
+}
+.buttonRight{
+    border-radius: 0 1vw 1vw 0;
+}
+.carouselControlPrev:hover,.carouselControlNext:hover,
+.buttonLeft:hover, .buttonRight:hover{
+    background-color: #00ced1;
+}
+.buttonLeft:disabled,.buttonRight:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.selected {
+    border: 2px solid #007bff; /* Border cho ngày được chọn */
+    background-color: #e6f0ff; /* Nền cho ngày được chọn */
+}
+
+.selectedInfo {
+    margin-top: 20px; /* Khoảng cách trên thông tin đã chọn */
+    padding: 10px; /* Khoảng cách bên trong cho thông tin */
+    border: 1px solid #ddd; /* Đường viền cho khối thông tin */
+    border-radius: 5px; /* Bo góc cho khối thông tin */
+    background-color: #f9f9f9; /* Màu nền cho khối thông tin */
+}
+
+
+
+
+/*  */
+/* TicketPriceTable */
+/*  */
+.ticketPriceTable {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.ticketPriceTable h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+.additionalFees, .note {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.additionalFees p, .note h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+
+
+
+/*  */
+/* MovieList */
+.movieList {
+    margin-top: 2vw;
+}
+
+.movieGrid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 3vw;
+}
+
+
+.poster {
+    width: 13.5vw;
+    height: 20vw;
+    object-fit: cover;
+    position:relative;
+    cursor: pointer;
+}
+
+.movieList h3{
+    font-size:3vw;
+}
+
+
+
+.movieTitle {
+    margin: 2vw 0 1vw;
+    font-size: 2vw;
+    cursor: pointer;
+
+}
+
+
+
+
+.movieList {
+    padding: 20px;
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.movieGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.movieItem {
+    position: relative;
+    border: 2% solid #ddd;
+    border-radius: 3%;
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.posterContainer {
+    display:flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.movieTitle {
+    font-size: 2vw;
+    margin: 10px 0;
+    animation: sparkle 3s infinite;
+}
+
+.poster {
+    width: 13.5vw;
+    height: 20vw;
+    object-fit: cover;
+}
+
+.subtitles{
+    font-size: 2vw;
+    font-weight: 700;
+    height: 1vh;
+    width:100%;
+    margin-bottom: 0;
+}
+.showtimeContainer {
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 1vw;
+    margin-top: 0.5vh;
+    gap: 1vw;
+}
+
+.showtimeBox {
+    margin-top:0;
+    border:0.1vw solid black;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 3%;
+    font-size: 1vw;
+    cursor: pointer;
+    height: 2vw;
+    width:6vw;
+}
+
+.showtimeBox:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng hover cho ô */
+}
+.selectedBox{
+    border: 0.1vw solid red;
+}
+
+@keyframes colorChange{
+    50%{color : red;}
+} 
+
+@keyframes sparkle {
+    0% {
+        color: black; /* Màu ban đầu là đen */
+        opacity: 0.5; /* Độ trong suốt ban đầu */
+    }
+    25% {
+        color: rgb(255, 0, 0); /* Màu thứ hai */
+        opacity: 0.5; /* Độ trong suốt cao nhất */
+    }
+    50% {
+        color: green; /* Màu thứ ba */
+        opacity: 0.5; /* Giảm độ trong suốt */
+    }
+    75% {
+        color: blue; /* Màu thứ tư */
+        opacity: 1; /* Độ trong suốt cao nhất */
+    }
+    100% {
+        color: black; /* Trở lại màu đen */
+        opacity: 0.5; /* Độ trong suốt ban đầu */
+    }
+}
+
