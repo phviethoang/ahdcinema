@@ -1,0 +1,29 @@
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+}
+.display{
+    position: absolute;
+    top: -5%;
+    left:0;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 110%;
+    filter: blur(10px);
+    opacity: 0.9;
+    /* mix-blend-mode:difference; */
+}
+.image{
+    position: absolute;
+    top:5%;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    background-size: cover;
+    background-position: center;
+}
+

@@ -1,0 +1,66 @@
+.container{
+    position: relative;
+    width: 100vw;
+    height: 40vh;
+    background-color: black;
+    display: flex;
+}
+
+.item{
+    width: 25%;
+    margin-left: 0%;
+    position: relative;
+}
+.label{
+    position: absolute;
+    width: 80%;
+    height: 20%;
+    top:10%;
+    left: 10%;
+    font-size: larger;
+    color: white;
+    /* font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    /* font-weight: bold; */
+    align-content: center;
+}
+/* đường kẻ phân cách*/
+.Policy::after, .CustomerService::after, .Contact::after{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 40%;
+    background-color: white;
+    right: 0%;
+    top: 30%;
+   
+}
+.content{
+    margin-top: 10%;
+    position: absolute;
+    width: 70%;
+    height: 50%;
+    top: 22%;
+    left: 15%;
+    color: white;
+    font-size: small;
+    text-align: left;
+    line-height: 200%;
+}
+.content{
+    display: flex;
+    justify-content: center;
+}
+/* thông tin chăm sóc khách hàng*/
+.CustomerService .content div{
+    width: max-content;
+    height: max-content;
+}
+/* thông tin liên hệ*/
+.Contact .content div img{
+    width: 28%;
+    margin: 2%;
+    
+}
+.Contact .content div img:hover{
+    transform: scale(0.9);
+}

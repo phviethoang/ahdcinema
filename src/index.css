@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'Peace Sans';
+  src: url('./assets/fonts/Peace_Sans.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Billy Bold';
+  src:url('./assets/fonts/SVN-Billy\ Bold.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Edge of the galaxy';
+  src: url('./assets/fonts/Edge_of_the_galaxy.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Aguda Black';
+  src: url('./assets/fonts/SVN-Aguda\ Black.otf') format('OpenType');
+}
+@font-face {
+  font-family: 'Poppins Black';
+  src: url('./assets/fonts/Poppins-SemiBold.otf') format('OpenType');
+}
+@font-face {
+  font-family: 'Montserrat Black';
+  src: url('./assets/fonts/Montserrat-Black.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Montserrat Bold';
+  src: url('./assets/fonts/Montserrat-Bold.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-Regular.ttf') format('TrueType');
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

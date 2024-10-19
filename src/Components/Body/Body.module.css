@@ -1,0 +1,30 @@
+.container{
+    flex-grow: 1;
+    position: relative;
+    width: 100vw;
+    height: 230vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.posters{
+    position: absolute;
+    width: 80vw;
+    height: 70vh;
+    top: 5vh;
+}
+.cardsCollection{
+    position: absolute;
+    width: 65vw;
+    height: 60vh;
+    top: 85vh;
+    
+}
+.hotEvent{
+    position: absolute;
+    width: 100vw;
+    height: 50vh;
+    top: 145vh;
+}
+

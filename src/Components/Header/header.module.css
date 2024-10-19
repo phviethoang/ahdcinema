@@ -1,0 +1,75 @@
+.navBar{
+    width: 100vw;
+    height: 13vh;
+    background-color: black;
+    position: relative;
+    display: flex;
+}
+/*button*/
+.buttons{
+    position: absolute;
+    width: 450px;
+    height: 100%;
+    left: 25%;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+}
+.item{
+    text-align:center ;
+    color: whitesmoke;
+    width: 40%;
+    height: 100%;
+    border: none;
+    position: relative;
+}
+.item button{
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    top: 30%;
+    left:0;
+    background-color: black;
+    border: none;
+    border-right: thin solid white;
+    color: white;
+    font-family: 'Montserrat','Peace Sans';
+    font-size: large;
+}
+
+/*logo*/
+.buttons button:hover{
+    filter: brightness(2.0);
+    font-size: larger;
+}
+.logo{
+    position: absolute;
+    width: 15%;
+    height: 100%;
+}
+.logo img{
+    position: absolute;
+    height: 100%;
+    left: 30px;
+    transition: transform 0.2 ease , filter 0.2 ease;
+    transform-style: preserve-3d;
+}
+.logo img:hover{
+    filter:brightness(1.3);
+    transform: perspective(1000px) translateZ(200px);
+    animation: rotateLogo 0.5s ease-in-out forwards; 
+}
+@keyframes rotateLogo {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(60deg);
+    }
+}
+/*log*/
+.log{
+    position: absolute;
+    right: 10%;
+    color: white;
+    font-size: small;
+}

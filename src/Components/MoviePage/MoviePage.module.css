@@ -1,0 +1,120 @@
+.container{
+    position: absolute;
+    top: 0;
+    left: 10vw;
+    width: 80vw;
+    /* height: 110vh; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
+}
+/*tiêu đề */
+.label{
+    height: 15vh;
+    width: 100%;
+    /* border-bottom: thin double black; */
+    border-bottom-style: double;
+    position: relative;
+}
+    .labelContent{
+        position: absolute;
+        width: 40%;
+        height: 50%;
+        top: 25%;
+        left: 10%;
+        font-family: 'Edge of the galaxy';
+        font-size: 250%;
+        text-align: left;
+        position: relative;
+    }
+/*Nội dung*/
+.info{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5%;
+}
+.title{
+    height: 12vh;
+    width: 100%;
+    font-size: xx-large;
+    font-family: 'Montserrat Bold','Aguda Black','Peace Sans';
+    background-color: rgb(0, 0, 0);
+    color: white;
+    align-content: center;
+    border-bottom-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+}
+.content{
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 28% 70%;
+    gap: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+    .movie{
+        grid-column: 1/2;
+    }
+    .movie img{
+        width: 100%;
+        border-radius: 10%;
+    }
+    .detail{
+        grid-column: 2/3;
+        display: flex;
+        flex-direction: column;
+    }
+    .item{
+        position: relative;
+        height: 12%;
+        width: 100%;
+    }
+/*button*/
+.buttons{
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons button{
+    min-width: 50px;
+    width: 30%;
+    height: 50%;
+    min-height: 10px;
+    max-width: 100px;
+    overflow: hidden;
+    border-radius: 10%;
+    margin: 2%;
+    background-color: aqua;
+    font-family: 'Billy Bold';
+}
+.videoTrailer{
+    position:absolute;
+    width: 100vw;
+    height: 110%;
+    top: 0vh;
+    left: -10vw;
+    display: flex;
+    justify-content: center;
+}
+.videoDisplay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    background-color: black;
+    opacity: 0.8;
+}
+.video{
+    position: absolute;
+    top: 20%;
+    width: 80vw;
+    height: 33.3vw;
+}
