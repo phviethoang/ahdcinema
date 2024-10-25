@@ -1,6 +1,6 @@
 .login-container {
   height: fit-content;
-  width: 300px;
+  width: 400px;
   padding: 50px;
   border: 0px solid #ddd;
   border-radius: 0px;
@@ -10,6 +10,7 @@
 }
 
 body {
+  flex-wrap: wrap;
   display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang*/
   align-items: center; /*Căn giữa theo chiều dọc*/
@@ -40,7 +41,7 @@ input {
   box-sizing: border-box;
 }
 
-button {
+lbutton {
   width: 100%;
   padding: 10px;
   background-color: #007bff;
@@ -48,9 +49,10 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  text-align: center;
 }
 
-button:hover {
+lbutton:hover {
   background-color: #0056b3;
 }
 

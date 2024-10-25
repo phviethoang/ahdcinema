@@ -62,7 +62,7 @@ function Login() {
         <p className="forgot-password-link">
           <Link to="/forgot-password">Quên mật khẩu</Link>
         </p>
-        <button type="submit">Đăng nhập</button>
+        <lbutton type="submit">Đăng nhập</lbutton>
         <p className="register-link">
           Bạn chưa có tài khoản? <Link to="/register">Đăng ký</Link>
         </p>

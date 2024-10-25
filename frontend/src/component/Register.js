@@ -40,24 +40,12 @@ const RegisterForm = () => {
     <div className="register-form">
       <form onSubmit={handleSubmit}>
         <h2>Đăng Ký</h2>
-
         <div className="form-group">
-          <label>Họ tên</label>
+          <label>Tên đăng nhập</label>
           <input
             type="text"
             name="name"
             value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -85,8 +73,38 @@ const RegisterForm = () => {
             id="confirmPassword"
           />
         </div>
+        <div className="form-group">
+          <label>Họ và tên</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
         <div className="form-group">
+          <label style={{ margin: 0 }}>Email</label>
+          <p
+            style={{
+              fontStyle: "italic",
+              fontSize: "12px",
+              color: "#666",
+              margin: 0,
+            }}
+          >
+            *Vui lòng nhập đúng email cá nhân để khôi phục mật khẩu.
+          </p>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        {/* <div className="form-group">
           <label>Ngày sinh</label>
           <input
             type="date"
@@ -95,9 +113,9 @@ const RegisterForm = () => {
             onChange={handleChange}
             required
           />
-        </div>
+        </div> */}
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Giới tính</label>
           <select
             name="gender"
@@ -110,7 +128,7 @@ const RegisterForm = () => {
             <option value="female">Nữ</option>
             <option value="other">Khác</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="form-group">
           <label>Số điện thoại</label>
@@ -122,7 +140,31 @@ const RegisterForm = () => {
             required
           />
         </div>
+        {/* <div className="form-group">
+          <label>Ngày sinh</label>
+          <input
+            type="date"
+            name="birthday"
+            value={formData.birthday}
+            onChange={handleChange}
+            required
+          />
+        </div> */}
 
+        {/* <div className="form-group">
+          <label>Giới tính</label>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Chọn giới tính</option>
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+            <option value="other">Khác</option>
+          </select>
+        </div> */}
         {/*} <div className="form-group">
           <label>Mã xác thực</label>
           <input
@@ -136,8 +178,8 @@ const RegisterForm = () => {
         </div> */}
 
         <div className="form-group">
-          <input type="checkbox" required />
           <label>
+            <input type="checkbox" required />
             Tôi cam kết tuân theo chính sách bảo mật và điều khoản sử dụng
           </label>
         </div>
