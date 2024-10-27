@@ -1,7 +1,10 @@
-import React from "react";
 import "../PhimDangChieu.css"; // Tạo file CSS cho style của bạn
 import { Link } from "react-router-dom";
-const PhimDangChieu = () => {
+import React, { useState } from "react";
+
+function PhimDangChieu() {
+  // const [showButton, setShowButton] = useState(null);
+
   // Mô phỏng danh sách phim đang chiếu
   const movies = [
     {
@@ -130,6 +133,6 @@ const PhimDangChieu = () => {
       </div>
     </div>
   );
-};
+}
 
 export default PhimDangChieu;

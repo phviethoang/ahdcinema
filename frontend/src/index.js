@@ -10,11 +10,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PhimSapChieu from "./component/PhimSapChieu";
 import PhimDangChieu from "./component/PhimDangChieu";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Combo from "./component/combo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <Routes>
+      <Route path="/Combo" element={<Combo />} />
       <Route path="/PhimDangChieu" element={<PhimDangChieu />} />
       <Route path="/PhimSapChieu" element={<PhimSapChieu />} />
       <Route path="/login" element={<Login />} /> {/* Trang đăng nhập */}
