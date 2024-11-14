@@ -21,7 +21,7 @@ const eventsData = [
     id: 3,
     image:
       "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240-x-201-px.jpg",
-    dateRange: "7/11 - 21/11/2024",
+    dateRange: " 1/11 - 31/12/2024",
     title: "Sự kiện 3",
   },
   {
