@@ -1,0 +1,72 @@
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
+  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: repeat;
+  height: 100vh; /* Chiều cao toàn trang */
+  overflow: scroll;
+}
+.registerForm {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: min-content;
+  width: 442px;
+
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 1px;
+}
+
+.formGroupLabel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formGroupInput,
+.formGroupSelect {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.formGroupInput[type="checkbox"] {
+  width: 2px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submitButton:hover {
+  background-color: #e64a19;
+}
+.checkboxContainer {
+  width: auto;
+}

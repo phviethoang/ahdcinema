@@ -1,0 +1,116 @@
+/* EventDetail.module.css */
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
+  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: repeat; /* Không lặp lại hình ảnh */
+  height: 100vh; /* Chiều cao toàn trang */
+  overflow: scroll;
+}
+.container {
+  width: 980px;
+  padding: 20px;
+  max-width: 980px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+.imagect {
+  float: left;
+  width: 37%;
+  margin-top: 20px;
+}
+.evContent {
+  float: right;
+  width: 60%;
+  text-transform: none;
+  font-family: Verdana, Arial, sans-serif;
+  color: #222;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 20px;
+}
+.evContent p1 {
+  font-weight: bold;
+}
+.evContent p2 {
+  display: block;
+}
+.image {
+  display: block;
+  width: 100% !important;
+  height: auto;
+  border: 0;
+  margin-bottom: 15px;
+}
+
+.dateRange {
+  font-weight: bold;
+  color: #2a9d8f;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #555;
+}
+.titleh1 {
+  float: left;
+  width: 100%;
+  color: #e71a0f;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0px;
+  padding: 0px;
+  font-family: Verdana, Arial, sans-serif;
+  font-style: normal;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+}
+.eventDetails {
+  font-family: Verdana, Arial, sans-serif;
+}
+
+.eventDetails p {
+  margin: 0;
+}
+
+.eventDetails strong {
+  font-weight: bold;
+  margin-top: 1.5em;
+}
+.eventDetails ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.eventDetails a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.eventDetails a:hover {
+  text-decoration: underline;
+}
+.evContentLink a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.evContentLink a:hover {
+  color: #0056b3;
+}

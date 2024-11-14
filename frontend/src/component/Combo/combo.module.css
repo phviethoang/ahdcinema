@@ -1,0 +1,169 @@
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
+  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: repeat;
+  height: 100vh; /* Chiều cao toàn trang */
+  overflow: scroll;
+}
+.comboPage {
+  font-family: Verdana, Arial, sans-serif;
+  padding: 20px;
+  background-color: #f8f8e6;
+  color: #333;
+  margin-left: 17%;
+  margin-right: 17%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  line-height: 18px;
+}
+
+.bookingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.countdown {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.timer {
+  background-color: #ffcc99;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.product {
+  width: calc(50% - 20px);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  padding: 10px;
+}
+
+.productImage {
+  width: 30%;
+  height: auto;
+  object-fit: fill;
+  margin-right: 15px;
+}
+
+.productInfo {
+  flex: 1;
+}
+.productInfoText {
+  min-height: 87%;
+}
+.productInfo h3 {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  font-weight: bold;
+}
+
+.productPrice {
+  font-weight: bold;
+}
+
+.productInfo p {
+  font-size: 14px;
+  /* color: #666; */
+  margin: 5px 0;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantityControls button {
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quantityControls span {
+  margin: 0 10px;
+  font-size: 16px;
+}
+.ticketInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px dotted #fff;
+}
+
+.navButton {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.navButtonPrev {
+  background-color: red;
+  width: 10%;
+  font-size: 11px;
+}
+
+.navButtonNext {
+  background-color: red;
+  width: 10%;
+  font-size: 11px;
+}
+
+.ticketDetails {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.moviePoster {
+  width: 80px;
+  height: auto;
+}
+
+.movieInfo,
+.theaterInfo,
+.priceInfo {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.priceInfo {
+  text-align: right;
+}

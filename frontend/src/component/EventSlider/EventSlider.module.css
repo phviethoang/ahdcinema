@@ -1,0 +1,163 @@
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
+  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: repeat;
+  height: 100vh; /* Chiều cao toàn trang */
+  overflow: scroll;
+}
+
+.sliderContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20%;
+  position: relative;
+}
+.eventHeader {
+  font-family: Verdana, Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 70%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0px 0;
+  background-color: #f8f9fa; /* Màu nền để phân biệt */
+  color: #333;
+  margin-bottom: 50px;
+  height: 100px;
+  align-items: center;
+}
+.evHead {
+  width: 100%; /* Chiếm 100% chiều rộng của .event-header */
+  height: auto; /* Chiều cao tự động */
+  object-fit: fill; /* Đảm bảo ảnh full kích thước vùng chứa */
+  height: 100px;
+}
+.button1 {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.p1 {
+  display: flex;
+  width: 80%;
+  height: 10px;
+  justify-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+.p2 {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+
+  justify-items: center;
+  justify-content: center;
+}
+.p3 {
+  display: flex;
+  width: 25%;
+  border: 2px solid black; /* Viền đen */
+  justify-items: center;
+  justify-content: center;
+}
+.p3img {
+  width: 95%;
+  object-fit: fill;
+}
+.p4 {
+  display: flex;
+  width: 50%;
+
+  justify-items: center;
+  justify-content: center;
+  border: 2px solid black; /* Viền đen */
+}
+.p4img {
+  width: 95%;
+  object-fit: fill;
+}
+.blackLine {
+  display: flex;
+  height: 5px; /* Độ dày của dòng */
+  background-color: black; /* Màu đen */
+  width: 83%; /* Độ rộng của dòng */
+}
+
+.eventBody {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+.slider {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.eventCard {
+  width: 25%;
+  box-sizing: border-box;
+  padding: 0px;
+  text-align: center;
+  min-height: auto;
+  justify-content: space-between;
+}
+
+.eventCard img {
+  height: auto;
+  width: 100%;
+  border-radius: 0px;
+}
+
+.navButton {
+  width: 10%;
+  background-color: #f00;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 10%;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black; /* Màu chữ đen */
+  padding: 0px 0px; /* Khoảng cách bên trong nút */
+  background-color: white; /* Màu nền trắng */
+  border: 2px solid black; /* Viền đen */
+  border-radius: 5px; /* Bo góc nút */
+  cursor: pointer; /* Con trỏ thành hình bàn tay khi hover */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 35%;
+  height: 40px;
+  text-align: center;
+}
+
+.buttons:hover {
+  background-color: black; /* Nền đen khi di chuột */
+  color: white; /* Chữ trắng khi di chuột */
+  transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
+}

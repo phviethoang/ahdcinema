@@ -1,0 +1,170 @@
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
+  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: repeat;
+  height: 100vh; /* Chiều cao toàn trang */
+  overflow: scroll;
+}
+.PSCcontainer {
+  display: flex;
+}
+.content {
+  margin-left: 220px; /* Đẩy phần nội dung sang bên phải của sidebar */
+  padding: 20px;
+  padding: 20px;
+  width: 70%;
+  /* margin: 0 auto; */
+  position: relative;
+}
+.breadcrumb {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.moviesSection {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.movie {
+  width: 21%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding-bottom: 0px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+  text-align: left;
+  background-color: white;
+  height: 450px;
+  line-height: 18px;
+}
+
+.movie img {
+  border: 5px solid black;
+  width: 100%;
+  height: 67%;
+  min-height: 67%;
+  /* border-radius: 10px; */
+}
+.movieContent {
+  height: 25%;
+  max-height: 25%;
+}
+.movie h3 {
+  font-family: Verdana, Arial, sans-serif;
+  color: #333 !important;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: none;
+  margin-top: 5px;
+}
+
+.movie p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+.button1 {
+  color: black;
+}
+button {
+  background: none;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(47, 176, 228);
+}
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black; /* Viền đen ở giữa */
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.buttons {
+  font-size: 1.5em; /* Kích thước chữ lớn hơn */
+  font-weight: bold; /* Chữ đậm */
+  color: black; /* Màu chữ đen */
+  padding: 10px 20px; /* Khoảng cách bên trong nút */
+  background-color: white; /* Màu nền trắng */
+  border: 2px solid black; /* Viền đen */
+  border-radius: 5px; /* Bo góc nút */
+  cursor: pointer; /* Con trỏ thành hình bàn tay khi hover */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.buttons:hover {
+  background-color: black; /* Nền đen khi di chuột */
+  color: white; /* Chữ trắng khi di chuột */
+  transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  margin-left: 10px;
+  position: fixed; /* Giữ sidebar cố định */
+  width: 13%;
+  padding: 20px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+
+  border-right: 2px solid black;
+  height: 70%;
+  margin-top: 10%;
+}
+
+.backButton {
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  background: #2e8c46;
+  border: none;
+}
+
+.sidebarItem {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  text-align: left;
+  background-color: #2e8c46;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebarItem:hover {
+  background-color: #ddd;
+}
+
+.moreOptions {
+  width: 100%;
+  font-size: 24px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.moreOptions:hover {
+  background-color: #ddd;
+  border-radius: 5px;
+}

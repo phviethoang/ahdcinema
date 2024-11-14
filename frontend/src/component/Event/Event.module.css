@@ -1,0 +1,74 @@
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
+  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: repeat;
+  height: 100vh; /* Chiều cao toàn trang */
+  overflow: scroll;
+}
+.container {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 70%;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #cc0000;
+}
+
+.events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.eventCard {
+  width: 23%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.date {
+  padding: 10px;
+  background-color: #eaeaea;
+  font-size: 14px;
+  color: #555;
+}

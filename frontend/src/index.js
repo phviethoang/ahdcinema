@@ -1,28 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Login from "./component/login"; // Đường dẫn đến file Login.js
-import Register from "./component/Register"; // Đường dẫn đến file Register.js
-import ForgotPassword from "./component/ForgotPassword";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PhimSapChieu from "./component/PhimSapChieu";
-import PhimDangChieu from "./component/PhimDangChieu";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Combo from "./component/combo";
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <Routes>
-      <Route path="/Combo" element={<Combo />} />
-      <Route path="/PhimDangChieu" element={<PhimDangChieu />} />
-      <Route path="/PhimSapChieu" element={<PhimSapChieu />} />
-      <Route path="/login" element={<Login />} /> {/* Trang đăng nhập */}
-      <Route path="/register" element={<Register />} /> Trang đăng ký
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-    </Routes>
+    <App />
   </Router>
 );
 
