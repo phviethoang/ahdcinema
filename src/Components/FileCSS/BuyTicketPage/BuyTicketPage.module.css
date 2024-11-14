@@ -1,0 +1,84 @@
+.container{
+    position: relative;
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*Trang chính*/
+.mainBox{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    top:0;
+    left:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*Thanh tiến trình*/
+.progressBarBox{
+    position: relative;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 15vh;
+    display: grid;
+    grid-template-columns: 12% 10% 12% 10% 12% 10% 12% 10% 12%;
+    grid-template-areas: "... step1 line1 step2 line2 step3 line3 step4 ...";
+}
+.step{
+    position: relative;
+}
+.step:nth-child(1){
+    grid-area: step1;
+}
+.step:nth-child(2){
+    grid-area: step2;
+}
+.step:nth-child(3){
+    grid-area: step3;
+}
+.step:nth-child(4){
+    grid-area: step4;
+}
+.stepShape{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 70%;
+    left:45%;
+    background-color: gray;
+    border-radius: 50%;
+}
+.stepLabel{
+    position: absolute;
+    width: max-content;
+    height: fit-content;
+    top: 30%;
+    left: 35%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+}
+/*main*/
+.contentBox{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    left: 0;;
+}
+/* thanh thông tin vé*/
+.nextPreviousBox{
+    width: 90vw;
+    height: 30vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}

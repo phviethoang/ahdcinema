@@ -1,0 +1,265 @@
+/* PaymentPage.module.css */
+
+.paymentPage {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.heading {
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.discountSection,
+.giftSection,
+.paymentMethodSection {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.summarySection {
+  float: right;
+  width: 200px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.summarySection h3 {
+  color: #333;
+}
+
+.summarySection p {
+  margin: 5px 0;
+}
+
+.totalAmount {
+  color: red;
+  font-weight: bold;
+}
+
+.countdownClock {
+  text-align: center;
+  font-size: 18px;
+  background-color: #ffe4b5;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+
+.step {
+  background-color: #c1c1c1; /* Màu nền xám */
+  color: #000; /* Màu chữ */
+  padding: 10px; /* Khoảng cách trong hộp */
+  border: 3px solid #a5a5a5; /* Viền xung quanh */
+  font-size:16px;
+}
+
+
+
+.paymentMethod {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start; 
+  background-color: #fff4e6;
+}
+
+.paymentLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+.paymentLabel input[type="radio"] {
+  transform: scale(0.8); /* Giảm kích thước radio */
+  margin-right: 10px; /* Tạo khoảng cách giữa radio và icon */
+}
+
+.icon {
+  width: 32px; 
+  height: 32px;
+}
+
+.paymentLabel img {
+  margin-right: 10px; /* Khoảng cách giữa icon và văn bản */
+}
+
+.paymentLabel span {
+  white-space: nowrap; /* Ngăn văn bản xuống dòng */
+}
+
+
+
+.agreementSection input[type="checkbox"] {
+  margin-right: 5px; 
+  width: 16px; 
+  height: 16px; 
+  transform: scale(0.8); 
+}
+
+
+
+
+.discountSection {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.mainItem {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #f7e4c4;
+  padding: 15px;
+}
+
+.subItems {
+  background-color: #fff7e6;
+  /* padding: 10px; */
+  display: flex;
+
+}
+
+.subItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 5px 0; */
+  padding: 10px;
+  width:50%;
+}
+
+/* Định dạng cho nút đăng ký */
+.registerButton {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Định dạng cho nút áp dụng */
+.applyButton {
+  background-color:red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+.section {
+  padding: 10px;
+  flex: 1;
+  text-align: center;
+}
+
+/* Đường ngăn dọc giữa các mục */
+.section:not(:last-child) {
+  border-right: 2px dotted #ccc;
+}
+
+
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+
+
+.paymentPage {
+  padding: 20px;
+}
+
+.heading {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Container để chia đôi màn hình */
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+/* Cột các bước thanh toán */
+.paymentSteps {
+  flex: 3;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Cột tóm tắt thanh toán */
+.summarySection {
+  flex: 1;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.summarySection h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.totalAmount {
+  font-weight: bold;
+  color: red;
+  margin-top: 10px;
+}
+
+.countdownClock {
+  text-align: center;
+  padding: 10px;
+  background-color: #ffe9e9;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Các style khác */
+.step {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.discountSection, .paymentMethodSection {
+  margin-bottom: 20px;
+}
+
+.paymentMethod {
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentLabel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.paymentLabel input[type="radio"] {
+  margin-right: 10px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.agreementSection {
+  margin-top: 20px;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

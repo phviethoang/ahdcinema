@@ -1,0 +1,118 @@
+.container{
+  height: fit-content;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loginContainer {
+    height: fit-content;
+    width: 400px;
+    padding: 50px;
+    border: 0px solid #ddd;
+    border-radius: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white; /* Màu nền bên trong form */
+    margin: 10vh;
+    /*text-align: center;*/ /* Căn giữa nội dung bên trong */
+  }
+  
+  body {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang*/
+    /* align-items: center; Căn giữa theo chiều dọc */
+    /* background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800"); */
+    background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
+    background-position: center; /* Căn giữa hình ảnh */
+    background-repeat: repeat; /* Không lặp lại hình ảnh */
+    height: 100vh; /* Chiều cao toàn trang */
+    /* margin: 10vh; Xóa khoảng trống mặc định của body */
+    overflow: scroll;
+  }
+  h2 {
+    text-align: center;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+  }
+  /* Căn chỉnh phần social login */
+  .socialLogin {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .socialLogin button {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .socialLogin button:hover {
+    background-color: #0056b3;
+    color: #ddd;
+  }
+  .socialLogin button img {
+    width: 20px;
+    margin-right: 10px;
+  }
+  
+  .facebookBtn {
+    background-color: #3b5998;
+    color: white;
+  }
+  
+  .googleBtn {
+    background-color: #db4437;
+    color: white;
+  }
+  
+  .facebookBtn:hover,
+  .googleBtn:hover {
+    opacity: 0.9;
+  }
+  
+  .socialLogin svg {
+    margin-right: 10px;
+  }

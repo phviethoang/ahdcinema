@@ -1,0 +1,28 @@
+.theaterAndTimeItem{
+    width: fit-content;
+    max-width: 300px;
+    height: fit-content;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.theaterName{
+    height: fit-content;
+    min-height: 50px;
+    align-content: center;
+    color: rgb(65, 65, 65);
+    background-color: rgb(185, 184, 184);
+    border-top-right-radius: 12%; 
+    font-family: 'Aguda Black';
+}
+.theaterAndTimeBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-left: thin solid black;
+    border-right: thin solid black;
+    border-bottom: thin solid black;
+}

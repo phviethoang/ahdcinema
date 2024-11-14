@@ -1,0 +1,139 @@
+/* ComboPage.module.css */
+.comboPage {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f8f8e6;
+    color: #333;
+  }
+  
+  .bookingHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  /* .countdown {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .timer {
+    background-color: #ffcc99;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+  } */
+  
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .product {
+    width: calc(50% - 20px);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    padding: 10px;
+  }
+  
+  .productImage {
+    width: 30%;
+    height: auto;
+    object-fit: fill;
+    margin-right: 15px;
+  }
+  
+  .productInfo {
+    flex: 1;
+  }
+  
+  .productInfo h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .productInfo p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .quantityControls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .quantityControls button {
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .quantityControls span {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+  
+ 
+  
+
+
+
+
+  /* countdown */
+
+.countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .timer {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .timeUnit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .timeValue {
+    font-size: 36px;
+    padding: 4px 8px;
+    background-color: #ff0000;
+    border-radius: 4px;
+  }
+  
+  .timeLabel {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  
+  .timeSeparator {
+    font-size: 36px;
+    padding: 0 8px;
+  }
+  

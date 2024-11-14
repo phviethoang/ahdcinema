@@ -1,0 +1,139 @@
+.container{
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+}
+/*Hộp chứa của 1 mục chọn( hộp chứa của mục chọn ngày xem, của chọn thành phố,..)*/
+.box{
+    width: 100%;
+    height: fit-content;
+    min-height: 30vh;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+}
+/*nền trang trí của hộp chứa*/
+.boxDisplay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    opacity: 0.3;
+}
+.dateContainer .boxDisplay{
+    background-color: grey;
+}
+.theaterAndTimeContainer .boxDisplay{
+    background-color: grey;
+    max-height: 30vh;
+}
+/* hộp chứa của mục chọn rạp và thời gian hơi khác*/
+.theaterAndTimeContainer{
+    flex-direction: column;
+}
+/* nội dung của mục chọn*/
+.content{
+    /* position: absolute; */
+    width: 100%;
+    height: fit-content;
+    min-height: 100%;
+    top:0;
+    left:0;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    overflow: hidden;
+}
+    .label{
+        position: relative;
+        /* width: 15vw; */
+        height: 100%;
+        /* margin: 2vw; */
+        color: rgb(65, 65, 65);
+        font-family: 'Aguda Black';
+        font-weight: bolder;
+        text-align: center;
+        align-content: center;
+        transition: transform 0.2s linear;
+        /* background-color: aqua; */
+    }
+    .dateBox{
+        position: relative;
+        width: 50vw;
+        max-width: 500px;
+        height: fit-content;
+        border-left: thin solid gray;
+        display: flex;
+        flex-wrap: wrap;
+        transition: width 0.2s linear;
+        justify-content: center;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+    .cityBox{
+        width: 50vw;
+        height: fit-content;
+        min-height: 20vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border-right: thin solid gray;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        margin-left: 10vw;
+    }
+    .cityContent .label{
+        margin-left: 10vw;
+    }
+    .dataContent .label{
+        margin-left: 20vw;
+        margin-right: 10vw;
+    }
+/*nội dung của chọn rạp và thời gian hơi khác*/
+.theaterAndTimeContainer .label{
+    height: 30vh;
+}
+.theaterAndTimeContainer .content{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: fit-content;
+    justify-content: center;
+}
+    .theaterAndTimeItem{
+        width: fit-content;
+        max-width: 300px;
+        height: fit-content;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+    .theaterName{
+        height: fit-content;
+        min-height: 50px;
+        align-content: center;
+        color: rgb(65, 65, 65);
+        background-color: rgb(185, 184, 184);
+        border-top-right-radius: 12%; 
+        font-family: 'Aguda Black';
+    }
+    .theaterAndTimeBox{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        border-left: thin solid black;
+        border-right: thin solid black;
+        border-bottom: thin solid black;
+    }
