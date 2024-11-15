@@ -34,65 +34,65 @@ const eventsData = [
   {
     id: 5,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/Onl_N_O_240x201.jpg",
+    dateRange: "8/11 - 12/12/2024",
+    title: "Sự kiện 5",
   },
   {
     id: 6,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/News_Offers_240_x_201.jpg",
+    dateRange: "1/11/2024 - 16/02/2025",
+    title: "Sự kiện 6",
   },
   {
     id: 7,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/Happy_Day_Oct_28_N_O_240x201.jpg",
+    dateRange: "HAPPY DAY",
+    title: "Sự kiện 7",
   },
   {
     id: 8,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/CGV-240x201-.png",
+    dateRange: "01/11/2024 - 30/11/2024",
+    title: "Sự kiện 8",
   },
   {
     id: 9,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/102024/Culture_Day_Oct_28_N_O_240x201.jpg",
+    dateRange: "Thứ 2 Cuối Cùng mỗi Tháng",
+    title: "Sự kiện 9",
   },
   {
     id: 10,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/102024/240x201_8_.jpg",
+    dateRange: "Quà Sinh Nhật MIỄN PHÍ",
+    title: "Sự kiện 10",
   },
   {
     id: 11,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/102024/N_O_240x201.png",
+    dateRange: "01.01.2024 - 31.12.2024",
+    title: "Sự kiện 11",
   },
   {
     id: 12,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201_9_.jpg",
+    dateRange: "02.11.2024",
+    title: "Sự kiện 12",
   },
   {
     id: 13,
     image:
-      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/112024/240x201-teachers-day-promo.jpg",
-    dateRange: "7/11 - 21/11/2024",
-    title: "Sự kiện 4",
+      "https://iguov8nhvyobj.vcdn.cloud/media/wysiwyg/2024/102024/NXCMCT_N_O_240x201.jpg",
+    dateRange: "28/10/2024",
+    title: "Sự kiện 13",
   },
   // Thêm các sự kiện khác tương tự
 ];

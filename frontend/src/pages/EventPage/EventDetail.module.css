@@ -47,6 +47,11 @@
 .evContent p2 {
   display: block;
 }
+.img {
+  margin-top: 15px;
+  width: 100% !important;
+  height: 100% !important;
+}
 .image {
   display: block;
   width: 100% !important;

@@ -14,8 +14,11 @@ const EventDetail = () => {
     <div className={styles.pageContainer}>
       <div className={styles.container}>
         <h1 className={styles.titleh1}> {event.title}</h1>
+        <div>
+          <img className={styles.img} src={event.img} />
+        </div>
         <div className={styles.imagect}>
-          <img className={styles.image} src={event.image} alt={event.title} />
+          <img className={styles.image} src={event.image} />
         </div>
 
         <div className={styles.evContent}>
