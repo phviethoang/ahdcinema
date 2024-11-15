@@ -17,7 +17,7 @@ function Header(){
                     <button >Theaters</button>
                 </div>
                 <div className={styles.item}>
-                    <button >Members</button>   
+                    <button onClick={()=>{navigate('/MemberPage')}}>Members</button>   
                 </div>
                 <div className={styles.item}>
                     <button >Events</button>   

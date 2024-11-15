@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Login from './Components/FileJS/LoginAndRegister/login.js';
 import Register from './Components/FileJS/LoginAndRegister/Register.js';
 import ForgotPassword from './Components/FileJS/LoginAndRegister/ForgotPassword.js';
+import AhdMember from './Components/FileJS/MemberPage/AhdMember.js';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
               <Route path = "/Login" element={<Login></Login>}></Route>
               <Route path = "/Register" element={<Register></Register>}></Route>
               <Route path = "/ForgotPassWord" element={<ForgotPassword></ForgotPassword>}></Route>
+              <Route path = "/MemberPage" element = {<AhdMember></AhdMember>}></Route>
             </Routes>
         </BrowserRouter>
     </div>
