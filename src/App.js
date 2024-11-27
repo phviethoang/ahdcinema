@@ -1,16 +1,22 @@
 
 
-import MemberInfo from "./Components/MemberInfoComponent/MemberInfo"
-import CinemaList from './Components/CinemaListComponent/CinemaList'; // Điều chỉnh đường dẫn nếu cần
+import AhdMember from "./Components/MemberInfoComponent/AhdMember"
+import CinemaList from './Components/CinemaListComponent/CinemaList'; 
+import BuyTicket from "./Components/BuyTicketComponent/BuyTicket";
+
 import './Components/icons';
 
 
 export default function App() {
   return (
     <div className="App">
-      <MemberInfo/>
+      <AhdMember/>
       {/* <CinemaList/> */}
+      {/* <BuyTicket/> */}
     </div>
     
   );
 }
+
+
+
