@@ -73,18 +73,26 @@
   font-size: 14px;
 }
 .button1 {
+  background: none;
   color: black;
+  padding: 10px 20px;
+  border: none;
+
+  cursor: pointer;
 }
-button {
+.button1:hover {
+  background-color: rgb(47, 176, 228);
+}
+.button {
   background: none;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+
   cursor: pointer;
 }
 
-button:hover {
+.button:hover {
   background-color: rgb(47, 176, 228);
 }
 .buttonsContainer {
