@@ -1,0 +1,289 @@
+.pageContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang*/
+  align-items: center; /*Căn giữa theo chiều dọc*/
+  height: fit-content; /* Chiều cao toàn trang */
+}
+.container{
+  position: relative;
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  
+}
+.container::after{
+  position: absolute;
+  content:'';
+  z-index: -1;
+  width: 100%;
+  height: 130%;
+  top: -30%;
+  left: 0;
+  /* background: linear-gradient(white, #cfeef9 5%); */
+  background-color:  #dfeff5;
+  filter: blur(50px);
+}
+.PSCcontainer {
+  display: flex;
+}
+.content {
+  position: relative;
+  /* margin-left: 220px; Đẩy phần nội dung sang bên phải của sidebar */
+  padding: 0px;
+  width: 100%;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* margin: 0 auto; */
+  /* position: relative; */
+}
+.breadcrumb {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.moviesSection {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  /* border-top:3px solid #26839b; */
+  padding-top: 10vh;
+  border-top-right-radius: 3vw;
+  box-shadow: 2px -1.5px 15px 3px #0d4654;
+  background-color: white;
+  z-index: 100;
+}
+
+.movie {
+  position: relative;
+  width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin: 15px;
+  padding-bottom: 0px;
+  padding-top: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 0px;
+  text-align: left;
+  /* background: radial-gradient( #334a52, rgb(119, 190, 123)); */
+  background-color: #a6b6bc;
+  min-height: 500px;
+  height: fit-content;
+  line-height: 18px;
+  border-radius: 2%;
+  padding-bottom: 10px;
+}
+
+.movie img {
+  border: 5px solid black;
+  border-radius: 5%;
+  width: 90%;
+  height: 67%;
+  min-height: 67%;
+}
+.movieContent {
+  height: fit-content;
+  position: relative;
+  width: 90%;
+  margin-top: 5%;
+}
+.movie h3 {
+  font-family: Verdana, Arial, sans-serif;
+  width: 100%;
+  height: fit-content;
+  color: #334a52!important;
+  /* color: white; */
+  font-size: 16px;
+  font-weight:bolder;
+  font-family:'Aguda Black';
+  text-transform: none;
+  margin-top: 5px;
+}
+
+.movie p {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: fit-content;
+  /* color: #4d959d; */
+  color: #0d4654;
+  font-size: 14px;
+}
+.button1 {
+  position: absolute;
+  bottom: 10px;
+  margin-top: 5px;
+  width: 90%;
+  border-radius: 8%;
+  border: 2px solid #0d4654;
+  font-family: 'Baloo Bold';
+  padding: 3px;
+  color:#0d4654;
+  background: none;
+}
+/* Chọn phim đang chiếu-phim sắp chiếu*/
+.buttonsContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.buttonCover{
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+.buttons 
+{
+  position: relative;
+  font-size: 1.5em; 
+  width: fit-content;
+  height: fit-content;
+  font-weight: bold; 
+  /* color: black;  */
+  padding: 10px 20px; 
+  background: none;
+  border: 3px solid #26839b; /* Viền đen */
+  cursor: pointer; /* Con trỏ thành hình bàn tay khi hover */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  color: #26839b;
+  border-radius: 8px;
+}
+.phimSapChieu::after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index:  -1;
+  background-color: white;
+  opacity: 0.1;
+}
+/* .buttons::after{
+  position: absolute;
+  content: '';
+  width: 8vh;
+  height: 8vh;
+  top: 0;
+  left: -3.5vh;
+  clip-path: circle(50% at 50% 50%);
+  background-color: #e2eef3;
+  z-index: -1;
+}
+.buttons::before{
+  position: absolute;
+  content: '';
+  width: 8vh;
+  height: 8vh;
+  top: 0;
+  right: -3.5vh;
+  border-radius: 25%;
+  clip-path: circle(50% at 50% 50%);
+  background-color: #e2eef3;
+  z-index: -1;
+} */
+
+.phimDangChieu{
+  /* left: 4vh; */
+  top: 18px;
+  background-color: white;
+  border: none;
+  border-top-left-radius: 30%;
+  border-top-right-radius: 30%;
+  z-index: 101;
+  box-shadow:5px -10px 10px 0px #0d4654;
+}
+.phimSapChieu:hover {
+  background-color: #26839b; /* Nền đen khi di chuột */
+  color: white;
+  transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+}
+
+/* .phimDangChieu::before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+  border: 3px solid #26839b;
+  z-index: -100;
+} */
+
+.phimSapChieu{
+  right: 4vh;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  margin-left: 20px;
+  position: sticky;
+  top: 3vh;
+  width: 13%;
+  min-width: 200px;
+  /* padding-top: 20px; */
+  padding-left: 2px;
+  /* background-color: #910c0c; */
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin-top: 5%;
+}
+
+.backButton {
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  background: #2e8c46;
+  border: none;
+}
+
+.sidebarItem {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  text-align: left;
+  background-color: #2e8c46;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebarItem:hover {
+  background-color: #ddd;
+}
+
+.moreOptions {
+  width: 100%;
+  font-size: 24px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.moreOptions:hover {
+  background-color: #ddd;
+  border-radius: 5px;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ComboPage from './Step3/ComboPage';
 import SeatBooking from './Step2/SeatBooking';
-import PaymentPage from './Step4/PaymentPage';
+import PromoPage from './Step4/PromoPage';
 import Step1 from './Step1/Step1';
 import TicketInfo from './TicketInfoAn';
 import styles from '../../FileCSS/BuyTicketPage/BuyTicket.module.css';
@@ -16,6 +16,7 @@ function BuyTicket() {
         setClearControl(false);
     }
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
+    const [isPaymentClicked, setIsPaymentClicked] = useState(false);
     const [transitionClass, setTransitionClass] = useState(styles.enterRight); // Khởi tạo với hiệu ứng vào từ phải
     const [seatTotalPrice, setSeatTotalPrice] = useState(0);
     const [comboTotalPrice, setComboTotalPrice] = useState(0);
@@ -25,6 +26,10 @@ function BuyTicket() {
     const [theater, setTheater] = useState("Bạn chưa chọn rạp")
     const [time, setTime] = useState("... : ... ")
     const [date, setDate] = useState("...")
+    const [promotion, setPromotion] = useState(() => {
+        const storedPromotion = localStorage.getItem('promotion');
+        return storedPromotion ? JSON.parse(storedPromotion) : 0; // Nếu có giá trị trong localStorage, dùng nó, nếu không mặc định là 0
+      });
     
     const goToNextPage = () => {
         if (currentPageIndex < pages.length - 1) {
@@ -59,6 +64,13 @@ function BuyTicket() {
         setCombo(newCombo);
         setComboTotalPrice(newTotalPrice);
     };
+    const handlePromotionUpdate = (newPromotion) => {
+        setPromotion(newPromotion);
+    };
+
+    const handlePaymentClick = () => {
+        setIsPaymentClicked(true);
+    };
 
     const totalPrice = seatTotalPrice + comboTotalPrice;
     const pages = [
@@ -88,7 +100,14 @@ function BuyTicket() {
                     comboQuantities={comboQuantities}
                     onQuantitiesChange={handleComboQuantitiesChange}
                 />,
-                <PaymentPage />
+                <PromoPage
+                    originalPrice={totalPrice}
+                    seatTotalPrice={seatTotalPrice}
+                    comboTotalPrice={comboTotalPrice}
+                    onPromotionUpdate={handlePromotionUpdate}
+                    onPaymentClick={handlePaymentClick}
+                    ticketInfo ={{selectedSeats, combo, type:"buyTicket"}}
+                    />
             ]
     return (
         <div className = {styles.container}>
@@ -164,7 +183,7 @@ function BuyTicket() {
                 {pages[currentPageIndex]}
                 
             </div>
-            <TicketInfo 
+            {!isPaymentClicked &&<TicketInfo 
                     theater={theater}
                     date = {date}
                     time = {time}
@@ -173,7 +192,9 @@ function BuyTicket() {
                     selectedSeats={selectedSeats}
                     onNext={goToNextPage} 
                     onPrevious={goToPreviousPage} 
+                    promotion={promotion}
                 />
+            }
                 <Footer></Footer>
         </div>
         

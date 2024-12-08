@@ -1,6 +1,6 @@
+
+
 .container {
-    margin-top: 10vh;
-    margin-bottom: 15vh;
     text-align: center;
     font-family: Arial, sans-serif;
   }
@@ -91,7 +91,6 @@
   cursor: pointer;
   font-size: 10px; /* Điều chỉnh cỡ chữ ở đây */
   line-height: 30px; /* Đảm bảo chữ ở giữa ô ghế */
-  /* background-color: white; */
 }
 
 

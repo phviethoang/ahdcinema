@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../../FileCSS/BuyTicketPage/Step3/combo.module.css";
+import style from "../../../FileCSS/BuyTicketPage/Step3/combo.module.css";
 const products = [
   {
     id: 1,

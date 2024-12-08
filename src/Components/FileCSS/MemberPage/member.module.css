@@ -1,26 +1,12 @@
-/* body {
+body {
     font-family: Arial, sans-serif;
     max-width: 70%;
     margin: 0 auto;
     padding: 20px;
     background-color: #f4f4f4;
     font-size: 14px;
-} */
-.mainBody{
-  width: fit-content;
-  height: fit-content;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
 }
-.mainContainer{
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: fit-content;
-  position: relative;
-  justify-content: center; 
-  align-items: center;
-}
+
 .memberButton {
     background-color: #2b8cda; 
     color: white; /* Màu chữ trắng */
@@ -469,9 +455,9 @@ input[id="email"] {
   }
   
   .memberTable th {
-    background-color: #f7f7f7;;
+    background-color: gray;
     font-weight: bold;
-    color: black;
+    color: white;
   }
   
   .memberTable td {

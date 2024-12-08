@@ -1,11 +1,15 @@
 .container{
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
     top:0;
-    left:0;
+    left:0; 
+    background-color: aqua;
 }
-.display{
+/* .display{
     position: absolute;
     top: -5%;
     left:0;
@@ -15,15 +19,27 @@
     height: 110%;
     filter: blur(10px);
     opacity: 0.9;
-    /* mix-blend-mode:difference; */
-}
+} */
 .image{
-    position: absolute;
-    top:5%;
-    left: 10%;
-    width: 80%;
-    height: 90%;
-    background-size: cover;
-    background-position: center;
+    /* position: absolute; */
+    top:0%;
+    left: 0%;
+    width: 100%;
+    /* height: 100%; */
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    /* background-size: cover;
+    background-position: center; */
+}
+.image img{
+    /* position: absolute; */
+    width: 100%;
+    height: auto;
+    top:0;
+    left:0;
+    
 }
 

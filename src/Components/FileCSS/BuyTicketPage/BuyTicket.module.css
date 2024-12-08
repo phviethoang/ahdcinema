@@ -1,78 +1,14 @@
-.container{
-  width: 100vw;
-  height: fit-content;
+
+
+.buyTicket{
+  width: 100%;
+  width:auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.progressBarBox{
-  position: relative;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 15vh;
-  display: grid;
-  grid-template-columns: 12% 10% 12% 10% 12% 10% 12% 10% 12%;
-  grid-template-areas: "... step1 line1 step2 line2 step3 line3 step4 ...";
-}
-.step{
-  position: relative;
-}
-.step:nth-child(1){
-  grid-area: step1;
-}
-.step:nth-child(1)::after{
-  grid-area: line1;
-  content: '';
-  background-color: #00ced1;
-}
-.step:nth-child(2){
-  grid-area: step2;
-}
-.step:nth-child(3){
-  grid-area: step3;
-}
-.step:nth-child(4){
-  grid-area: step4;
-}
-.active::after{
-  content: '';
-  position: absolute;
-  width: 110%;
-  height: 110%;
-  top: -5%;
-  left: -5%;
-  /* z-index: 1; */
-  background-color: rgb(75, 255, 255);
-  border-radius: 50%;
-  filter:blur(5px) brightness(1.3);
-}
-.stepShape{
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  top: 70%;
-  left:45%;
-  background-color: gray;
-  border-radius: 50%;
-}
-.activeText{
-  color: rgb(37, 207, 207);
-  font-size: larger;
-}
-.notActiveText{
-  color: gray;
-}
-.stepLabel{
-  position: absolute;
-  width: max-content;
-  height: fit-content;
-  top: 30%;
-  left: 35%;
-  font-family: Arial, Helvetica, sans-serif;
-  
-}
   .ticketInfo {
     display: flex;
     align-items: center;
@@ -141,13 +77,13 @@
 
 /* BuyTicket.module.css */
 .page {
-  width: 100vw;
+  width: 100%;
   opacity: 0;
   transform: translateX(100%);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.active {
+.page.active {
   opacity: 1;
   transform: translateX(0);
 }

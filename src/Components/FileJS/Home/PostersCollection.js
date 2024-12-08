@@ -10,30 +10,40 @@ import React from 'react'
 function PosterCollection(){
     const [translate, setTranslate] = useState(0);
     function HandleNext(){
-        setTranslate(pre=>pre-1);
+        setTranslate(pre=>(pre+1)%5);
     }
     function HandlePrev(){
-        setTranslate(pre=>pre+1);
+        setTranslate(pre=>(pre+4)%5);
     }
     return(
         <div className={style.container}>
             <div className={style.posterVisible}>
                 < div className={style.allPosters} 
-                style={{'--quantity':5}}
+                style={{'--quantity':5, '--translate': translate}}
                 >
-                    <div className={style.item} style={{'--position': translate+2}}>
+                    <div className={style.item} 
+                    // style={{'--position': translate -1 }}
+                    >
                         <Poster src={image1}></Poster>
                     </div>
-                    <div className={style.item} style={{'--position': translate +1}}>
+                    <div className={style.item} 
+                    // style={{'--position': translate }}
+                    >
                         <Poster src={image2}></Poster>
                     </div>
-                    <div className={style.item} style={{'--position': translate}}>
+                    <div className={style.item} 
+                    // style={{'--position': translate+1}}
+                    >
                         <Poster src={image3}></Poster>
                     </div>
-                    <div className={style.item} style={{'--position': translate+3}}> 
+                    <div className={style.item} 
+                    // style={{'--position': translate+2}}
+                    > 
                         <Poster src={image4}></Poster>
                     </div>
-                    <div className={style.item} style={{'--position': translate+4}}>
+                    <div className={style.item} 
+                    // style={{'--position': translate+3}}
+                    >
                         <Poster src={image5}></Poster>
                     </div>
                 </div>

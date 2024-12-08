@@ -1,9 +1,11 @@
+
+
 import React, { useState, useEffect } from 'react';
 import Seat from './Seat';
 import Legend from './Legend';
 import styles from '../../../FileCSS/BuyTicketPage/Step2/seat.module.css';
 
-const SeatBooking = ({onSeatSelectionChange, onTotalPriceChange }) => {
+const SeatBooking = ({ onSeatSelectionChange, onTotalPriceChange}) => {
   const rows = [
     { row: 'A', seats: 13, type: 'regular', seatPrice: 50000 },
     { row: 'B', seats: 14, type: 'regular', seatPrice: 50000 },
@@ -17,18 +19,10 @@ const SeatBooking = ({onSeatSelectionChange, onTotalPriceChange }) => {
   ];
 
   const [checkedSeats, setCheckedSeats] = useState(()=>
-  {
-    const tem = localStorage.getItem('checkedSeats');
-    return tem? JSON.parse(tem): '';
-  });
-
-  useEffect(() => {
-    // Khôi phục trạng thái ghế đã chọn từ localStorage khi component được tải
-    const savedSeats = JSON.parse(localStorage.getItem('checkedSeats'));
-    if (savedSeats) {
-      setCheckedSeats(savedSeats);
-    }
-  }, []);
+    {
+      const tem = localStorage.getItem('checkedSeats');
+      return tem? JSON.parse(tem): '';
+    });
 
   useEffect(() => {
     // Lưu trạng thái ghế đã chọn vào localStorage mỗi khi checkedSeats thay đổi
@@ -52,13 +46,14 @@ const SeatBooking = ({onSeatSelectionChange, onTotalPriceChange }) => {
         } else {
           return [...newSeats, pairedSeat];
         }
+        
       }
 
       return newSeats;
     });
   };
 
-  const getSelectedSeats = () => {
+  const getCheckedSeats = () => {
     return rows.flatMap(row =>
       Array.from({ length: row.seats }, (_, index) => {
         const seatNumber = `${row.row}${index + 1}`;
@@ -71,13 +66,14 @@ const SeatBooking = ({onSeatSelectionChange, onTotalPriceChange }) => {
     return seats.reduce((sum, seat) => sum + seat.price, 0);
   };
 
-  useEffect(() => {
-    const selectedSeats = getSelectedSeats();
-    const totalPrice = calculateTotalPrice(selectedSeats);
 
-    onSeatSelectionChange(selectedSeats);
-    onTotalPriceChange(totalPrice);
-  }, [checkedSeats, onSeatSelectionChange, onTotalPriceChange]);
+
+  useEffect(() => {
+    const allCheckedSeats = getCheckedSeats();
+    const totalPrice = calculateTotalPrice(allCheckedSeats);
+    onSeatSelectionChange(allCheckedSeats);
+    onTotalPriceChange(totalPrice); 
+}, [checkedSeats, onSeatSelectionChange, onTotalPriceChange]);
 
   return (
     <div className={styles.container}>
@@ -90,7 +86,7 @@ const SeatBooking = ({onSeatSelectionChange, onTotalPriceChange }) => {
               const seatNumber = `${row.row}${index + 1}`;
               return (
                 <Seat
-                  key={seatNumber}
+                  // key={seatNumber}
                   seatNumber={seatNumber}
                   seatType={row.type}
                   isChecked={checkedSeats.includes(seatNumber)}

@@ -1,49 +1,37 @@
 .container{
     position: relative;
+    top: -15vh;
     width: 65vw;
-    height: 50vh;
+    height: fit-content;
+    padding-bottom: 0vh;
+    /* min-height: 70vh; */
+    /* background-color: aqua; */
 }
 /*Title*/
 .label{
-    position: absolute;
+    position: relative;
     top: -25%;
     left: 25%;
     width: 50%;
-    height: 10vh;
+    min-height: 10vh;
+    height: fit-content;
+    /* margin-bottom: 3vh; */
 }
     .labelDisplay{
+        z-index: -4;
+        position: absolute;
         width: 250%;
         height: 150%;
         left:-75%;
         top: 75%;
-        background-color: black;
+        background: linear-gradient(to right, white,#0a5b4d,#052a23,#0a5b4d, white);
     }
-    .labelDisplay::before{
-        content:'';
-        position: inherit;
-        width: 20%;
-        height: 150%;
-        border-radius: 50%;
-        top: -25%;
-        left: -9%;
-        background-color: rgb(255, 255, 255);
-        filter:blur(10px);
-    }
-    .labelDisplay::after{
-        content:'';
-        position: inherit;
-        width: 20%;
-        height: 150%;
-        border-radius: 50%;
-        top: -25%;
-        right: -10%;
-        background-color: rgb(255, 255, 255);
-        filter:blur(10px);
-    }
+   
     .labelContent{
+        position: absolute;
         text-shadow: 0px 5px 10px white;
         color: rgb(8, 117, 186); 
-        font-size: 60px;
+        font-size: 70px;
         width: 100%;
         height: 100%;
         left:0;
@@ -62,38 +50,83 @@
     }
 /*Các thẻ*/ 
 .cardsVisible{
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: relative;
+    /* margin-top: 3vh; */
+    /* padding-top: 5vh; */
     width: 100%;
-    height: 105%;
+    height: fit-content;
     display: flex;
-    justify-content:left;
+    border-radius: 5%;
     overflow: hidden;
 }
+/* .cardsVisible::after{
+    position: absolute;
+    content:'';
+    width: 100vw;
+    height: 90%;
+    bottom: 0;
+    left: 0;
+    border: 2px solid greenyellow;
+    border-radius: 5%;
+    z-index: -1;
+    background: radial-gradient(rgb(255,255,255,0), #000000);
+} */
     .allCards{
-        position: absolute;
-        left: 0;
-        top: 0;
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: fit-content;
         display: flex;
-        overflow: visible;
-        justify-content:left;
-        transition: transform 0.2s ease;
+        padding-left: 4vw;
+        align-items: center;
+        perspective: 500px; 
+        left: -30%;
     }
+    .allCards::after{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 90%;
+        background: radial-gradient(rgb(194,249, 255, 0), rgb(16, 78, 94, 0.5), rgb(16, 78, 94, 0) );
+        /* filter: blur(5px); */
+        top: 5%;
+        left: 30%;
+        z-index: -1;
+        opacity: 0.8;
+        /* background-color: aqua; */
+    }
+    .allCards::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 90%;
+        border-top:thin solid #62ff00;
+        border-bottom:thin solid #378208;
+        top: 5%;
+        left: 30%;
+        z-index: 0;
+    }
+      
         .itemCover{
-            flex: 0 0 12em;
-            margin-left: 10px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            transform-style: preserve-3d;
-            filter: brightness(0.9);
-            transition: filter 0.2s ease, transform 0.2s ease;
-            position: relative;
+          position: relative;
+          left: calc( (2 - var(--initPosition)) * 65 * 0.29 * 1vw);
+          --offset: calc(max(2 - var(--position), var(--position) - 2));
+          z-index: calc( -1 * var(--offset));
+          flex: 0 0 25%;
+          height: fit-content;
+          margin-left: 3%;
+          margin-right: 3%;
+          transform-style: preserve-3d;
+          transform-origin:300% 50% 0;
+          transform: 
+          perspective(1000px)
+          translateZ(calc(-1 * ( var(--offset)) * 100px)) 
+          translateX(calc( (var(--position) - 2) * 0.30 * 65vw));
+          transition: all 0.2s ease;
         }
+        
         .itemCover:hover{
-            transform: perspective(1000px) translateZ(100px);
+            transform: perspective(1000px) translateZ(calc(-1 * ( var(--offset)) * 110px))
+            translateX(calc( (var(--position) - 2) * 0.30 * 65vw));;
         }
         .itemCover::after{
             content:'';
@@ -110,26 +143,17 @@
             background-color: white;
             
         }
-        .itemCover:not(:hover){
-            --offset: calc( max(var(--index), var(--position)) - min(var(--position), var(--index)) );
-            --sign: calc(var(--offset) / ( var(--position) - var(--index) ));
-            transform: perspective(1000px) 
-                        rotateY(calc( var(--sign) * max((2 - var(--offset)), 0) * 15deg))
-                        translateZ(calc( max(2 - var(--offset), 0) * 40px)); 
-        }
 /*button*/
 .button{
-    position: absolute;
+    position: relative;
     width: 3vw;
     height: 3vw;
-    bottom: -15%;
-    border-radius: 20%;
-    background-color: gray;
-    opacity: 0.8;
+    background-color: #5eb3e8;
     z-index: 100;
     color: white;
     font-family: serif;
     font-size: small;
+    border: none;
 }
 .container button:hover{
     filter: brightness(1.2);
@@ -138,9 +162,11 @@
     background-color: black;
 }
 .next{
-    right: 45%;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    left: 30%;
 }
 .prev{
-    left: 45%;
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+    right: 30%;
 }
 

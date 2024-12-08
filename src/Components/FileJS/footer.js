@@ -9,6 +9,7 @@ function Footer(){
 
     return(
       <div className={style.container}>
+        <div className={style.display}></div>
         <div className={clsx(style.Policy, style.item)}>
             <div className={style.label}>Policy</div>
             <div className={style.content}>

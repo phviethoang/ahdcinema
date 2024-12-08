@@ -1,6 +1,10 @@
-import "../../FileCSS/MovieCollectionPage/PhimDangChieu.css"; // Tạo file CSS cho style của bạn
+import styles from "../../FileCSS/MovieCollectionPage/PhimDangChieu.module.css"; // Tạo file CSS cho style của bạn
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import Header from "../header";
+import Footer from "../footer";
+import Navbar from "./Navbar";
+import clsx from "clsx";
 
 function PhimDangChieu() {
   // const [showButton, setShowButton] = useState(null);
@@ -82,55 +86,54 @@ function PhimDangChieu() {
   ];
 
   return (
-    <div className="container">
-      <div class="sidebar">
-        <button class="back-button">←</button>
-        <input type="text" className="search-box" placeholder="Tìm kiếm..." />
-
-        <button class="sidebar-item">Thể loại</button>
-        <button class="sidebar-item">Ngày khởi chiếu</button>
-        <button class="sidebar-item">Trailer</button>
-        <button class="sidebar-item">Phim có ưu đãi</button>
-
-        <button class="more-options">...</button>
-      </div>
-
-      {/* <div class="dropdown">
-        <button class="dropdown-button">Phim</button>
-        <div class="dropdown-content">
-          <Link to="/PhimDangChieu">Phim Đang Chiếu</Link>
-          <Link to="/PhimSapChieu">Phim Sắp Chiếu</Link>
+    <div className={styles.pageContainer}>
+      <Header></Header>
+      <div className={styles.container}>
+        <div className={styles.sidebar}>
+          <Navbar></Navbar>
         </div>
-      </div> */}
-      <div class="content">
-        <div class="buttons-container">
-          <Link to="/PhimDangChieu">
-            <button className="buttons">PHIM ĐANG CHIẾU</button>
-          </Link>
-          <Link to="/PhimSapChieu">
-            <button className="buttons">PHIM SẮP CHIẾU</button>
-          </Link>
-        </div>
+        <div className={styles.content}>
+          <div className={styles.buttonsContainer}>
+              <Link to="/PhimDangChieu">
+              <div className={styles.buttonCover}>
+                  <div className={styles.buttonDecor}></div>
+                  <button className={clsx(styles.buttons, styles.phimDangChieu)}>ĐANG CHIẾU</button>
 
-        <div className="movies-section">
-          {movies.map((movie, index) => (
-            <div key={index} className="movie">
-              <img src={movie.image} alt={movie.title} />
-              <h3>{movie.title}</h3>
-              <p>
-                <strong>Thể loại:</strong> {movie.genre}
-              </p>
-              <p>
-                <strong>Thời lượng:</strong> {movie.duration}
-              </p>
-              <p>
-                <strong>Khởi chiếu:</strong> {movie.releaseDate}
-              </p>
-              {/* // <button>MUA VÉ</button> */}
-            </div>
-          ))}
+              </div>
+              </Link>
+              <Link to="/PhimSapChieu">
+              <div className={styles.buttonCover}>
+                  <div className={styles.buttonDecor}></div>
+                  <button className={clsx(styles.buttons, styles.phimSapChieu)}>SẮP CHIẾU</button>
+                  </div>
+
+              </Link>
+            
+          </div>
+
+          <div className={styles.moviesSection}>
+            {movies.map((movie, index) => (
+              <div key={index} className={styles.movie}>
+                <img src={movie.image} alt={movie.title} />
+                <div className={styles.movieContent}>
+                  <h3>{movie.title}</h3>
+                  <p>
+                    <strong>Thể loại:</strong> {movie.genre}
+                  </p>
+                  <p>
+                    <strong>Thời lượng:</strong> {movie.duration}
+                  </p>
+                  <p>
+                    <strong>Khởi chiếu:</strong> {movie.releaseDate}
+                  </p>
+                </div>
+                <button className={styles.button1}>MUA VÉ</button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

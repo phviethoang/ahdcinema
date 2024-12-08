@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../FileCSS/MemberPage/member.module.css';
-import albaz from '../../../img/rankingImage/albaztheShrouded.png';
+import albaz from '../../../img/MemberInfoImage/albaztheShrouded.png';
 
 function MemberInfoTable({ membershipLevel, expiryDate, daysRemaining }) {
   return (

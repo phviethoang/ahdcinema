@@ -1,0 +1,201 @@
+:root{
+    --textColor: #e4f4f0;
+    --backgroundColor: #4b656e;
+}
+.icon{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    clip-path: circle(50% at 50% 50%);
+    background-color: var(--backgroundColor);
+    top: -20px;
+    background-position: center;
+}
+.icon::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    clip-path: circle(40% at 50% 50%);
+    /* background-color: #26839b; */
+     background-image: url('../../../img/movieImage/findingIcon.png');
+     background-position: center;
+     background-size: cover;
+
+
+}
+.container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    /* border: thin solid #43616b; */
+    background-color: var(--backgroundColor);
+    /* margin-left: 10%; */
+    /* background-color: aqua; */
+}
+
+.findMovie{
+    position: relative;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input{
+    /* position: absolute; */
+    position: relative;
+    width: 90%;
+    height: 45%;
+    border-radius: 5%;
+    border-bottom: thin solid black;
+    border-right: thin solid black;
+    border-left: thin solid black;
+    top:0;
+    left:0;
+}
+.input:focus{
+    outline: none;
+}
+.confirm{
+    margin-top: 5%;
+    width: fit-content;
+    height: 23%;
+    font-size: small;
+    font-family: 'Billy Bold';
+    border-radius: 10%;
+    color: var(--textColor);
+    background: none;
+    border-color: var(--textColor);
+}
+.categoryContainer{
+    margin-top: 5%; 
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: rgb(177, 177, 177); */
+}
+.filter{
+    margin-left: 5%;
+    padding: 2%;
+    width: 90%;
+    height: fit-content;
+    color: var(--textColor);
+    border-bottom: 2px solid var(--textColor);
+    font-size: larger;
+    font-family: 'Montserrat Black';
+    position: relative;
+    text-align: left;
+}
+/* filter::after{
+    content:'';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 21%;
+    left: 10%;
+    border-bottom: 2px solid black;
+    box-shadow: 0px 1px 3px 1px gray;
+} */
+.content{
+    margin-top: 10px;
+    height: fit-content;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10%;
+}
+.labelContainer{
+    width:90%;
+    height: fit-content;
+    display: flex;
+    justify-content: right;
+    position: relative;
+    margin-bottom: 5px;
+    /* background-color: rgb(255, 224, 166); */
+}
+.labelContainer:after{
+    position: absolute;
+    content:'';
+    width: 110%;
+    height: 100%;
+    top: -6%;
+    left: 2%;
+    /* background-color: rgb(210, 208, 208); */
+    z-index: -1;
+}
+.label{
+    width: fit-content;
+    height: fit-content;
+    font-weight: bolder;
+    text-align: right;
+    color: var(--textColor);
+    font-family: 'Aguda Black';
+    font-size: medium;
+    /* border-left: 2px solid rgb(90,90,90); */
+    position: relative;
+}
+.label:after{
+    position: absolute;
+    content:'';
+    width: 2px;
+    height: 70%;
+    left:-15%;
+    top: 0;
+    background-color: var(--textColor);
+}
+.button{
+    border-radius: 5%;
+    margin: 1px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: none;
+    color: white;
+    border-color: var(--textColor);
+}
+
+.choosen{
+    background-color: rgb(210, 210, 210);
+    color: #26839b;
+    font-weight: bold;
+    border:none;
+    border-radius: 5%;
+}
+.categoryCollection{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+}
+.dateTime{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+}
+.itemContainer{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    margin: 5%;
+    align-items: center;
+}
+.itemLabel{
+    font-family: 'Montserrat Bold';
+    color: var(--textColor);
+    font-size: medium;
+    /* margin-left: 10%; */
+}
+.itemSelection{
+    margin-left: 5px;
+    width: fit-content;
+    font-family: 'Montserrat Bold';
+    color: #334a52;
+    text-align: center;
+    font-size: small;
+}

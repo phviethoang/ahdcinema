@@ -1,7 +1,6 @@
 /* ComboPage.module.css */
 .comboPage {
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+  /* width:1000px; */
     font-family: Arial, sans-serif;
     padding: 20px;
     background-color: #f8f8e6;
@@ -51,7 +50,7 @@
   
   .productImage {
     width: 30%;
-    height: auto;
+    /* height: auto; */
     object-fit: fill;
     margin-right: 15px;
   }

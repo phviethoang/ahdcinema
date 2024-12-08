@@ -7,33 +7,36 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 }
 .body{
     position: relative;
     width: 100vw;
-    height: 230vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .posters{
-    position: absolute;
-    width: 80vw;
-    height: 70vh;
-    top: 5vh;
+    position: relative;
+    width: 90vw;
+    height: fit-content;
+    /* height: fit-content; */
+    /* top: 5vh; */
 }
 .cardsCollection{
-    position: absolute;
+    position: relative;
     width: 65vw;
-    height: 60vh;
-    top: 85vh;
+    height: fit-content;
+    margin-top: 20vh;
     
 }
 .hotEvent{
-    position: absolute;
+    position: relative;
     width: 100vw;
     height: 50vh;
-    top: 145vh;
+    margin-bottom: 20vh;
+    /* top: 145vh; */
 }
 

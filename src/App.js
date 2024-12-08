@@ -11,11 +11,15 @@ import Login from './Components/FileJS/LoginAndRegister/login.js';
 import Register from './Components/FileJS/LoginAndRegister/Register.js';
 import ForgotPassword from './Components/FileJS/LoginAndRegister/ForgotPassword.js';
 import AhdMember from './Components/FileJS/MemberPage/AhdMember.js';
+import EventPage from './Components/FileJS/EventPage/EventPage.js';
+import EventDetail from './Components/FileJS/EventPage/EventDetail.js';
+import PhimDangChieu from './Components/FileJS/MovieCollectionPage/PhimDangChieu.js';
+import PhimSapChieu from './Components/FileJS/MovieCollectionPage/PhimSapChieu.js';
+import CinemaList from './Components/FileJS/Theater/CinemaList.js';
 function App() {
   return (
     <div className="App">
         <BrowserRouter>
-            {/* Định nghĩa các đường link dẫn tới các trang khác */}
             <Routes>
               <Route path = "/" element={<Body></Body>}></Route>
               <Route path = "/BuyTicket" element={<BuyTicket></BuyTicket>}></Route>
@@ -24,8 +28,14 @@ function App() {
               <Route path = "/Register" element={<Register></Register>}></Route>
               <Route path = "/ForgotPassWord" element={<ForgotPassword></ForgotPassword>}></Route>
               <Route path = "/MemberPage" element = {<AhdMember></AhdMember>}></Route>
+              <Route path = "/EventPage" element = {<EventPage></EventPage>}></Route>
+              <Route path = "/EventPage/:id" element = {<EventDetail></EventDetail>}></Route>
+              <Route path = "/PhimDangChieu" element = {<PhimDangChieu></PhimDangChieu>}></Route>
+              <Route path = "/PhimSapChieu" element = {<PhimSapChieu></PhimSapChieu>}></Route>
+              <Route path = "/TheatersPage" element = {<CinemaList></CinemaList>}></Route>
             </Routes>
         </BrowserRouter>
+        {/* <CinemaList></CinemaList> */}
     </div>
   );
 }

@@ -84,7 +84,7 @@ const products = [
 
 
 
-const ComboPage = ({ comboQuantities = [], onQuantitiesChange }) => {
+const ComboPage = ({ comboQuantities = [], onQuantitiesChange, sum}) => {
   const [quantities, setQuantities] = useState(
     comboQuantities.length > 0 ? comboQuantities : Array(products.length).fill(0) // Khởi tạo đúng mảng quantities
   );
@@ -107,6 +107,8 @@ const ComboPage = ({ comboQuantities = [], onQuantitiesChange }) => {
     // Truyền dữ liệu ra ngoài
     onQuantitiesChange(quantities, newCombo, newTotalPrice);
   }, [quantities]); // Recalculate khi quantities thay đổi
+
+
 
   const handleQuantityChange = (index, delta) => {
     setQuantities((prevQuantities) => {

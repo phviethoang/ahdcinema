@@ -30,6 +30,22 @@
   font-family: 'Montserrat';
   src: url('./assets/fonts/Montserrat-Regular.ttf') format('TrueType');
 }
+@font-face {
+  font-family: 'Kaige';
+  src: url('./assets/fonts/Kaige.ttf') format('TrueType');
+}
+@font-face{
+  font-family: 'Baloo Extrabold';
+  src: url('./assets/fonts/BalooTammudu2-ExtraBold.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Baloo Bold';
+  src: url('./assets/fonts/BalooTammudu2-Bold.ttf') format('TrueType');
+}
+@font-face {
+  font-family: 'Prompt Black';
+  src: url('./assets/fonts/Prompt-Black.ttf') format('TrueType');
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -11,7 +11,7 @@ import Card from '../Cell/Card'
 import clsx from 'clsx'
 import React from 'react'
 function CardsCollection({}){
-    const [index, setIndex] = useState(-100);
+    const [index, setIndex] = useState(2);
     const [translate, setTranslate] = useState(0);
     return (
         <div className = {style.container}>
@@ -22,45 +22,44 @@ function CardsCollection({}){
             </div>
             <button className={clsx(style.prev, style.button)} onClick={()=>
                 {
-                    setTranslate((prev)=>(prev+60));
-                }}>Prev</button>
+                    setIndex((prev)=>(prev+1)%6);
+                }}></button>
             <button className={clsx(style.next, style.button)} onClick={()=>
                 {
-                    setTranslate(prev=>(prev-60));
+                    setIndex(prev=>((prev+5)%6));
                 }
-            }>Next</button>
+            }></button>
             <div className={style.cardsVisible}>
-                <div className={style.allCards} style={{transform: `translate(${translate}vw)`}}>
-                    <div className={style.itemCover} style={{'--position': 1, '--index': index}} 
-                        onMouseEnter={()=>{ setIndex(1)}}
-                        onMouseLeave={()=>{ setIndex(-100)}}
-                        >                                
-                        <Card src={image1}></Card>
+                <div className={style.allCards} 
+                style={{transform: `translate(${translate}vw)`, '--quantity': 6}}>
+                    <div className={style.itemCover} 
+                    style={{'--position':index%6, '--initPosition': 0}} >
+                        <Card src={image1}></Card>   
+                        
                     </div>
-                    <div className={style.itemCover} style={{'--position': 2, '--index': index}}
-                        onMouseEnter={()=>{ setIndex(2)}}
-                        onMouseLeave={()=>{ setIndex(-100)}}>
-                                <Card src={image2} ></Card>
+                    <div className={style.itemCover} 
+                    style={{'--position': (index+1)%6, '--initPosition': 1}}>
+                               <Card src={image2} ></Card> 
+                                
                     </div>
-                    <div className={style.itemCover} style={{'--position': 3, '--index': index}}
-                        onMouseEnter={()=>{ setIndex(3)}}
-                        onMouseLeave={()=>{ setIndex(-100)}}>
-                                <Card src={image3} ></Card>
+                    <div className={style.itemCover}
+                     style={{'--position': (index+2)%6, '--initPosition': 2}}>
+                                 <Card src={image3} ></Card>
                     </div>
-                    <div className={style.itemCover} style={{'--position': 4, '--index': index}}
-                        onMouseEnter={()=>{ setIndex(4)}}
-                        onMouseLeave={()=>{ setIndex(-100)}}>
+                    <div className={style.itemCover} 
+                    style={{'--position': (index+3)%6,  '--initPosition': 3}}>
                                 <Card src={image4} ></Card>
+                                
                     </div>
-                    <div className={style.itemCover} style={{'--position': 5, '--index': index}}
-                        onMouseEnter={()=>{ setIndex(5)}}
-                        onMouseLeave={()=>{ setIndex(-100)}}>
+                    <div className={style.itemCover} 
+                    style={{'--position':(index + 4)%6, '--initPosition': 4}}>
                                 <Card src={image5} ></Card>
+                                
                     </div>
-                    <div className={style.itemCover} style={{'--position': 6, '--index': index}}
-                        onMouseEnter={()=>{ setIndex(6)}}
-                        onMouseLeave={()=>{ setIndex(-100)}}>
+                    <div className={style.itemCover} 
+                    style={{'--position': (index+ 5)%6, '--initPosition': 5}}>
                                 <Card src={image6} ></Card>
+                                
                     </div>
                 </div>
                 

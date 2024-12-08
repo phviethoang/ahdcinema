@@ -6,8 +6,14 @@ function Poster({src}){
     const navigate = useNavigate()
     return(
         <div className={style.container} onClick={()=>{navigate('/MoviePage')}}>
-            <div style={{backgroundImage: `url(${src})`}} className={style.display}></div>
-            <div style={{backgroundImage: `url(${src})`}} className={style.image}></div>
+            <div 
+            // style={{backgroundImage: `url(${src})`}} 
+            className={style.display}></div>
+            <div 
+            // style={{backgroundImage: `url(${src})`}} 
+            className={style.image}>
+                <img src = {src}></img>
+            </div>
         </div>
     )
 }

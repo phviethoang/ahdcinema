@@ -1,56 +1,62 @@
 .container{
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     top:0;
     left:0;
 }
 /* các posters*/
 .posterVisible{
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     top: 0%;
     left:0%;
     overflow: hidden;
-    background-color: black;
 }
 .allPosters{
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    top:5%;
-    left: 5%;
-    transform-style: preserve-3d; 
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display:flex;
+    /* justify-content: center; */
+    align-items: center;
+    transform: translateX( calc( var(--translate) * (-90vw)));
+    transition: transform 0.5s ease;
 }
 .item{
-    --rotate: calc(360 * var(--position) / var(--quantity));
-    position: absolute;
+    /* --rotate: calc(360 * var(--position) / var(--quantity)); */
+    flex: 0 0 90vw;
+    /* flex-basis: 90vw; */
+    /* position: absolute; */
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     top:0;
     left:0;
     transition: transform 0.5s ease;
-    transform-origin: 50% 50% -800px;
-    transform: perspective(6000px) rotateY(calc(var(--rotate) * 1deg));
+    /* transform-origin: 50% 50% -1000px; */
+    /* transform: perspective(6000px) rotateY(calc(var(--rotate) * 1deg)); */
+
 }
 /*button*/
 .container button{
-    position: inherit;
-    width: 50px;
-    height: 50px;
+    position: absolute;
+    width: 10vh;
+    height: 10vh;
     top: 45%;
-    border-radius: 20%;
-    background-color: black;
+    border-radius: 50%;
+    background-color: #334a52;
     color: white;
     font-weight: bolder;
-    opacity: 0.9;
+    opacity: 0.8;
+    border:none;
 }
 .nextButton{
-    right: -5%;
+    right: 0%;
 }
 .prevButton{
-    left: -5%;
+    left: 0%;
 }
 .container button:active
 {

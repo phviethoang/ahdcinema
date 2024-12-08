@@ -1,75 +1,110 @@
 .navBar{
     width: 100vw;
-    height: 13vh;
-    background-color: black;
+    height: fit-content;
     position: relative;
     display: flex;
+    background: linear-gradient(to bottom, #334a52,rgb(150, 175, 184, 0));
 }
-/*button*/
-.buttons{
-    position: absolute;
-    width: 450px;
+
+.logo{
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    width: 30%;
     height: 100%;
-    left: 25%;
-    background-color: rgb(0, 0, 0);
+    margin-left: 3vw;
+}
+.logo img{
+    width: 100%;
+}
+/*danh sách nut*/
+.buttonsList{
+    position: absolute;
+    height: 40%;
+    width: 70%;
+    top: 50%;
+    left: 30%;
     display: flex;
 }
 .item{
-    text-align:center ;
-    color: whitesmoke;
-    width: 40%;
-    height: 100%;
-    border: none;
     position: relative;
+    flex: 0 0 12vw;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
 }
 .item button{
-    position: absolute;
-    width: 100%;
-    height: 60%;
-    top: 30%;
-    left:0;
-    background-color: black;
+    width: 80%;
+    height: 100%;
     border: none;
-    border-right: thin solid white;
-    color: white;
-    font-family: 'Montserrat','Peace Sans';
+    font-family: 'Montserrat';
     font-size: large;
+    background:none;
+    color:#042935;
+    position: relative;
+    transition: color 0.2s ease, font-size o.2s ease;
 }
-
-/*logo*/
-.buttons button:hover{
-    filter: brightness(2.0);
+.item button::after{
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 20%;
+    top: 20%;
+    left: 40%;
+    background-color: #39555e;
+    border-radius: 20%;
+    transition: width 0.2s ease, left 0.2s ease;
+}
+.item button:hover{
+    color:#005b9a;
     font-size: larger;
 }
-.logo{
+.item button:hover::after{
+    width: 40%;
+    left: 30%;
+}
+/*lời chào*/
+.hello{
     position: absolute;
-    width: 15%;
-    height: 100%;
+    top: 10%;
+    left: 30%;
+    height: 40%;
+    width: fit-content;
+    min-width: 50%;
+    color: #5be6d0;
+    color: transparent;
+    font-family:'Billy Bold';
+    font-size: 11vh;
+    font-weight: bolder;
+    text-align: center;
+    align-content: center;
+    text-justify: auto;
+    -webkit-text-stroke-color: #39555e;
+    -webkit-text-stroke-width: 1px;
+    animation: backgroundChange 2s linear infinite;
+    background: linear-gradient(to right,#65b8d2,#52ddc5 ,#f9f871) ;
+    -webkit-background-clip: text;
 }
-.logo img{
-    position: absolute;
-    height: 100%;
-    left: 30px;
-    transition: transform 0.2 ease , filter 0.2 ease;
-    transform-style: preserve-3d;
-}
-.logo img:hover{
-    filter:brightness(1.3);
-    transform: perspective(1000px) translateZ(200px);
-    animation: rotateLogo 0.5s ease-in-out forwards; 
-}
-@keyframes rotateLogo {
-    0%{
-        transform: rotateZ(0deg);
-    }
-    100%{
-        transform: rotateZ(60deg);
-    }
-}
+
 /*log*/
 .log{
     position: absolute;
-    right: 10%;
-    color: white;
-    font-size: small;
+    top: 3%;
+    right: 0;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items:flex-start;
+}
+.log button{
+    height: fit-content;
+    position: relative;
+    border: none;
+    background: none;
+    color:#4faea0;
+    margin-right: 2vw;
+}
+.log button:hover{
+    color:#52ddc5;
 }

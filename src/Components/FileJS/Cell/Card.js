@@ -6,7 +6,11 @@ function Card({src}){
     const navigate = useNavigate()
     return(
             <div className={clsx(style.cover, style.layer)}>
-                <div className={style.card} style={{backgroundImage: `url(${src})`}}></div>
+                <div className={style.card} 
+                // style={{backgroundImage: `url(${src})`}}
+                >
+                    <img src={src}></img>
+                </div>
                 <div className={clsx(style.info, style.layer)}>
                     <div className={style.describe}  onClick={()=>{navigate('\MoviePage')}}>
                         <div className={style.title}>TÊN PHIM</div>
