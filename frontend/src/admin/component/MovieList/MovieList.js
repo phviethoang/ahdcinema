@@ -5,13 +5,19 @@ function MovieList() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    // Fetch dữ liệu giả từ API hoặc mock data
+    // Fetch dữ liệu từ server JSON giả lập
     const fetchMovies = async () => {
-      const data = [
-        { id: 1, title: "Avengers: Endgame", releaseDate: "2019" },
-        { id: 2, title: "The Batman", releaseDate: "2022" },
-      ];
-      setMovies(data); // Gán dữ liệu vào trạng thái
+      try {
+        const response = await fetch("http://localhost:5000/movies");
+        if (response.ok) {
+          const data = await response.json();
+          setMovies(data); // Gán dữ liệu vào trạng thái
+        } else {
+          console.error("Failed to fetch movies");
+        }
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
     };
 
     fetchMovies();
@@ -21,9 +27,7 @@ function MovieList() {
     const confirmed = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
     if (confirmed) {
       try {
-        // Gọi API để xóa (API giả)
-
-        const response = await fetch(`/api/movies/${id}`, {
+        const response = await fetch(`http://localhost:5000/movies/${id}`, {
           method: "DELETE",
         });
         if (response.ok) {
@@ -50,7 +54,10 @@ function MovieList() {
           <tr>
             <th>ID</th>
             <th>Tên phim</th>
+            <th>Thể loại</th>
+            <th>Thời gian</th>
             <th>Ngày phát hành</th>
+            <th>Hình ảnh</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -59,7 +66,16 @@ function MovieList() {
             <tr key={movie.id}>
               <td>{movie.id}</td>
               <td>{movie.title}</td>
+              <td>{movie.genre}</td>
+              <td>{movie.duration}</td>
               <td>{movie.releaseDate}</td>
+              <td>
+                <img
+                  src={movie.image}
+                  alt={movie.title}
+                  style={{ width: 100, height: 150 }}
+                />
+              </td>
               <td>
                 <Link
                   to={`/admin/EditMovie/${movie.id}`}

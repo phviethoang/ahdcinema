@@ -1,0 +1,136 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "title": "Interstellar",
+      "genre": "Sci-Fi",
+      "duration": 169,
+      "releaseDate": "2014-11-07",
+      "image": "https://example.com/interstellar.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Inception",
+      "genre": "Action",
+      "duration": 148,
+      "releaseDate": "2010-07-16",
+      "image": "https://example.com/inception.jpg"
+    },
+    {
+      "id": "3",
+      "title": "The Dark Knight",
+      "genre": "Crime",
+      "duration": 152,
+      "releaseDate": "2008-07-18",
+      "image": "https://example.com/thedarkknight.jpg"
+    },
+    {
+      "id": "4",
+      "title": "Parasite",
+      "genre": "Drama",
+      "duration": 132,
+      "releaseDate": "2019-05-30",
+      "image": "https://example.com/parasite.jpg"
+    },
+    {
+      "id": "5",
+      "title": "Avengers: Endgame",
+      "genre": "Adventure",
+      "duration": 181,
+      "releaseDate": "2019-04-26",
+      "image": "https://example.com/endgame.jpg"
+    },
+    {
+      "id": "6",
+      "title": "Joker",
+      "genre": "Thriller",
+      "duration": 122,
+      "releaseDate": "2019-10-04",
+      "image": "https://example.com/joker.jpg"
+    },
+    {
+      "id": "7",
+      "title": "The Matrix",
+      "genre": "Sci-Fi",
+      "duration": 136,
+      "releaseDate": "1999-03-31",
+      "image": "https://example.com/matrix.jpg"
+    },
+    {
+      "id": "8",
+      "title": "Titanic",
+      "genre": "Romance",
+      "duration": 195,
+      "releaseDate": "1997-12-19",
+      "image": "https://example.com/titanic.jpg"
+    },
+    {
+      "id": "9",
+      "title": "The Lion King",
+      "genre": "Animation",
+      "duration": 88,
+      "releaseDate": "1994-06-15",
+      "image": "https://example.com/lionking.jpg"
+    },
+    {
+      "id": "10",
+      "title": "Frozen",
+      "genre": "Animation",
+      "duration": 102,
+      "releaseDate": "2013-11-27",
+      "image": "https://example.com/frozen.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Nguyen Van A",
+      "email": "nguyenvana@example.com"
+    },
+    {
+      "id": "2",
+      "name": "Tran Thi B",
+      "email": "tranthib@example.com"
+    },
+    {
+      "id": "3",
+      "name": "Le Van C",
+      "email": "levanc@example.com"
+    },
+    {
+      "id": "4",
+      "name": "Pham Thi D",
+      "email": "phamthid@example.com"
+    },
+    {
+      "id": "5",
+      "name": "Hoang Van E",
+      "email": "hoangvane@example.com"
+    },
+    {
+      "id": "6",
+      "name": "Do Thi F",
+      "email": "dothif@example.com"
+    },
+    {
+      "id": "7",
+      "name": "Nguyen Van G",
+      "email": "nguyenvang@example.com"
+    },
+    {
+      "id": "8",
+      "name": "Tran Thi H",
+      "email": "tranthih@example.com"
+    },
+    {
+      "id": "9",
+      "name": "Le Van I",
+      "email": "levani@example.com"
+    },
+    {
+      "id": "10",
+      "name": "Pham Thi K",
+      "email": "phamthik@example.com"
+    }
+  ]
+}

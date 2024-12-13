@@ -6,7 +6,7 @@ const UploadMovie = () => {
     duration: "",
     releaseDate: "",
     genre: "",
-    file: null,
+    imageUrl: "",
   });
 
   const handleChange = (e) => {
@@ -14,24 +14,45 @@ const UploadMovie = () => {
     setMovieData({ ...movieData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setMovieData({ ...movieData, file: e.target.files[0] });
-  };
-
-  const handleSubmit = (e) => {
+  const generateId = (movies = []) =>
+    movies && movies.length > 0 ? Number(movies[movies.length - 1].id) + 1 : 1;
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/movies");
+      const movies = await response.json();
 
-    // Bạn có thể xử lý gửi dữ liệu ở đây
-    console.log("Uploaded movie data:", movieData);
+      const newMovie = {
+        ...movieData,
+        id: generateId(movies),
+      };
 
-    // Xử lý gửi API hoặc lưu vào database
+      await fetch("http://localhost:5000/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMovie),
+      });
+
+      alert("Movie uploaded successfully!");
+      setMovieData({
+        title: "",
+        duration: "",
+        releaseDate: "",
+        genre: "",
+        imageUrl: "",
+      });
+    } catch (error) {
+      console.error("Error uploading movie:", error);
+      alert("Failed to upload movie. Please try again.");
+    }
   };
 
   return (
     <div className="container mt-4">
       <h2 className="text-center">Upload Movie</h2>
       <form onSubmit={handleSubmit}>
-        {/* Tên phim */}
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Movie Title
@@ -46,24 +67,20 @@ const UploadMovie = () => {
             required
           />
         </div>
-
-        {/* Mô tả phim */}
         <div className="mb-3">
-          <label htmlFor="Duration" className="form-label">
+          <label htmlFor="duration" className="form-label">
             Duration
           </label>
           <input
             type="text"
-            id="Duration"
-            name="Duration"
+            id="duration"
+            name="duration"
             className="form-control"
             value={movieData.duration}
             onChange={handleChange}
             required
-          ></input>
+          />
         </div>
-
-        {/* Ngày phát hành */}
         <div className="mb-3">
           <label htmlFor="releaseDate" className="form-label">
             Release Date
@@ -78,8 +95,6 @@ const UploadMovie = () => {
             required
           />
         </div>
-
-        {/* Thể loại */}
         <div className="mb-3">
           <label htmlFor="genre" className="form-label">
             Genre
@@ -94,23 +109,20 @@ const UploadMovie = () => {
             required
           />
         </div>
-
-        {/* File tải lên */}
         <div className="mb-3">
-          <label htmlFor="file" className="form-label">
-            Upload File (Image/Video)
+          <label htmlFor="imageUrl" className="form-label">
+            Image URL
           </label>
           <input
-            type="file"
-            id="file"
-            name="file"
+            type="url"
+            id="imageUrl"
+            name="imageUrl"
             className="form-control"
-            onChange={handleFileChange}
+            value={movieData.imageUrl}
+            onChange={handleChange}
             required
           />
         </div>
-
-        {/* Nút gửi */}
         <button type="submit" className="btn btn-primary">
           Upload Movie
         </button>
