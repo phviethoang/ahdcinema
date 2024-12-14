@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import NavDropdown from "./NavDropdown";
 
 const Sidebar = () => {
   return (
@@ -49,16 +50,27 @@ const Sidebar = () => {
               User List
             </NavLink>
           </li>
-          {/* <li className="nav-item">
+          <li className="nav-item">
             <NavLink
-              to="/admin/EditMovie"
+              to="/admin/RevenueReport"
               className={({ isActive }) =>
                 `nav-link ${isActive ? "active" : "text-white"}`
               }
             >
-              Edit Movie
+              Revenue Report
             </NavLink>
-          </li> */}
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/admin/Dashboard"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : "text-white"}`
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <NavDropdown></NavDropdown>
         </ul>
       </nav>
     </div>

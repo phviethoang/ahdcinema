@@ -2,7 +2,7 @@
   "movies": [
     {
       "id": "1",
-      "title": "Interstellar1",
+      "title": "Interstellar",
       "genre": "Sci-Fi",
       "duration": 169,
       "releaseDate": "2014-11-07",
@@ -79,21 +79,18 @@
       "duration": 102,
       "releaseDate": "2013-11-27",
       "image": "https://example.com/frozen.jpg"
-    },
-    {
-      "id": 11,
-      "title": "Avengers: Endgame1",
-      "duration": "123",
-      "releaseDate": "0001-11-11",
-      "genre": "12",
-      "imageUrl": "https://chatgpt.com/c/675bda93-3ab4-8009-9a96-bd11ec9fb909"
     }
   ],
   "users": [
     {
-      "name": "Nguyen Van a",
-      "email": "nguyenvana@example.com",
-      "id": "1"
+      "id": "1",
+      "name": "Nguyen Van A",
+      "email": "nguyenvana@example.com"
+    },
+    {
+      "id": "2",
+      "name": "Tran Thi B",
+      "email": "tranthib@example.com"
     },
     {
       "id": "3",
