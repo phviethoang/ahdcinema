@@ -3,12 +3,35 @@
 .container {
     text-align: center;
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding-bottom: 10vh;
   }
-  
+  .subContainer{
+    width: 75%;
+    position: relative;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    /* padding-bottom: 5vh; */
+    border-radius: 60px;
+    background: linear-gradient(to right, #436e7d, rgba(63, 110, 126, 0.0));
+  }
+  .headingCover{
+    width: 30%;
+    align-content: center;
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
   .heading {
-    font-size: 24px;
+    font-family: 'Aguda Black';
+    font-size: xx-large;
     font-weight: bold;
     margin-bottom: 10px;
+    color: white;
   }
   
   .description {
@@ -16,14 +39,7 @@
     margin-bottom: 20px;
   }
   
-  .screen {
-    font-weight: bold;
-    font-size: 18px;
-    margin: 20px 0;
-    padding: 10px;
-    background-color: #ccc;
-    border-radius: 5px;
-  }
+  
   
   .seating {
     display: flex;
@@ -61,6 +77,8 @@
   margin: 0 10px;
   display: flex;
   align-items: center;
+  border-radius: 5px;
+  font-family: 'Montserrat';
 }
 
 .legendSeat {
@@ -68,6 +86,7 @@
   margin-right: 5px;
   width: 20px;
   height: 20px;
+  border-radius:5px ;
 }
 
 
@@ -79,20 +98,46 @@
 /* Seat */
 
 
+.seatLayout{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50px;
+  border-right: 1px solid #436e7d;
+  background-color: white;
+  /* padding-left: 3vw;
+  padding-right: 3vw; */
+  padding: 3vw;
+}
 
+.screen {
+    width: 80%;
+    left: 10%;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #50899e;
+    border-radius: 20px;
+    color:white;
+  }
 
 .seat {
   width: 30px;
   height: 30px;
   border: 2px solid transparent;
-  margin: 5px;
+  border-radius: 8px;
+  margin: 3px;
   text-align: center;
   display: inline-block;
   cursor: pointer;
   font-size: 10px; /* Điều chỉnh cỡ chữ ở đây */
   line-height: 30px; /* Đảm bảo chữ ở giữa ô ghế */
 }
-
+.seat:hover{
+  background-color: aqua;
+}
 
 .selected  {
   background-color: gray; /* Khi ghế được chọn, viền sẽ đổi thành màu đỏ */
@@ -115,7 +160,7 @@
 
 .sweetbox {
   color: white;
-  background-color: #FF69B4;
+  background-color: #8e6d98;
 }
 
 .checked {

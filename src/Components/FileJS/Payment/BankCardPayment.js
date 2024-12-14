@@ -1,18 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 // import styles from './BankCardPayment.module.css';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from
+'../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 
 import PaymentButton from './PaymentButton';
-import TopUpComplete from '../../MemberPage/TopUpComplete'
+import TopUpComplete from '../MemberPage/TopUpComplete'
 
-import backgroundCard from '../../../../img/PaymentIcon/backgroundCard.png';
-import logo1 from '../../../../img/PaymentIcon/logoMBbank.png'; 
-import logo2 from '../../../../img/PaymentIcon/logoTechcombank.png';
-import icon1 from '../../../../img/PaymentIcon/visaSymbol.png';
-import icon2 from '../../../../img/PaymentIcon/activeSymbol.png';
-import icon3 from '../../../../img/PaymentIcon/chip.png';
-import icon4 from '../../../../img/PaymentIcon/contactless.png';
-import icon5 from '../../../../img/PaymentIcon/napas.png';
+import backgroundCard from '../../../img/PaymentIcon/backgroundCard.png';
+import logo1 from '../../../img/PaymentIcon/logoMBbank.png'; 
+import logo2 from '../../../img/PaymentIcon/logoTechcombank.png';
+import icon1 from '../../../img/PaymentIcon/visaSymbol.png';
+import icon2 from '../../../img/PaymentIcon/activeSymbol.png';
+import icon3 from '../../../img/PaymentIcon/chip.png';
+import icon4 from '../../../img/PaymentIcon/contactless.png';
+import icon5 from '../../../img/PaymentIcon/napas.png';
 
 const BankCardPayment = ({Logo,Icon1_2, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful, onPaymentSuccessOutside}) => {
   const [satisfied, setSatisfied]=useState(false);

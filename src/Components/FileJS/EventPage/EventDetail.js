@@ -36,27 +36,6 @@ const EventDetail = () => {
             <Link to="/Login">ĐẶT VÉ THEO RẠP</Link>
           </div>
 
-          <p1>Tải app CGV để đặt vé chọn chỗ sớm hơn, nhanh hơn:</p1>
-          <p2>
-            <a
-              style={{ textDecoration: "none" }}
-              href="https://apps.apple.com/us/app/cgv-cinemas/id1067166194"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              - Tải CGV Cinemas cho iOS
-            </a>
-          </p2>
-          <p2>
-            <a
-              style={{ textDecoration: "none" }}
-              href="https://apps.apple.com/us/app/cgv-cinemas/id1067166194"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              - Tải CGV Cinemas cho Android
-            </a>
-          </p2>
         </div>
       </div>
       <Footer></Footer>

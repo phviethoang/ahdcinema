@@ -4,10 +4,6 @@
   display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang*/
   align-items: center; /*Căn giữa theo chiều dọc*/
-  background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800");
-  background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
-  background-position: center; /* Căn giữa hình ảnh */
-  background-repeat: repeat; /* Không lặp lại hình ảnh */
   height: fit-content; /* Chiều cao toàn trang */
   /* overflow: scroll; */
 }

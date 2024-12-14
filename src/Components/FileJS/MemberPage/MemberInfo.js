@@ -204,7 +204,7 @@ export default function MemberInfo() {
 
 
   return (
-    <div>
+    <div className={styles.memberInfoContainer}>
       <h2>Thông tin tài khoản</h2>
       
       

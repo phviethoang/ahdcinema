@@ -77,9 +77,13 @@ const SeatBooking = ({ onSeatSelectionChange, onTotalPriceChange}) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>BOOKING ONLINE</h2>
-      <div className={styles.screen}>SCREEN</div>
-      <div className={styles.seating}>
+      <div className={styles.subContainer}>
+      <div className={styles.headingCover}>
+        <h2 className={styles.heading}>ĐẶT GHẾ ONLINE</h2>
+      </div>
+      <div className={styles.seatLayout}>
+        <div className={styles.screen}>SCREEN</div>
+        <div className={styles.seating}>
         {rows.map((row) => (
           <div key={row.row} className={styles.seatRow}>
             {Array.from({ length: row.seats }).map((_, index) => {
@@ -96,8 +100,10 @@ const SeatBooking = ({ onSeatSelectionChange, onTotalPriceChange}) => {
             })}
           </div>
         ))}
+        </div>
+        <Legend />
       </div>
-      <Legend />
+      </div>
     </div>
   );
 };

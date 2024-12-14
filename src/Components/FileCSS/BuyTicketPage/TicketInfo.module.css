@@ -129,7 +129,7 @@
     display: flex;
     align-items: center;
     flex: 1;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   
   .moviePoster {
@@ -143,7 +143,28 @@
     font-size: 14px;
     line-height: 1.5;
   }
-  
+  .movieInfo{
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
+    background-color: aqua;
+    /* width: 100%; */
+  }
+  .cardImg{
+    position: relative;
+    width: 40%;
+    height: fit-content;
+  }
+  .cardImg img{
+    width: 100%;
+    height: fit-content;
+  }
+  .movieName{
+    width: 50%;
+    color: white;
+    font-family: 'Montserrat';
+  }
   .priceInfo {
     text-align: right;
   }

@@ -4,7 +4,7 @@
     /* max-width: 600px; */
     width:800px;
     margin: auto;
-    background-color: #fff9e6;
+    background-color: #e3e3e3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -13,7 +13,9 @@
   
   .title {
     font-size: 24px;
-    color: #ff9800;
+    font-family: 'Baloo Bold';
+    letter-spacing: 1px;
+    color: #26839b;
     margin-bottom: 20px;
   }
   
@@ -24,13 +26,13 @@
   .balance {
     font-size: 20px;
     font-weight: bold;
-    color: #ff6f00;
+    color: #26839b;
   }
   
   .topUpInput {
     margin-top: 10px;
     padding: 10px;
-    border: 1px solid #ffcc80;
+    border: 1px solid #88f9bb;
     border-radius: 5px;
     width: 55%;
     margin-bottom: 10px;
@@ -45,13 +47,13 @@
     width:150px;
     height:80px;
     position:relative;
-    background-color: #ffa726;
+    background-color: #93d4e8;
     color: white;
     gap:5px;
     display:flex;
     flex-direction: row;
     padding: 5px 5px;
-    border: 2px solid red;
+    border: 2px solid #88ccf9;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -60,12 +62,13 @@
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   }
   
-  .walletPaymentButton:hover,.topUpButton:hover, .transactionHistoryButton:hover {
-    background-color: #ff9800;
+  .walletPaymentButton:hover,.topUpButton:hover, .transactionHistoyButton:hover {
+    background-color: #c2f9ff;
   }
   .walletIcon,.topUpIcon, .clockIcon{
     width:30%;
     height:90%;
+    
   }
   .paymentSection {
     margin-top: 20px;
@@ -92,6 +95,8 @@
   flex-direction: row;
   /* align-items: center; */
   justify-content: center;
+  font-family: 'Montserrat Bold';
+  color:#003349;
 }
 .walletActions{
   display:flex;

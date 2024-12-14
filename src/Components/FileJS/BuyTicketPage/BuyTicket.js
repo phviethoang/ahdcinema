@@ -11,7 +11,9 @@ import clsx from 'clsx';
 function BuyTicket() {
     const [clearControl, setClearControl] = useState(true)
     if(clearControl){
-        sessionStorage.clear();
+        sessionStorage.removeItem('dateData');
+        sessionStorage.removeItem('theatersDat');
+        sessionStorage.removeItem('citiesData');
         localStorage.clear();
         setClearControl(false);
     }
@@ -81,7 +83,10 @@ function BuyTicket() {
                     }}
                     setDate={
                         (event) =>{
-                                setDate(event.currentTarget.getAttribute('data-content'))
+                                setDate(
+                                    // event.currentTarget.getAttribute('data-content')
+                                    sessionStorage.getItem('dateData')
+                                )
                         }
                     }
                     setTime={
@@ -106,14 +111,14 @@ function BuyTicket() {
                     comboTotalPrice={comboTotalPrice}
                     onPromotionUpdate={handlePromotionUpdate}
                     onPaymentClick={handlePaymentClick}
-                    ticketInfo ={{selectedSeats, combo, type:"buyTicket"}}
+                    transactionInfo ={{selectedSeats, combo, type:"buyTicket"}}
                     />
             ]
     return (
         <div className = {styles.container}>
             <Header></Header>
             <div className = {styles.progressBarBox}>
-                <div className = {styles.step}>
+                {/* <div className = {styles.step}>
                     <div className = {clsx(styles.stepLabel, styles.activeText)}>Bước 1</div>
                     <div className = {clsx(styles.stepShape, styles.active)}></div>
                 </div>
@@ -135,7 +140,7 @@ function BuyTicket() {
                         {[styles.activeText]: currentPageIndex > 2, 
                         [styles.notActiveText]: currentPageIndex <= 2})}>Bước 4</div>
                     <div className = {clsx(styles.stepShape, {[styles.active]: currentPageIndex >2})}></div>
-                </div>
+                </div> */}
             </div>
             <div className={styles.buyTicket}>
             

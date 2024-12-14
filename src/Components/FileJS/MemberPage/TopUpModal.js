@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import styles from '../../FileCSS/MemberPage/WalletPage.module.css';
-import OnlinePaymentPage from '../BuyTicketPage/Step4/OlinePaymentPage';
+import OnlinePaymentPage from '../Payment/OlinePaymentPage';
 
 const topUpValue = [10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000, 5000000];
 

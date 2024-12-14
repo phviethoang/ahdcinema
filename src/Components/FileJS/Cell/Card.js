@@ -12,7 +12,10 @@ function Card({src}){
                     <img src={src}></img>
                 </div>
                 <div className={clsx(style.info, style.layer)}>
-                    <div className={style.describe}  onClick={()=>{navigate('\MoviePage')}}>
+                    <div className={style.describe}  onClick={()=>{
+                        navigate('\MoviePage')
+                        sessionStorage.setItem('cardImgData', JSON.stringify(src))
+                    }}>
                         <div className={style.title}>TÊN PHIM</div>
                         <div className={style.type}>
                             <span className={style.typeLabel}>Thể loại: </span>
@@ -27,7 +30,10 @@ function Card({src}){
                     </div>
                     <button 
                         className={clsx(style.buyTicket, style.button)}
-                        onClick={()=>{navigate('/BuyTicket')}}>BUY TICKET</button>
+                        onClick={()=>{
+                            navigate('/BuyTicket')
+                            sessionStorage.setItem('cardImgData', JSON.stringify(src))
+                            console.log(sessionStorage.getItem('cardImgData'))}}>BUY TICKET</button>
 
                 </div>
             </div>

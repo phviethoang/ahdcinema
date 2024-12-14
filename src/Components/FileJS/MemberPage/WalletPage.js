@@ -3,7 +3,7 @@ import styles from '../../FileCSS/MemberPage/WalletPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-import PaymentButton from '../BuyTicketPage/Step4/PaymentButton';
+import PaymentButton from '../Payment/PaymentButton';
 import TopUpButton from './TopUpButton';
 import TopUpModal from './TopUpModal'
 import TransactionHistoryButton from './TransactionHistoryButton'

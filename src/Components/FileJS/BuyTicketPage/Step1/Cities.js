@@ -17,7 +17,7 @@ function Cities({citiesChoosen, onclick}){
     return(
         cities.map((each,id) => 
         <ButtonType1
-            id={id + citiesChoosen}
+            id={id + each}
             onclick={(event) => {
             onclick(event)
             setCityChoice(event.currentTarget.getAttribute('data-id'))            

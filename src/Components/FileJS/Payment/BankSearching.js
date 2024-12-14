@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 // import styles from './BankSearching.module.css';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 
 import clsx from 'clsx'; 
 
-import CountdownTimer from '../Step3/CountdownTimer'
+import CountdownTimer from 
+'../BuyTicketPage/Step3/CountdownTimer'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import logo1 from '../../../../img/PaymentIcon/logoMBbank.png';  
-import logo2 from '../../../../img/PaymentIcon/logoTechcombank.png';
+import logo1 from '../../../img/PaymentIcon/logoMBbank.png';  
+import logo2 from '../../../img/PaymentIcon/logoTechcombank.png';
 
 const BankSearching = ({ onBankSelect }) => {
   const [query, setQuery] = useState('');

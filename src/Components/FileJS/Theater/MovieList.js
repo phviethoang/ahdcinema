@@ -40,17 +40,20 @@ export default function MovieList({ selectedDay }) {
                 <div className={styles.movieGrid}>
                     {movies.map((movie, index) => (
                         <div key={index} className={styles.movieItem}>
-                            <h4 className={styles.movieTitle}>{movie.title}</h4>
+                            <img src={movie.poster} alt={movie.title} className={styles.poster} />
                             <div className={styles.posterContainer}>
-                                <img src={movie.poster} alt={movie.title} className={styles.poster} />
+                                <div className={styles.decor}></div>
                                 <div className={styles.showtimeContainer}>
-                                    <h4 className={styles.subtitles}>2D Phụ Đề Anh & Việt</h4>
+                                    <h4 className={styles.movieTitle}>{movie.title}</h4>
+                                    <h6 className={styles.subtitles}>2D Phụ Đề Anh & Việt</h6>
                                     {movie.showtimes.map((time, timeIndex) => (
                                         <div key={timeIndex} className={styles.showtimeBox}>
                                             {time}
                                         </div>
                                     ))}
                                 </div>
+                                
+                                
                             </div>
                         </div>
                     ))}

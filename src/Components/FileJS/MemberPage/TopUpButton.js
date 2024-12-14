@@ -6,7 +6,7 @@ const TopUpButton = ({ onHandleSetTopUp }) => {
 
   return (
       <button onClick={onHandleSetTopUp} className={styles.topUpButton}>
-        <div style={{ fontSize: '14px' }}>Nạp thêm tiền</div>
+        <div style={{ fontSize: '14px', color: '#334a52', fontFamily: 'Montserrat Bold'  }}>Nạp thêm tiền</div>
         <img src={topUpIcon} className={styles.topUpIcon} />
       </button>
   );

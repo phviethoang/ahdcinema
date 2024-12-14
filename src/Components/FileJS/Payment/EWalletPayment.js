@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 // import styles from './EwalletPayment.module.css';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 import clsx from 'clsx'
 
-import iconZaloPay from '../../../../img/PaymentIcon/zalopayIcon.png';  
-import iconMomo from '../../../../img/PaymentIcon/momoIcon.png';
+import iconZaloPay from '../../../img/PaymentIcon/zalopayIcon.png';  
+import iconMomo from '../../../img/PaymentIcon/momoIcon.png';
 
 import CountdownTimer2 from './CountdownTimer2'
 import PaymentButton from './PaymentButton'
-import TopUpComplete from'../../MemberPage/TopUpComplete'
+import TopUpComplete from '../MemberPage/TopUpComplete'
 const EwalletPayment = ({ewalletSelected, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful, onPaymentSuccessOutside}) => {
 
     const[satisfied, setSatisfied]=useState(false);

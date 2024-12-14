@@ -1,6 +1,6 @@
 
 
-.buyTicket{
+.buyticket{
   width: 100%;
   width:auto;
   display: flex;
@@ -11,13 +11,24 @@
 
   .ticketInfo {
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    justify-content: space-between;
+    height: fit-content;
     background-color: #333;
     color: white;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
+  .cardImg{
+    width: 40%;
+    height: fit-content;
+    position: relative;
+  }
+  .cardImg img{
+    width: 100%;
+  }
 
 .navButton {
     background-color: transparent;
@@ -52,11 +63,17 @@
 }
 
 .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 10px;
     flex: 1;
     text-align: center;
 }
-
+.section p{
+    font-family: 'Montserrat';
+    font-size: larger;
+}
 /* Đường ngăn dọc giữa các mục */
 .section:not(:last-child) {
     border-right: 2px dotted #ccc;
@@ -74,7 +91,10 @@
     margin: 5px 0;
     font-size: 14px;
 }
-
+.priceInfo h3{
+    font-family: 'Montserrat';
+    font-size: larger;
+}
 /* BuyTicket.module.css */
 .page {
   width: 100%;

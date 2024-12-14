@@ -21,7 +21,7 @@
   top: -30%;
   left: 0;
   /* background: linear-gradient(white, #cfeef9 5%); */
-  background-color:  #dfeff5;
+  /* background-color:  #dfeff5; */
   filter: blur(50px);
 }
 .PSCcontainer {
@@ -158,7 +158,9 @@
   cursor: pointer; /* Con trỏ thành hình bàn tay khi hover */
   transition: transform 0.3s ease, background-color 0.3s ease;
   color: #26839b;
-  border-radius: 8px;
+}
+.phimDangChieu{
+  border-radius: 30px;
 }
 .phimDangChieu::after{
   position: absolute;
@@ -200,10 +202,10 @@
   top: 18px;
   background-color: white;
   border: none;
-  border-top-left-radius: 30%;
-  border-top-right-radius: 30%;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 30px;
   z-index: 101;
-  box-shadow:5px -10px 10px 0px #0d4654;
+  box-shadow:-5px -10px 10px 0px #0d4654;
 }
 .phimDangChieu:hover {
   background-color: #26839b; /* Nền đen khi di chuột */

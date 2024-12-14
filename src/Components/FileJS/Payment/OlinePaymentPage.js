@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
-import Icon1 from '../../../../img/PaymentIcon/atmIcon.png';
-import Icon2 from '../../../../img/PaymentIcon/momoIcon.png';
-import Icon3 from '../../../../img/PaymentIcon/visaIcon.png';
-import Icon4 from '../../../../img/PaymentIcon/zalopayIcon.png';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import Icon1 from '../../../img/PaymentIcon/atmIcon.png';
+import Icon2 from '../../../img/PaymentIcon/momoIcon.png';
+import Icon3 from '../../../img/PaymentIcon/visaIcon.png';
+import Icon4 from '../../../img/PaymentIcon/zalopayIcon.png';
 
 import ProcessPaymentMethod from './ProcessPaymentMethod'
 const paymentMethods = [

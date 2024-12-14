@@ -15,7 +15,7 @@
     flex-direction: column;
     height: fit-content;
     min-height: 100vh;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .theaterWrap{
     max-width: 100%;
@@ -25,6 +25,7 @@
     flex-direction: column;
     min-height: 100vh;
     height: fit-content;
+    /* background-color: #dfeff5 */
 }
 
 .titleAhdCinema{
@@ -32,21 +33,19 @@
     overflow: hidden;
     align-items: center; 
     justify-content: center;
+    margin-top: 2vh;
     
 }
 .titleAhdCinema h2 {
+    font-family: 'Aguda Black', 'Peace Sans', 'Montserrat';
     font-size: 6vw;
     font-weight: bold;
-    color: #ffffff;
-    background: linear-gradient(135deg, #4a5560, #00ced1);
-    -webkit-text-fill-color: transparent;
+    color: #4bccd4;
     position: relative;
     text-transform: uppercase;
     letter-spacing: 1vw;
-
-    /* Viền ngoài 3D cho chữ */
-    text-shadow: 0.5vw  0.5vw  0vw rgba(0, 0, 0, 0.5),   /* Bóng đổ chính */
-                 -0.01vw -0.01vw 0vw rgba(255, 255, 255, 0.6);  /* Viền sáng ở trên */
+    -webkit-text-stroke:2px  #195462;
+    text-shadow: 0 5px 10px rgb(10, 114, 110);
 }
 
 .titleAhdCinema h2::before {
@@ -61,18 +60,13 @@
     z-index: -1;
 }
 
-
-
-
-
-
 .theaterListPreview {
-    max-width: 100%;
-    background-color: #262323;
+    
     display: flex;
     flex-direction: column;  /* Sắp xếp các phần tử con theo cột */
     width: 100%;    /* Giới hạn chiều rộng */
-    padding: 4vw;   /*Khoảng cách giữa nội dung và viền*/
+    padding-top: 4vw;   /*Khoảng cách giữa nội dung và viền*/
+    padding-bottom: 4vw;
     box-sizing: border-box;  /* Bao gồm padding trong kích thước */
 }
 .theaterShowtimeCenter{
@@ -80,46 +74,119 @@
     gap:5vw;
 }
 
-.cinemasByProvince{
-    text-align: center;
+.cinemasArea1, .cinemasArea2, .theaterLine{
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    min-height: 30vh;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
 }
-.cinemasByProvince, .cinemasList {
-    margin-left:1.5vw;
+.cinemasArea1{
+    background-color: #d2e9e9;
+}
+.theaterLine{
+    background-color: #5b8898;
+    color: white
+}
+
+.mainArea{
+    width: 100%;
+    position: relative;
+    /* border: thick solid #96afb8; */
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: fit-content;
+    min-height: 20vh;
+    background: none;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+
+}
+.label{
+    position: relative;
+    align-content: center;
+    font-family: 'Aguda Black';
+    letter-spacing: 1px;
+    font-size: x-large;
+    color: #26839b;
+    
+}
+.cinemasArea1 .label{
+   width: 35%;
+   border-right: 1px solid #367994;  
+   padding-right: 10vw;
+}
+.cinemasArea2 .label{
+    border-left: 1px solid #367994;  
+    width: 20%;
+    padding-left: 10vw;
+   
+}
+.theaterLine .label{
+    color: white;
+    letter-spacing: 5px;
+    font-size: xx-large;
+}
+.cinemasByProvince{
+    position: relative;
+    width: 40%;
+    height: fit-content;
+ }
+ .cinemasList{
+    position: relative;
+    width: 60%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+ }
+.cinemasByProvince{
+    /* margin-left:1.5vw; */
     list-style-type: none;
-    padding: 0;
+    padding-left: 1vw;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
+
 }
 
 .cinemasByProvince li, .cinemasList li {
-    color: #ffffff;
+    font-weight: 600;
+    /* font-size: 3vw; */
+    border-radius: 20px;
     padding: 1vw 1vw;
-    flex: 1 1 20%;  /* Mỗi phần tử chiếm khoảng 30% chiều rộng, nhưng có thể co dãn */
-    box-sizing: border-box;  /* Bao gồm padding vào kích thước */
-    list-style-type: none; /* Bỏ dấu chấm bên trái danh sách */
+    box-sizing: border-box; 
+    list-style-type: none;
     gap: 1vw;
-    cursor: pointer; /* Hiển thị con trỏ chuột khi hover */
-    position: relative; /* Đặt position để có thể sử dụng cho underline */
-}
-
-
-.cinemasByProvince li:hover,
-.cinemasList li:hover {
-    color: red;
     cursor: pointer;
+    position: relative;
+    width: fit-content;
+    height: 50px;
+    margin: 2px;
+    align-content: center;
 }
 
-
-.underline {
-    position: absolute; /* Đặt vị trí tuyệt đối cho gạch chân */
-    left: 0; /* Căn trái */
-    bottom: 0.5vw; /* Căn dưới cho gạch chân */
-    height: 0.1vw; /* Chiều cao của gạch chân */
-    width: 100%; /* Chiều rộng của gạch chân */
-    background-color: red; /* Màu gạch chân */
-    transform: scaleX(0); /* Bắt đầu với chiều rộng 0 để tạo hiệu ứng xuất hiện */
-    animation: appear 0.3s forwards; /* Hiệu ứng xuất hiện */
+.choosen{
+    font-family: 'Montserrat Black';
+    background-color: #bff5f3;
+    color:#334a52;
+    box-shadow: 3px 3px 10px 0px #5dbbc3;
+}
+.notChoosen{
+    font-family: 'Montserrat Bold';
+    background-color: #334a52;
+    color:#ffffff;
+}
+.cinemasByProvince li:hover,
+.cinemasList li:hover, .dayBlock:hover {
+    color:#00ffdd;
+    box-shadow: 3px 3px 10px 0px #5dbbc3;
+    cursor: pointer;
 }
 
 @keyframes appear {
@@ -141,20 +208,56 @@
 
 .theaterContainerProductPreview{
     display: flex;
-    flex-direction: column;  /* Sắp xếp các phần tử con theo cột */
+    flex-direction: column; 
     width: 100%;    /* Giới hạn chiều rộng */
     padding: 1vw;   /*Khoảng cách giữa nội dung và viền*/
     box-sizing: border-box;  /* Bao gồm padding trong kích thước */
     justify-content: center;
-    align-items: center,
+    align-items: center;
 }
-
-
-.theaterLine {
+.mainContainer{
     display: flex;
-    align-items: center; /* Căn giữa theo chiều dọc */
-    justify-content: space-between;
-
+    flex-direction: column;  
+    width: 80%;    /* Giới hạn chiều rộng */
+    padding: 1vw;   /*Khoảng cách giữa nội dung và viền*/
+    box-sizing: border-box;  /* Bao gồm padding trong kích thước */
+    justify-content: center;
+    align-items: center;
+}
+.cinemaImage{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10vh;
+}
+.posterhungdzprvjp{
+    margin-top: 10vh;
+    position: relative;
+    width: 50%;
+    height: fit-content;
+    overflow: hidden;
+    /* height: 10vh; */
+    border: 3px solid #165269;
+    box-shadow: -3px 3px 10px 3px #a15800;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) translateZ(100px) rotateY(40deg);
+}
+.posterhungdzprvjp::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+}
+.schedule{
+    position: relative;
+    width: 50%;
+    height: fit-content;
+    align-content: center;
+    left: -1vw;
 }
 
 .line {
@@ -299,38 +402,6 @@
     opacity: 1;
 }
 
-  
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 /*  */
 
@@ -338,49 +409,73 @@
 /*  */
 
 .productCollateral {
-    padding: 2vw; /* Khoảng cách cho toàn bộ khối */
-    background-color: #f9f9f9; /* Màu nền khối */
-    border-radius: 3%; /* Bo góc cho khối */
-    box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
-    margin: 1vw; /* Khoảng cách ngoài khối */
+    background: none;
+    border-radius: 3%; 
+    /* box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.1);  */
     width:100%;
+    margin-top: 10vh;
 }
 
 .toggleTabs {
-    display: flex; /* Sắp xếp các tab theo hàng */
+    display: flex; 
+    flex-direction: column;
     margin-bottom: 1vw; /* Khoảng cách dưới cùng của các tab */
-    flex-direction: row;
+    justify-content: center;
+    align-items:center;    
+    background: none;
+}
+.toggleTabs li{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-
+.toggleTabs li:nth-child(1) .describe{
+    border-left: 1px solid #7e908e;
+}
+.toggleTabs li:nth-child(2) .describe{
+    border-right: 1px solid #7e908e;
+}
+.describe{
+    font-family: 'Montserrat';
+    align-content: center;
+    height: fit-content;
+    font-size: large;
+    width: 70%;
+}
 .tabItem {
+    width: 30%;
     padding: 2vw 3vw; /* Khoảng cách cho các tab */
     cursor: pointer; /* Hiển thị con trỏ khi hover */
-    border-radius: 20%; /* Bo góc cho tab */
+    border-radius: 10px; /* Bo góc cho tab */
     transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển màu nền và chữ */
-    font-size: 1.5vw; /* Kích thước chữ */
-    margin-right: 10px; /* Khoảng cách giữa các tab */
-    color: #333; /* Màu chữ mặc định */
-    background-color: #e0e0e0; /* Màu nền mặc định cho tab */
-    
+    font-size: x-large;
+    font-family: 'Baloo Bold';
+    margin: 10px;
+    color:#334a52
 }
-
+.pointing{
+    color:#00ffdd;
+    text-shadow: 1px 1px 5px #2c788b;
+}
 .tabItem:hover {
     background-color: #d0d0d0; /* Màu nền khi hover */
 }
 
-.tabCurrent {
-    background-color: #007bff; /* Màu nền cho tab đang chọn */
-    color: white; /* Màu chữ cho tab đang chọn */
-    font-weight: bold; /* Đậm chữ cho tab đang chọn */
-}
+/* .tabCurrent {
+    background-color: #007bff; 
+    color: white;
+    font-weight: bold; 
+} */
 
 .tabContent {
+    width: 120%;
     padding: 20px; /* Khoảng cách cho nội dung */
     border: 1px solid #ddd; /* Đường viền cho nội dung */
     border-radius: 5px; /* Bo góc cho nội dung */
-    background-color: white; /* Nền trắng cho nội dung */
+    background-color: #d2e9e9;
     /* width:60%; */
 }
 
@@ -405,8 +500,9 @@
     gap: 10px;
 }
 .dayBlock{
-    color:#000000;
-    background-color: #ffffff;
+    color:white;
+    /* font-family: 'Billy Bold'; */
+    background-color: #334a52;
     border-radius: 10%;
     height:6vw;
     width:8vw;
@@ -420,12 +516,17 @@
     /* gap:0.5vw; */
     border-radius: 15%;
     box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2); 
-    border: 0.3vw solid #000000;
 }
-.dayBlock:hover{
+.selected{
+    font-family: 'Montserrat Bold';
+    background-color: #bff5f3;
+    color:#334a52;
+    box-shadow: 3px 3px 10px 0px #5dbbc3;
+}
+/* .dayBlock:hover{
     cursor: pointer;
     background-color: lightblue;
-}
+} */
 .monthAndDweek{
     font-size: 2vw;
 }
@@ -465,10 +566,6 @@
 .buttonLeft:disabled,.buttonRight:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
-.selected {
-    border: 2px solid #007bff; /* Border cho ngày được chọn */
-    background-color: #e6f0ff; /* Nền cho ngày được chọn */
 }
 
 .selectedInfo {
@@ -542,13 +639,11 @@ ul {
 .movieList {
     margin-top: 2vw;
 }
-
-.movieGrid {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 3vw;
+.movieList h3{
+    font-family: 'Aguda Black';
+    color: #334a52;
 }
+
 
 
 .poster {
@@ -569,7 +664,6 @@ ul {
     margin: 2vw 0 1vw;
     font-size: 2vw;
     cursor: pointer;
-
 }
 
 
@@ -577,35 +671,57 @@ ul {
 
 .movieList {
     padding: 20px;
-    background-color: rgba(0, 0, 255, 0.1);
+    /* background-color:#525c5f ; */
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 
 .movieGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 0;
+    justify-content: center;
+    gap: 10px;
+    /* background-color: #00ffdd; */
+
 }
 
 .movieItem {
+    width: 45%;
+    height: fit-content;
     position: relative;
     border: 2% solid #ddd;
     border-radius: 3%;
     /* overflow: hidden; */
     display: flex;
-    flex-direction: column;
+    background-color: #2e4344;
 }
 
-
+.poster{
+    width: 50%;
+}
 .posterContainer {
+    /* width: 50%; */
+    padding: 2vw;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     position: relative;
+    justify-content: center;
+    align-items: center;
 }
+.decore{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: center ;
 
+}
 .movieTitle {
-    font-size: 2vw;
-    margin: 10px 0;
-    animation: sparkle 3s infinite;
+    font-size: large;
+    font-family: 'Aguda Black';
+    color: white;
+    /* animation: sparkle 3s infinite; */
 }
 
 .poster {
@@ -615,15 +731,17 @@ ul {
 }
 
 .subtitles{
-    font-size: 2vw;
-    font-weight: 700;
-    height: 1vh;
+    font-size: smaller;
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    /* font-weight: 700; */
     width:100%;
-    margin-bottom: 0;
 }
 .showtimeContainer {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     flex-direction: row;
     margin-left: 1vw;
@@ -632,11 +750,13 @@ ul {
 }
 
 .showtimeBox {
+    font-family: 'Montserrat';
     margin-top:0;
+    align-content: center;
     border:0.1vw solid black;
-    background-color: #ffffff;
+    background-color: #96afb8;
     color: rgb(0, 0, 0);
-    border-radius: 3%;
+    border-radius: 10px;
     font-size: 1vw;
     cursor: pointer;
     height: 2vw;

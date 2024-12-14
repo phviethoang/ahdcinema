@@ -2,16 +2,42 @@ import style from '../../../FileCSS/BuyTicketPage/Step1/Step1.module.css'
 import { useState} from 'react'
 import clsx from 'clsx'
 import ButtonType1 from '../../Cell/ButtonType1'
+import DateTime from '../../Cell/DateTime'
 import Cities from './Cities'
 import TheaterAndTime from './TheaterAndTime'
 import React from 'react'
 import { useEffect } from 'react'
-function Step1({setTheater, setTime, setDate}){
-    const dateData ={
-        '1': ['Hải Phòng', 'Hà Nội', 'Hồ Chí Minh'],
-        '2': ['Hà Nội', 'Đà Nẵng', 'Nam Định', 'Thanh Hóa'],
-        '29': ['Hà Nội', 'Hải Phòng', 'Hồ Chí Minh', 'Đà Nẵng']
+    function Step1({setTheater, setTime, setDate}){
+    const getNext30Days = () => {
+        const days = [];
+        const today = new Date();
+        const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", 
+                        "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        for (let i = 0; i <= 30; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+            const Day = date.getDate(); // Ngày trong tháng (1-31)
+            const Dweek = weekdays[date.getDay()]; // Lấy tên thứ
+            const monthIndex= date.getMonth();  // Dùng để tính khoảng cách ngày
+            const Month = months[date.getMonth()];
+            days.push({ Day, Dweek, Month,monthIndex});
         }
+
+        return days;
+    };
+
+    const tem = getNext30Days()
+
+    const dateData ={}
+    for (let i = 0; i<tem.length; i++){
+        if(i%3==0) dateData[JSON.stringify(tem[i])]  = ['Hải Phòng', 'Hà Nội', 'Hồ Chí Minh']
+        else if(i%3==1) dateData[JSON.stringify(tem[i])]  = ['Hà Nội', 'Đà Nẵng', 'Nam Định', 'Thanh Hóa']
+        else dateData[JSON.stringify(tem[i])]=['Hà Nội', 'Hải Phòng', 'Hồ Chí Minh', 'Đà Nẵng']
+    }
+    
+
     const cityData={
         'Hải Phòng': ['AHD Aeon Mall | 3D', 'AHD Lạc Hồng | 2D', 'AHD Tam Bạc | 2D', 'AHD Lạch Tray | 3D'],
         'Hà Nội': ['AHD Times City', 'AHD Long Biên', 'AHD Hoàn Kiếm', 'AHD Trương Định'],
@@ -58,6 +84,7 @@ function Step1({setTheater, setTime, setDate}){
                     onclick = {(event) => {
                         setTheater(event)
                         setTime(event)
+                        setDate(event)
                     }}></TheaterAndTime>)
             }}
             citiesChoosen={temCities}></Cities>)
@@ -70,27 +97,25 @@ function Step1({setTheater, setTime, setDate}){
         ()=>
         {
             const dateData = sessionStorage.getItem('dateData');
-            return dateData? dateData: '';
+            return dateData? JSON.parse(dateData): '';
         }
     )
     
-    let month=[]
-    for(let i = 1; i<30; i++){
-        month.push(
-            <ButtonType1 
-            id={i}
-            onclick = {(event)=>{
-                ShowCities(event.currentTarget.getAttribute('data-content'))
-                setDateChoice(event.currentTarget.getAttribute('data-id'))
-                console.log(event.currentTarget.getAttribute('data-content'))
-                setDate(event)
-            }} 
-            sizeStyle='miniSquare' 
-            choosen={dateChoice}
-            >{i}</ButtonType1>
-        )  
-    }
-
+    
+    let month = getNext30Days()
+    month = month.map(each =>
+        <DateTime
+        day = {each}
+        onclick = {()=>{
+            ShowCities(JSON.stringify(each))
+            setDateChoice(each.Day + " " + each.Month)
+            sessionStorage.setItem('dateData',each.Day + " " + each.Month)
+        }} 
+        selectedDay={dateChoice}
+        ></DateTime>
+    )  
+    
+    
     useEffect( ()=>{
             sessionStorage.setItem('dateData', dateChoice);
         }, [dateChoice])

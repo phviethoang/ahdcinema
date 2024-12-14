@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 
 const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInfo, valueInput, handleTopUp, onTransactionConfirmation, paymentData, onPaymentSuccessful, finalAmount, onPaymentSuccessOutside}) => {
   let selectedSeats = [];

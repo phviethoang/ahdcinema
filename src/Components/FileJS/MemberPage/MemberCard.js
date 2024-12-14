@@ -3,7 +3,7 @@ import styles from "../../FileCSS/MemberPage/member.module.css";
 import silverLeafIcon from "../../../img/MemberInfoImage/silverLeafIcon.png";
 import goldLeafIcon from "../../../img/MemberInfoImage/goldLeafIcon.png";
 import MemberInfoTable from "./MemberInfoTable";
-import PaymentTabs from "../BuyTicketPage/Step4/PaymentTabs";
+import PaymentTabs from "../Payment/PaymentTabs";
 
 // Danh sách thông tin các loại thẻ
 const AllMemberCards = [

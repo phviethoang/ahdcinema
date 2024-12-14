@@ -10,6 +10,8 @@ function PhimDangChieu() {
   // const [showButton, setShowButton] = useState(null);
 
   // Mô phỏng danh sách phim đang chiếu
+
+  
   const movies = [
     {
       title: "Tee Yod: Quỷ Ẩn Tạng Phần 2",

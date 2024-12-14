@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 // import styles from './TopUpComplete.module.css'
 import styles from '../../FileCSS/MemberPage/WalletPage.module.css';
 
-import TransactionConfirmation from '../BuyTicketPage/Step4/TransactionConfirmation'
-import Success from '../BuyTicketPage/Step4/Success'
+import TransactionConfirmation from '../Payment/TransactionConfirmation'
+import Success from '../Payment/Success'
 const TopUpComplete=({valueInput, handleTopUp, satisfied, paymentData})=>{
     const [visible,setVisible]=useState(false);
     const handleTransactionConfirmationVisibleChange=()=>{

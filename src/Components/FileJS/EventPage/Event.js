@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../FileCSS/EventPage/Event.module.css";
 import { Link } from "react-router-dom"; // Import Link
+import { useNavigate } from "react-router-dom";
 
 const eventsData = [
   {
@@ -98,13 +99,14 @@ const eventsData = [
 ];
 
 const EventsPage = () => {
+  const navigate = useNavigate();
   return (
     <div className={styles.pageContainer}>
       <div className={styles.container}>
         <h2 className={styles.header}>Tin mới và ưu đãi</h2>
         <div className={styles.buttonContainer}>
           <button className={styles.button}>Xem tất cả</button>
-          <button className={styles.button}>Chọn Rạp</button>
+          <button className={styles.button} onClick={()=> navigate('/TheatersPage')}>Chọn Rạp</button>
         </div>
         <div className={styles.events}>
           {eventsData.map((event) => (

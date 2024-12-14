@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { useLocation } from 'react-router-dom';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
-import WalletPage from '../../MemberPage/WalletPage';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import WalletPage from '../MemberPage/WalletPage';
 import OnlinePaymentPage from './OlinePaymentPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';

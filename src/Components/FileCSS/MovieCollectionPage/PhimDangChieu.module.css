@@ -21,7 +21,7 @@
   top: -30%;
   left: 0;
   /* background: linear-gradient(white, #cfeef9 5%); */
-  background-color:  #dfeff5;
+  /* background-color:  #dfeff5; */
   filter: blur(50px);
 }
 .PSCcontainer {
@@ -97,7 +97,6 @@
   margin-top: 5%;
 }
 .movie h3 {
-  font-family: Verdana, Arial, sans-serif;
   width: 100%;
   height: fit-content;
   color: #334a52!important;
@@ -116,7 +115,8 @@
   height: fit-content;
   /* color: #4d959d; */
   color: #0d4654;
-  font-size: 14px;
+  font-size: 15px;
+  /* font-family: 'Montserrat'; */
 }
 .button1 {
   position: absolute;
@@ -158,7 +158,7 @@
   cursor: pointer; /* Con trỏ thành hình bàn tay khi hover */
   transition: transform 0.3s ease, background-color 0.3s ease;
   color: #26839b;
-  border-radius: 8px;
+  
 }
 .phimSapChieu::after{
   position: absolute;
@@ -200,8 +200,10 @@
   top: 18px;
   background-color: white;
   border: none;
-  border-top-left-radius: 30%;
-  border-top-right-radius: 30%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: none;
+  border-bottom-left-radius: none;
   z-index: 101;
   box-shadow:5px -10px 10px 0px #0d4654;
 }
@@ -227,6 +229,7 @@
 
 .phimSapChieu{
   right: 4vh;
+  border-radius: 30px;
 }
 
 

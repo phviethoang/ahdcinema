@@ -25,13 +25,13 @@
     height: 100%;
     top:0;
     left:0;
-    opacity: 0.3;
+    /* opacity: 0.3; */
 }
 .dateContainer .boxDisplay{
-    background-color: grey;
+    background-color: #d2e9e9;
 }
 .theaterAndTimeContainer .boxDisplay{
-    background-color: grey;
+    background-color:#d2e9e9 ;
     max-height: 30vh;
 }
 /* hộp chứa của mục chọn rạp và thời gian hơi khác*/
@@ -56,7 +56,7 @@
         /* width: 15vw; */
         height: 100%;
         /* margin: 2vw; */
-        color: rgb(65, 65, 65);
+        color: #367994;
         font-family: 'Aguda Black';
         font-weight: bolder;
         text-align: center;
@@ -69,7 +69,7 @@
         width: 50vw;
         max-width: 500px;
         height: fit-content;
-        border-left: thin solid gray;
+        border-left: thin solid #367994;
         display: flex;
         flex-wrap: wrap;
         transition: width 0.2s linear;
@@ -85,7 +85,7 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        border-right: thin solid gray;
+        border-right: thin solid #334a52;
         margin-top: 5vh;
         margin-bottom: 5vh;
         margin-left: 10vw;

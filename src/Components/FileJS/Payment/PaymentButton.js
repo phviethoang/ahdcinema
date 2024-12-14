@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 // import styles from './PaymentButton.module.css'
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css'
-import walletIcon from '../../../../img/PaymentIcon/walletIcon.png'
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css'
+import walletIcon from '../../../img/PaymentIcon/walletIcon.png'
 
 import TransactionConfirmation from './TransactionConfirmation'
 import Success from './Success'

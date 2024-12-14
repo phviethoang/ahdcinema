@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 import CountdownTimer2 from './CountdownTimer2'
+
 const Success = ({ onResetSuccess, useFor, transactionInfo, onPaymentSuccessOutside }) => {
   // const navigate = useNavigate();
 

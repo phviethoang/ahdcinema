@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import styles from './ProcessPaymentMethod.module.css';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 import BankSearching from './BankSearching';
 import BankCardPayment from './BankCardPayment';
 import EWalletPayment from './EWalletPayment';

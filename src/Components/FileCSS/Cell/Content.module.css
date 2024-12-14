@@ -1,6 +1,6 @@
 .container{
     width: 100%;
-    height: auto;
+    height: fit-content;
     top:0;
     left: 0;
     display: flex;
@@ -9,14 +9,16 @@
 .label{
     font-size: 16px;
     font-weight: bolder;
-    font-family: Arial, Helvetica, sans-serif;
-    min-width: 50px;
+    font-family: 'Montserrat Bold';
+    /* min-width: 50px; */
     width: 30%;
     text-align: left;
+    color:#334a52;
 }
 .content{
-    font-family: Arial, Helvetica, sans-serif;
-    height: auto;
+    font-family: 'Montserrat';
+    height: fit-content;
     font-size: 15px;
     display: flex;
+    justify-content: flex-start;
 }

@@ -1,4 +1,4 @@
-body {
+.body {
     font-family: Arial, sans-serif;
     max-width: 70%;
     margin: 0 auto;
@@ -6,13 +6,37 @@ body {
     background-color: #f4f4f4;
     font-size: 14px;
 }
-
+.hungMainContainer{
+  width: 100vw;
+  height: fit-content;
+  /* background-color: #dfeff5; */
+  
+}
+.hungContainer{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vh;
+  padding-bottom: 10vh;
+}
+.memberInfoContainer{
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(0,44,65, 0.8);
+  padding: 2vw;
+  border-radius: 15px;
+}
 .memberButton {
     background-color: #2b8cda; 
-    color: white; /* Màu chữ trắng */
+    color: white;
+    /* font-family: 'Billy Bold'; */
+    align-content: center;
     padding: 10px 20px; /* Khoảng cách bên trong nút */
     border: none; /* Loại bỏ đường viền */
-    border-radius: 8px; /* Bo góc nút */
+    border-radius: 30px; /* Bo góc nút */
     font-size: 16px; /* Kích thước chữ */
     font-weight: bold; /* Chữ đậm */
     cursor: pointer; 
@@ -20,7 +44,17 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng cho nút */
     margin: 5px; /* Khoảng cách giữa các nút */
   }
-  
+  .memberButton:nth-child(1){
+    background-color: #002c41;
+  }
+  .memberButton:nth-child(2){
+    background-color:#006e86;
+  }
+  .memberButton:nth-child(3){
+    background-color:#65b8d2;
+    color:white;
+    /* -webkit-text-stroke: 1px black; */
+  }
   .memberButton:hover {
     background-color: #45a049; /* Đổi màu nền khi hover */
     transform: scale(1.05); /* Tăng kích thước nhẹ khi hover */
@@ -32,9 +66,14 @@ body {
     transform: scale(0.98); /* Nhấn xuống nhẹ khi nhấn */
   }
   
-h2 {
+.memberInfoContainer h2 {
+  font-family: 'Baloo Bold';
+  /* color:#334a52; */
+  color: white;
+  letter-spacing: 1.5px;
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 form {
@@ -59,7 +98,6 @@ form {
     margin-right: 20px; /* Khoảng cách bên phải */
     gap:1vw;
 }
-
 /* Đảm bảo nhóm cuối cùng không có khoảng cách bên phải */
 .formGroup:last-child {
     margin-right: 0; 
@@ -75,6 +113,7 @@ form {
     display: block; /* Đảm bảo nhãn và input nằm trên cùng một cột */
     margin-bottom: 5px; /* Khoảng cách giữa nhãn và input */
     font-weight: bold; /* Đậm chữ */
+    color:#002c41
 }
 
 input, select {
@@ -89,11 +128,13 @@ input, select {
 
 /* Các nút */
 .profilePictureBtn{
-    background-color: #9058FF;
+  width: max-content;
+    background-color: #01648e;
+    font-family: 'Baloo';
     color: rgb(255, 255, 255);
     padding: 1vw 2vw;
     border: none;
-    border-radius: 10%;
+    border-radius: 15px;
     cursor: pointer;
 }
 
@@ -139,7 +180,7 @@ input, select {
 
 
 .highlight {
-    color: red; /* Đổi màu chữ */
+    color: #26839b; /* Đổi màu chữ */
     font-weight: bold; /* In đậm chữ */
     font-size: 20px; /* Thay đổi kích thước chữ */
 }
@@ -164,7 +205,10 @@ input, select {
 
 .updateButton{
     color:#fff;
-    background-color: #9058FF	;
+    font-family: 'Baloo';
+    background-color:#03587d	;
+    border-radius: 30px;
+    border:none;
     width:200px;
     height:50px;
     justify-content: center; /* Căn giữa theo chiều ngang */
@@ -416,7 +460,10 @@ input[id="email"] {
     gap: 20px;
     font-family: Arial, sans-serif;
   }
-  
+  .tableContent h2{
+    font-family: 'Baloo Bold';
+    letter-spacing: 1px;
+  }
   .profileContainer {
     flex-shrink: 0;
   }
@@ -452,12 +499,14 @@ input[id="email"] {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
+    /* font-family: ''; */
   }
   
   .memberTable th {
-    background-color: gray;
+    background-color: #334a52;
     font-weight: bold;
     color: white;
+    font-family: 'Montserrat Bold';
   }
   
   .memberTable td {

@@ -3,9 +3,10 @@ import styles from "../../FileCSS/BuyTicketPage/BuyTicket.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPointRight,faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from "react";
-const TicketInfo = ({ totalPrice, combo, selectedSeats, onNext, onPrevious, promotion, useFor }) => {
-
-    
+const TicketInfo = ({ totalPrice, combo, selectedSeats, onNext, onPrevious, promotion, useFor, theater, time, date, movieName  }) => {
+    const getImg = sessionStorage.getItem('cardImgData')
+    // console.log(getImg)
+    const cardImg = getImg? JSON.parse(getImg): ''
     const [categorizedSeats, setCategorizedSeats] = useState({});
 
     useEffect(()=>{
@@ -33,26 +34,29 @@ return (
         
         <div className={styles.ticketDetails}>
             <div className={`${styles.section} ${styles.movieInfo}`}>
-                {/* Thông tin phim */}
+                <div className={`${styles.cardImg}`}>
+                    <img src={cardImg} alt=''></img>
+                </div>
+                <div className={styles.movieName}>{movieName}</div>
             </div>
 
             {/* Thông tin rạp */}
             <div className={`${styles.section} ${styles.theaterInfo}`}>
-                <p><strong>Rạp:</strong> </p>
-                <p><strong>Suất chiếu:</strong></p>
-                <p><strong>Phòng chiếu:</strong></p>
+                <p><strong>Rạp: </strong>{theater} </p>
+                <p><strong>Suất chiếu: </strong>{time}, {date}</p>
+                <p><strong>Phòng chiếu: </strong></p>
             </div>
 
             {/* Thông tin giá */}
             <div className={`${styles.section} ${styles.priceInfo}`}>
-                <h3>Combo:</h3>
+                <h3><strong>Combo:</strong></h3>
                 <ul>
                     {combo.map((item, index) => (
                         <li key={index}>{item}</li>
                     ))}
                 </ul>
 
-                <h3>Ghế đã chọn:</h3>
+                <h3><strong>Ghế đã chọn:</strong></h3>
                 <ul>
                     {categorizedSeats.regular && (
                         <li>Regular: {categorizedSeats.regular.join(', ')}</li>

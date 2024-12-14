@@ -6,7 +6,7 @@ import styles from "../../FileCSS/Theater/cinemaList.module.css";
 import DateScroller from "./DateScroller";
 import TicketPriceTable from "./TicketPriceTable";
 export default function ProductCollateral() {
-    const [activeTab, setActiveTab] = useState('lichChieu'); // Trạng thái cho tab hiện tại
+    const [activeTab, setActiveTab] = useState('lichChieu'); 
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -16,8 +16,11 @@ export default function ProductCollateral() {
         <div className={styles.productCollateral}>
             <ul className={styles.toggleTabs} style={{listStyleType: 'none'}}>
                 <li 
-                    className={`${styles.tabItem} ${activeTab === 'lichChieu' ? styles.tabCurrent : ''}`} 
-                    onClick={() => handleTabClick('lichChieu')}
+                    className={`${styles.tabItem}  ${activeTab === 'lichChieu' ? styles.choosen : styles.notChoosen}`} 
+                    onClick={
+                        () => handleTabClick('lichChieu')
+                        // setActiveTab('lichChieu')
+                    }
                 >
                     <span >
                         {activeTab === 'lichChieu' && <FontAwesomeIcon icon={faHandPointRight} />} {/* Hiển thị icon nếu tab hiện tại */}
@@ -25,7 +28,7 @@ export default function ProductCollateral() {
                     </span>
                 </li>
                 <li 
-                    className={`${styles.tabItem} ${activeTab === 'giaVe' ? styles.tabCurrent : ''}`} 
+                    className={`${styles.tabItem} ${activeTab === 'giaVe' ? styles.choosen : styles.notChoosen}`} 
                     onClick={() => handleTabClick('giaVe')}
                 >
                     <span >

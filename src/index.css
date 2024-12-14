@@ -46,6 +46,10 @@
   font-family: 'Prompt Black';
   src: url('./assets/fonts/Prompt-Black.ttf') format('TrueType');
 }
+@font-face {
+  font-family: 'Baloo';
+  src: url("./assets/fonts/Baloo2-Regular.ttf") format("TrueType");
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

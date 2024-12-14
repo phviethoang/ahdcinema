@@ -6,7 +6,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
-function MoviePage(){
+function MoviePage({}){
+    const getImg = sessionStorage.getItem("cardImgData")
+    const cardImg = getImg? JSON.parse(getImg):''
     const navigate = useNavigate()
     const [video, setVideo] = useState()
     function HandleTrailer(){
@@ -36,14 +38,14 @@ function MoviePage(){
                     <div className = {style.title}>AVENGERS: INFINITY WAR</div>
                     <div className = {style.content}>
                         <div className = {style.movie}>
-                            <img src={image} alt=''></img>
+                            <img src={cardImg} alt=''></img>
                         </div>
                         <div className = {style.detail}>
                             <div className = {style.item}>
                                 <Content label="Đạo diễn">Đoàn Mạnh Hùng</Content>
                             </div>
                             <div className = {style.item}>
-                                <Content label="Thể loại">Tâm lý, Tình cảm, Kịch tính, Hài hước, Trinh thám</Content>
+                                <Content label="Thể loại">Tâm lý, Tình cảm, Kịch tính, Hài hước, Trinh thámuyhu;huhoiwe;iofksa;d;asiasiaofja;iafa'i'</Content>
                             </div>
                             <div className = {style.item}>
                                 <Content label="Diễn viên"></Content>
@@ -65,7 +67,12 @@ function MoviePage(){
                     </div>
                 </div>
                 <div className={style.buttons}>
-                    <button className={style.Ticket} onClick={()=>{navigate('/BuyTicket')}}>Mua vé</button>
+                    <button className={style.Ticket} onClick={()=>{
+                        navigate('/BuyTicket')
+                        sessionStorage.setItem('cardImgData', JSON.stringify(cardImg))
+                        console.log(sessionStorage.getItem('cardImgData'))
+ // NHỚ CHÈN TÊN PHIM VÀO ĐÂY           
+                        }}>Mua vé</button>
                     <button className={style.Trailer} onClick={HandleTrailer}>Trailer</button>
                 </div>
             {/* </div> */}
