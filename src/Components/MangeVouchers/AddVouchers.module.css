@@ -1,0 +1,113 @@
+/* AddVouchers CSS */
+  .formRow {
+    display: flex;
+    flex-wrap: wrap; /* Để đảm bảo các trường có thể xuống dòng */
+    margin-bottom: 10px; /* Khoảng cách giữa các hàng */
+    position: relative;
+  }
+.AddVouchersContainer {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.AddVouchersForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.AddVouchersFormGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  flex: 1 1 30%;
+  margin-right: 20px;
+  gap: 1vw;
+}
+
+.AddVouchersFormGroup label {
+  margin-bottom: 8px;
+  margin: 25px;
+  font-weight: bold;
+}
+
+.AddVouchersFormGroup input,
+.AddVouchersFormGroup select,
+.AddVouchersFormGroup textarea {
+  padding: 10px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+  width: 100%;
+}
+
+.AddVouchersFormGroup input:hover,
+.AddVouchersFormGroup input:focus,
+.AddVouchersFormGroup select:hover,
+.AddVouchersFormGroup select:focus,
+.AddVouchersFormGroup textarea:hover,
+.AddVouchersFormGroup textarea:focus {
+  border: 3px solid gray;
+  outline: none;
+}
+
+.AddVouchersSubmitBtn {
+  align-self: flex-end;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.AddVouchersSubmitBtn:hover {
+  background-color: #0056b3;
+}
+
+.unconfirm {
+  background-color: red;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  margin-top:10px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.unconfirm:hover {
+  background-color: rgb(233, 31, 31);
+}
+
+.closePoint {
+  font-size: 30px;
+  color: red;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closePoint:hover {
+  color: #ff0000;
+}
+
+.adminTitle {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 2px solid #4caf50;
+}
+
+.formActions{
+  display:flex;
+  justify-content: center;
+}

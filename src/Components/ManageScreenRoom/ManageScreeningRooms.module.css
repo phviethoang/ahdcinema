@@ -1,0 +1,254 @@
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table th, .table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: gray;
+    color: white;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .addButton {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .editButton {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+.deleteButton {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f;
+}
+
+.manageButton {
+    padding: 5px 10px;
+    background-color: #7F00FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.manageButton:hover {
+    background-color: #6600CC;
+}
+
+  /* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Content */
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .formRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px; 
+    position: relative;
+  }
+  
+  .itemFormGroup {
+    flex: 0 0 100%; 
+    margin-right: 20px; 
+    gap:1vw;
+  }
+  .ok{
+    display:flex;
+    justify-content: flex-end;
+  }
+  
+ .itemFormGroup label  {
+    margin-bottom: 8px;
+    margin:25px;
+    font-weight: bold;
+  }
+  .itemFormGroup input,.itemFormGroup textarea,.itemFormGroup select {
+    padding: 10px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    transition: border 0.3s ease; 
+    width: 100%;
+  }
+  
+  
+  .itemFormGroup select:hover,
+  .itemFormGroup select:focus {
+    border: 3px solid gray;
+    outline: none;
+  }
+  
+  
+
+  .itemFormGroup input:hover, .itemFormGroup textarea:hover,.itemFormGroup select:hover
+
+  .itemFormGroup input:focus, .itemFormGroup textarea:focus, .itemFormGroup select:focus {
+    border: 3px solid gray; 
+    outline: none;
+  }
+  /* Actions */
+  .formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .saveButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton:hover {
+    background-color:#0056b3;
+  }
+  
+  .cancelButton {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancelButton:hover {
+    background-color: #d32f2f;
+  }
+  .saveButton {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saveButton:hover {
+    background-color:#0056b3;
+  }
+  
+  .cancelButton {
+    padding: 8px 12px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancelButton:hover {
+    background-color: #d32f2f;
+  }
+
+.editnDeleteButton {
+    display: flex;
+    flex-direction: row;
+}
+  
+  .editButton {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .editButton:hover {
+    background-color: #1976D2;
+  }
+
+  
+  .adminTitle {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 2px solid #4caf50; /* Thanh gạch chân màu xanh */
+}

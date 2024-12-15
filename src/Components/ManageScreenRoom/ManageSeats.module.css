@@ -1,0 +1,335 @@
+/* General Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .adminTitle {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 2px solid #4caf50;
+  }
+  
+  .screen {
+    background-color: #ccc;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  /* Seat Map */
+  .seatMap {
+    margin-top: 20px;
+  }
+  
+  .seatRow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .seat {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #000;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 5px;
+  }
+  
+  .regularSeat {
+    border-color: green;
+    color: black;
+  }
+  
+  .vipSeat {
+    border-color: orange;
+    color: black;
+  }
+  
+  .sweetboxSeat {
+    background-color: #ff69b4;
+    color:  white;
+    border: none; /* Loại bỏ đường viền */
+    outline: none; /* Loại bỏ đường viền khi nhấn */
+  }
+  
+  .seat:hover {
+    opacity: 0.8;
+  }
+
+  .checkedSeat {
+    background-color: #9d0d0d; 
+    color: white;
+  }
+  .selectedSeat  {
+    background-color: gray; /* Khi ghế được chọn, viền sẽ đổi thành màu đỏ */
+  }
+  .cantChooseSeat {
+    background-color: black; /* Không thể chọn, viền màu đen */
+    color:white;
+    font-size: 10px;
+  }
+  .unavailableSeat{
+    background-color: gray;
+    pointer-events: none;
+  }
+  
+  /* Add Button */
+  .addButton,
+  .bulkAddButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .resetButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color:#7F00FF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .resetButton:hover {
+    background-color: #6600CC;
+  }
+  .addButton:hover,
+  .bulkAddButton:hover {
+    background-color: #0056b3;
+  }
+
+  .saveStateButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color:#0fad8b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .saveStateButton:hover {
+    background-color: #039396;
+  }
+  /* Modal */
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px; 
+    position: relative;
+  }
+  
+  .itemFormGroup {
+    flex: 0 0 100%; 
+    margin-right: 20px; 
+    gap:1vw;
+  }
+  .ok{
+    display:flex;
+    justify-content: flex-end;
+  }
+  
+ .itemFormGroup label  {
+    margin-bottom: 8px;
+    margin:25px;
+    font-weight: bold;
+  }
+  .itemFormGroup input,.itemFormGroup textarea,.itemFormGroup select {
+    padding: 10px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    transition: border 0.3s ease; 
+    width: 100%;
+  }
+  
+  
+  .itemFormGroup select:hover,
+  .itemFormGroup select:focus {
+    border: 3px solid gray;
+    outline: none;
+  }
+  
+  
+
+  .itemFormGroup input:hover, .itemFormGroup textarea:hover,.itemFormGroup select:hover
+
+  .itemFormGroup input:focus, .itemFormGroup textarea:focus, .itemFormGroup select:focus {
+    border: 3px solid gray; 
+    outline: none;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content:flex-end;
+    gap:10%;
+    margin-top: 15px;
+  }
+  
+  .saveButton {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .saveButton:hover {
+    background-color: #218838;
+  }
+  
+  .cancelButton {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cancelButton:hover {
+    background-color: #c82333;
+  }
+  
+  /* Bulk Add Section */
+  .bulkAddContainer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bulkAddContainer h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .bulkAddContainer label {
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .bulkAddContainer input,
+  .bulkAddContainer select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  /* Notification */
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeInOut 4s ease-in-out;
+  }
+  
+  .notification.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+  }
+  
+  .notification.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    10%,
+    90% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  .buttonGroup {
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    margin: 20px 0; /* Khoảng cách trên và dưới nhóm nút */
+    justify-content: center; /* Canh giữa nhóm nút */
+  }
+
+
+  /* Định nghĩa class cho tên hàng ghế */
+.rowLabel {
+  font-size: 10px; /* Kích thước chữ lớn */
+  font-weight: bold; /* Đậm chữ */
+  color: #fff; /* Màu chữ trắng */
+  text-align: center; /* Canh giữa */
+  padding: 10px; /* Khoảng cách xung quanh */
+  background-color: rgba(0, 0, 0, 0.7); /* Màu nền tối nhẹ */
+  border-radius: 5px; /* Bo góc nhẹ */
+  box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.6); /* Hiệu ứng đèn chiếu sáng */
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động mượt mà */
+}
+
+/* Hiệu ứng khi hover (di chuột vào tên hàng ghế) */
+.rowLabel:hover {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.8); /* Làm sáng lên khi hover */
+}

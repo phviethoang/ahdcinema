@@ -1,0 +1,288 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .formRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px; 
+    position: relative;
+  }
+  
+  .itemFormGroup {
+    flex: 1 1 30%; 
+    margin-right: 20px; 
+    gap:1vw;
+  }
+  .itemFormGroup2 {
+    flex: 1 1 40%; 
+  }
+  
+ .itemFormGroup label  {
+    margin-bottom: 8px;
+    margin:25px;
+    font-weight: bold;
+  }
+  .itemFormGroup input,.itemFormGroup textarea,.itemFormGroup select {
+    padding: 10px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    transition: border 0.3s ease; 
+    width: 100%;
+  }
+  
+  .itemFormGroup input:hover, .itemFormGroup textarea:hover,.itemFormGroup select:hover,
+  .itemFormGroup input:focus, .itemFormGroup textarea:focus, .itemFormGroup select:focus {
+    border: 3px solid gray; 
+    outline: none;
+  }
+
+  .actionButtons{
+    display:flex;
+    justify-content: flex-end;
+    gap:10%;
+  }
+  
+  .addButton {
+    background-color: #007bff;
+    color: #fff;
+    /* padding: 10px 20px; */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top:10px;
+  }
+  
+  .addButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ccc;
+    padding: 12px 15px;
+    text-align: center;
+  }
+  
+  .table th {
+    background-color:gray;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .table td {
+    font-size: 14px;
+  }
+  
+  .error {
+    color: #dc3545;
+    font-weight: bold;
+  }
+  .adminTitle {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 2px solid #4caf50; /* Thanh gạch chân màu xanh */
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto; /* Cho phép cuộn nếu modal lớn hơn màn hình */
+}
+
+/* Nội dung modal */
+.modalContent {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 900px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Cuộn nội dung bên trong nếu vượt quá chiều cao */
+  max-height: 80vh; /* Chiều cao tối đa của modal */
+}
+
+button {
+  margin: 5px;
+}
+
+/* Nút đặt lại */
+.resetButton {
+  background-color: #7F00FF; 
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.resetButton:hover {
+  background-color: #6600CC;
+}
+
+
+/* Tiêu đề modal */
+.modalContent h3 {
+  font-size: 25px;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #4caf50; /* Gạch chân màu xanh */
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+
+/* Nút trong modal */
+.modalContent button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  /* margin: 25px 10px; */
+  margin-top:30px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+.formActions{
+  display:flex;
+  justify-content: center;
+  gap:6%;
+}
+/* Nút lưu thay đổi */
+.saveButton {
+  background-color: #007bff ;
+  color: white;
+  border: none;
+  
+}
+
+.saveButton:hover {
+  background-color:  #0056b3; 
+}
+
+/* Nút đóng */
+.closeButton {
+  background-color: #f44336; /* Màu đỏ */
+  color: white;
+}
+
+.closeButton:hover {
+  background-color: #d32f2f; 
+}
+
+
+/* Phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pageButton {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+.pageButton:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.pageButton:disabled {
+  background-color: #f8f9fa;
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+.activePage {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+
+.deleteButton {
+  padding: 5px 10px;
+  background-color: #f44336; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px; 
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f; 
+}
+
+.editnDeleteButton{
+  display:flex;
+  flex-direction: row;
+}
+
+
+.editButton {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #45a049;
+}

@@ -1,0 +1,124 @@
+
+
+.container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .screen {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+  }
+  
+  .seating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .seatRow {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+  /* Legend.module.css */
+
+.legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.legendItem {
+  border: 2px solid transparent;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.legendSeat {
+  border: 2px solid transparent;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+
+
+
+
+
+
+/* Seat */
+
+
+
+
+.seat {
+  width: 30px;
+  height: 30px;
+  border: 2px solid transparent;
+  margin: 5px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 10px; /* Điều chỉnh cỡ chữ ở đây */
+  line-height: 30px; /* Đảm bảo chữ ở giữa ô ghế */
+}
+
+
+.selected  {
+  background-color: gray; /* Khi ghế được chọn, viền sẽ đổi thành màu đỏ */
+}
+
+
+.unavailable {
+  background-color: black; /* Không thể chọn, viền màu đen */
+  color:white;
+  font-size: 10px;
+}
+
+.regular {
+  border-color: green; /* Ghế thường, viền màu xanh lá */
+}
+
+.vip {
+  border-color: orange; /* Ghế VIP, viền màu cam */
+}
+
+.sweetbox {
+  color: white;
+  background-color: #FF69B4;
+}
+
+.checked {
+  background-color: #9d0d0d; 
+  color: white;
+}
