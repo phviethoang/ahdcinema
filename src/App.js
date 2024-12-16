@@ -25,6 +25,7 @@ import GenreStatistics from "./Components/statistic/GenreStatistics";
 import MemberStatistics from "./Components/statistic/MemberStatistics";
 import ShowtimeStatistics from "./Components/statistic/ShowtimeStatistics";
 import MovieStatistics from "./Components/statistic/statisticMovie";
+import TransactionHistory from "./Components/TransactionHistory/TransactionHistory";
 
 // import AddAccounts from './Components/ManageAccounts/AddAccounts'
 // import AccountInfo from './Components/ManageAccounts/AccountInfo'
@@ -63,6 +64,7 @@ const App = () => {
             <Route path="MemberStatistics" element={<MemberStatistics />} />
             <Route path="ShowtimeStatistics" element={<ShowtimeStatistics />} />
             <Route path="MovieStatistics" element={<MovieStatistics />} />
+            <Route path="TransactionHistory" element={<TransactionHistory />} />
           </Routes>
         </main>
       </div>

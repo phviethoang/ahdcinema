@@ -10,6 +10,7 @@ const Sidebar = () => {
     manageVouchers: false,
     manageAccounts: false,
     manageStatistic: false,
+    TransactionHistory: false,
   });
 
   const toggleManage = (key) => {
@@ -167,6 +168,7 @@ const Sidebar = () => {
               </ul>
             )}
           </li>
+
           {/* Quản lý Voucher */}
           <li className={`${styles.navItem} nav-item`}>
             <div
@@ -177,7 +179,7 @@ const Sidebar = () => {
               <span
                 className={styles.arrow}
                 style={{
-                  transform: showManage.manageVoucherVouchers
+                  transform: showManage.manageVouchers
                     ? "rotate(90deg)"
                     : "rotate(0deg)",
                 }}
@@ -210,6 +212,7 @@ const Sidebar = () => {
               </ul>
             )}
           </li>
+
           {/* Quản lý người dùng */}
           <li className={`${styles.navItem} nav-item`}>
             <div
@@ -230,7 +233,7 @@ const Sidebar = () => {
             </div>
             {showManage.manageAccounts && (
               <ul className={styles.subMenu}>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/AddUser"
                     className={({ isActive }) =>
@@ -239,7 +242,7 @@ const Sidebar = () => {
                   >
                     Add Users
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     to="/UserList"
@@ -253,6 +256,7 @@ const Sidebar = () => {
               </ul>
             )}
           </li>
+
           {/* Quản lý thống kê */}
           <li className={`${styles.navItem} nav-item`}>
             <div
@@ -311,6 +315,39 @@ const Sidebar = () => {
                     }
                   >
                     Movie Statistics
+                  </NavLink>
+                </li>
+              </ul>
+            )}
+          </li>
+
+          <li className={`${styles.navItem} nav-item`}>
+            <div
+              className={styles.navHeader}
+              onClick={() => toggleManage("TransactionHistory")}
+            >
+              TransactionHistory
+              <span
+                className={styles.arrow}
+                style={{
+                  transform: showManage.TransactionHistory
+                    ? "rotate(90deg)"
+                    : "rotate(0deg)",
+                }}
+              >
+                ▶
+              </span>
+            </div>
+            {showManage.TransactionHistory && (
+              <ul className={styles.subMenu}>
+                <li>
+                  <NavLink
+                    to="/TransactionHistory"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Transaction History
                   </NavLink>
                 </li>
               </ul>

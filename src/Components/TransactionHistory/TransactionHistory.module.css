@@ -1,0 +1,375 @@
+.walletSubContainer {
+  /* max-width: 600px; */
+  width: 800px;
+  margin: auto;
+  background-color: #e3e3e3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* text-align: center; */
+}
+
+.title {
+  font-size: 24px;
+  font-family: "Baloo Bold";
+  letter-spacing: 1px;
+  color: #26839b;
+  margin-bottom: 20px;
+}
+
+.balanceSection {
+  margin-bottom: 20px;
+}
+
+.balance {
+  font-size: 20px;
+  font-weight: bold;
+  color: #26839b;
+}
+
+.topUpInput {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #88f9bb;
+  border-radius: 5px;
+  width: 55%;
+  margin-bottom: 10px;
+  font-size: 16px;
+  outline: none;
+}
+.topUpInput:hover,
+.topUpInput:focus {
+  border: 1px solid blue;
+}
+
+.walletPaymentButton,
+.topUpButton,
+.transactionHistoyButton {
+  width: 150px;
+  height: 80px;
+  position: relative;
+  background-color: #93d4e8;
+  color: white;
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 5px;
+  border: 2px solid #88ccf9;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.walletPaymentButton:hover,
+.topUpButton:hover,
+.transactionHistoyButton:hover {
+  background-color: #c2f9ff;
+}
+.walletIcon,
+.topUpIcon,
+.clockIcon {
+  width: 30%;
+  height: 90%;
+}
+.paymentSection {
+  margin-top: 20px;
+}
+
+.payButton {
+  background-color: #ff6f00;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payButton:hover {
+  background-color: #e65c00;
+}
+
+.checkBalance {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+  font-family: "Montserrat Bold";
+  color: #003349;
+}
+.walletActions {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+}
+.checkBalanceIcon {
+  margin-left: 30px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.isTopUp {
+  /* max-width:600px; */
+  border-radius: 5px;
+  border: 2px solid gray;
+  background: rgb(245, 245, 245);
+  text-align: center;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.topUpValueContainer {
+  border-radius: 10px;
+  padding: 20px 20px;
+  background-color: #f3e3df;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.topUpItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid gray;
+  text-align: center; /* Dự phòng */
+  padding: 0; /* Bỏ padding */
+}
+
+.topUpItemSelected {
+  border: 2px solid red;
+}
+
+.topUpComplete {
+  padding: 10px 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center;
+  justify-content: center; */
+  border-radius: 5px;
+  background-color: aliceblue;
+  box-shadow: 0 -4px 10px rgb(0, 0, 0, 0.5);
+}
+
+.topUpTotal {
+  font-size: 30px;
+  width: 70%;
+  /* flex-grow: 0; */
+}
+.topUpAction {
+  font-size: 40px;
+  border-radius: 30px;
+  color: white;
+  background-color: orange;
+  padding: 20px, 30px;
+  width: 30%;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TopUpComplete */
+
+.topUpComplete {
+  padding: 10px 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center;
+  justify-content: center; */
+  border-radius: 5px;
+  background-color: aliceblue;
+  box-shadow: 0 -4px 10px rgb(0, 0, 0, 0.5);
+}
+
+.topUpTotal {
+  font-size: 30px;
+  width: 70%;
+  /* flex-grow: 0; */
+}
+.topUpAction {
+  font-size: 40px;
+  border-radius: 30px;
+  color: white;
+  background-color: orange;
+  padding: 20px, 30px;
+  width: 30%;
+}
+.topUpNegation {
+  font-size: 40px;
+  border-radius: 30px;
+  color: white;
+  background-color: gray;
+  padding: 20px, 30px;
+  width: 30%;
+}
+/*  */
+
+/* TransactionHistoryModal */
+
+.tableTransactionHistoryContainer {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tableTransactionHistoryContent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tableTransactionHistoryWrapper {
+  overflow-x: auto;
+}
+
+.transactionHistoryTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.transactionHistoryTable th,
+.transactionHistoryTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.transactionHistoryTable th {
+  background-color: gray;
+  color: white;
+  text-transform: uppercase;
+}
+
+.transactionHistoryTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.transactionHistoryTable td:hover {
+  background-color: #ddd;
+}
+
+.transactionHistoryTable td {
+  vertical-align: middle;
+}
+
+.transactionHistoryTable td:hover {
+  cursor: pointer;
+}
+
+/* Message for empty history */
+.invalidHistory {
+  text-align: center;
+  margin-top: 20px;
+  color: #888;
+  font-size: 16px;
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.showHistoryDetail {
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.transactionHistoryTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.transactionConfirmationTextTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.closePoint {
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+.closePoint:hover {
+  color: #ff0000;
+}
+
+/* Transaction Details */
+.transactionDetails {
+  font-size: 14px;
+  color: #444;
+}
+
+.transactionDetails p {
+  margin: 8px 0;
+}
+
+.transactionDetails ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+
+.transactionDetails li {
+  margin-bottom: 5px;
+}
+
+/* Add some animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
