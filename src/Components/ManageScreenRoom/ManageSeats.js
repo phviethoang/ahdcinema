@@ -253,7 +253,7 @@ const handleAddSeats = () => {
   
   const handleResetSeats = () => {
     if (window.confirm("Bạn có chắc muốn đặt lại toàn bộ danh sách ghế không?")) {
-        const hasUnavailableSeats = formData.some(seat => seat.is_available === false);
+        const hasUnavailableSeats = formData.filter( room=>room.screeningroom_id===parseInt(screeningroomId)).some(seat => seat.is_available === false);
         if (hasUnavailableSeats) {
             setNotification({ message: "Không thể đặt lại do có ghế đã được chọn!", type: "error" });
         } else {
