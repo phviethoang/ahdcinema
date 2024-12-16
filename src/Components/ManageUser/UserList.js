@@ -2,24 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function UserList() {
-  // const [users, setUsers] = useState([]);
-
-  // useEffect(() => {
-  //   // Fetch danh sách tài khoản từ API
-  //   fetch("/api/users")
-  //     .then((res) => res.json())
-  //     .then((data) => setUsers(data))
-  //     .catch((err) => console.error(err));
-  // }, []);
-  const [users, setUsers] = useState([]); // Thêm useState để tạo users và setUsers
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Fetch dữ liệu giả từ API hoặc mock data
-    const fetchUsers = async () => {
+    // Dữ liệu giả với 10 user
+    const fetchUsers = () => {
       const data = [
         { id: 1, name: "Nguyen Van A", email: "a@example.com" },
         { id: 2, name: "Tran Thi B", email: "b@example.com" },
         { id: 3, name: "Le Van C", email: "c@example.com" },
+        { id: 4, name: "Pham Minh D", email: "d@example.com" },
+        { id: 5, name: "Hoang Thi E", email: "e@example.com" },
+        { id: 6, name: "Nguyen Thi F", email: "f@example.com" },
+        { id: 7, name: "Le Minh G", email: "g@example.com" },
+        { id: 8, name: "Tran Thi H", email: "h@example.com" },
+        { id: 9, name: "Pham Minh I", email: "i@example.com" },
+        { id: 10, name: "Hoang Thi J", email: "j@example.com" },
       ];
       setUsers(data); // Gán dữ liệu vào trạng thái
     };
@@ -29,11 +27,7 @@ function UserList() {
 
   const handleDelete = (id) => {
     if (window.confirm("Bạn có chắc muốn xóa tài khoản này?")) {
-      fetch(`/api/users/${id}`, { method: "DELETE" })
-        .then(() => {
-          setUsers(users.filter((user) => user.id !== id));
-        })
-        .catch((err) => console.error(err));
+      setUsers(users.filter((user) => user.id !== id));
     }
   };
 

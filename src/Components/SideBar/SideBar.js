@@ -9,6 +9,7 @@ const Sidebar = () => {
     manageShowtimes: false,
     manageVouchers: false,
     manageAccounts: false,
+    manageStatistic: false,
   });
 
   const toggleManage = (key) => {
@@ -204,6 +205,112 @@ const Sidebar = () => {
                     }
                   >
                     Vouchers List
+                  </NavLink>
+                </li>
+              </ul>
+            )}
+          </li>
+          {/* Quản lý người dùng */}
+          <li className={`${styles.navItem} nav-item`}>
+            <div
+              className={styles.navHeader}
+              onClick={() => toggleManage("manageAccounts")}
+            >
+              Manage Users
+              <span
+                className={styles.arrow}
+                style={{
+                  transform: showManage.manageAccounts
+                    ? "rotate(90deg)"
+                    : "rotate(0deg)",
+                }}
+              >
+                ▶
+              </span>
+            </div>
+            {showManage.manageAccounts && (
+              <ul className={styles.subMenu}>
+                <li>
+                  <NavLink
+                    to="/AddUser"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Add Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/UserList"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Users List
+                  </NavLink>
+                </li>
+              </ul>
+            )}
+          </li>
+          {/* Quản lý thống kê */}
+          <li className={`${styles.navItem} nav-item`}>
+            <div
+              className={styles.navHeader}
+              onClick={() => toggleManage("manageStatistic")}
+            >
+              Statistic
+              <span
+                className={styles.arrow}
+                style={{
+                  transform: showManage.manageStatistic
+                    ? "rotate(90deg)"
+                    : "rotate(0deg)",
+                }}
+              >
+                ▶
+              </span>
+            </div>
+            {showManage.manageStatistic && (
+              <ul className={styles.subMenu}>
+                <li>
+                  <NavLink
+                    to="/GenreStatistics"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Genre Statistics
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/MemberStatistics"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Member Statistics
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/ShowtimeStatistics"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Showtime Statistics
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/MovieStatistics"
+                    className={({ isActive }) =>
+                      isActive ? styles.activeNavLink : styles.navLink
+                    }
+                  >
+                    Movie Statistics
                   </NavLink>
                 </li>
               </ul>
