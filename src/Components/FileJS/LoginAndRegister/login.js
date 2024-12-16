@@ -5,39 +5,73 @@ import Header from "../header";
 import Footer from "../footer";
 import style from '../../FileCSS/LoginAndRegister/login.module.css'
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 // import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
 function Login() {
-  // Khai báo state cho email và password
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // Khai báo state cho Username và Password
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate()
 
   // Hàm xử lý khi form đăng nhập được submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log([Username, Password])
     // Kiểm tra đơn giản: Email và Password phải được nhập
-    if (email === "" || password === "") {
+    if (Username === "" || Password === "") {
       setErrorMessage("Email và mật khẩu không được để trống");
     } else {
       setErrorMessage("");
       // Ở đây bạn có thể gọi API để xác thực thông tin đăng nhập
-      console.log("Email:", email, "Password:", password);
+      console.log("Email:", Username, "Password:", Password);
+      try {
+        // Gửi request đăng nhập đến BE
+        const response = await fetch("http://localhost:5000/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ Username, Password }),
+          credentials: 'include', // Gửi kèm cookie
+        });
+        console.log(response.status)
+        if (!response.ok) {
+          // Xử lý lỗi từ BE
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Đăng nhập thất bại");
+        }
+  
+        // Lấy dữ liệu phản hồi từ BE
+        const data = await response.json();
+        console.log("Login successful!", data);
+  
+        // Lưu user_id vào cookie nếu cần
+        const userId = data.user_id;
+        if (userId) {
+          Cookies.set('user_id', userId, { path: '/', sameSite: 'Lax' });
+        }
+  
+        // Điều hướng sang trang khác sau khi đăng nhập thành công
+        navigate("/");
+      } catch (error) {
+        console.error("Login error:", error);
+        setErrorMessage(error.message || "Có lỗi xảy ra, vui lòng thử lại");
+      }
     }
   };
-  //  // Hàm xử lý đăng nhập bằng Facebook
-  //  const handleFacebookLogin = () => {
-  //   console.log('Đăng nhập bằng Facebook');
-  //   // Ở đây bạn có thể tích hợp API đăng nhập bằng Facebook
-  // };
+  const handleGoogleLogin = () => {
+    // Chuyển hướng tới route xác thực Google
+    window.location.href = "http://localhost:5000/auth/google";
+  };
 
-  // // Hàm xử lý đăng nhập bằng Google
-  // const handleGoogleLogin = () => {
-  //   console.log('Đăng nhập bằng Google');
-  //   // Ở đây bạn có thể tích hợp API đăng nhập bằng Google
-  // };
+  const handleFacebookLogin = () => {
+    // Chuyển hướng tới route xác thực Facebook
+    window.location.href = "http://localhost:5000/auth/facebook";
+  };
+
+
   return (
     <div className = {style.container}>
       <Header></Header>
@@ -48,8 +82,8 @@ function Login() {
             <label>Tài khoản:</label>
             <input
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={Username}
+              onChange={(e) => setUsername(e.target.value)}
               placeholder="Nhập username"
               required
             />
@@ -58,7 +92,7 @@ function Login() {
             <label>Mật khẩu:</label>
             <input
               type="password"
-              value={password}
+              value={Password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Nhập mật khẩu"
               required
@@ -68,18 +102,18 @@ function Login() {
           <p className={style.forgotPasswordLink}>
             <Link to="/ForgotPassword">Quên mật khẩu</Link>
           </p>
-          <lbutton type="submit">Đăng nhập</lbutton>
+          <button type="submit">Đăng nhập</button>
           <p className={style.registerLink}>
             Bạn chưa có tài khoản? <Link to="/Register">Đăng ký</Link>
           </p>
 
           <div className={style.socialLogin}>
             <div>OR</div>
-            <button className={style.googleLogin}>
+            <button className={style.googleLogin} onClick={handleGoogleLogin}>
               <Google />
               Continue with Google
             </button>
-            <button className={style.facebookLogin}>
+            <button className={style.facebookLogin} onClick={handleFacebookLogin}>
               <Facebook />
               Continue with Facebook
             </button>

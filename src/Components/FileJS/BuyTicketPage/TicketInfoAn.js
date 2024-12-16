@@ -3,10 +3,13 @@ import styles from "../../FileCSS/BuyTicketPage/BuyTicket.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPointRight,faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from "react";
-const TicketInfo = ({ totalPrice, combo, selectedSeats, onNext, onPrevious, promotion, useFor, theater, time, date, movieName  }) => {
+const TicketInfo = ({ totalPrice, combo, selectedSeats, onNext, onPrevious, promotion, useFor, theater, time, date, room  }) => {
     const getImg = sessionStorage.getItem('cardImgData')
+    const getName = sessionStorage.getItem('movie_name')
     // console.log(getImg)
-    const cardImg = getImg? JSON.parse(getImg): ''
+    const cardImg = getImg? getImg: ''
+    const movieName = getName? getName: ''
+    console.log(cardImg)
     const [categorizedSeats, setCategorizedSeats] = useState({});
 
     useEffect(()=>{
@@ -44,7 +47,7 @@ return (
             <div className={`${styles.section} ${styles.theaterInfo}`}>
                 <p><strong>Rạp: </strong>{theater} </p>
                 <p><strong>Suất chiếu: </strong>{time}, {date}</p>
-                <p><strong>Phòng chiếu: </strong></p>
+                <p><strong>Phòng chiếu: </strong>{room}</p>
             </div>
 
             {/* Thông tin giá */}

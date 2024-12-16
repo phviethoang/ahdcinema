@@ -8,7 +8,7 @@
     border-radius: 10px;
     color:#ffffff;
     margin: 2px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat Bold';
 }
 .dayBlock:hover{
     color: aqua;
@@ -18,7 +18,7 @@
 .selected{
     background-color: #bff5f3;
     color:#334a52;
-    font-family: 'Montserrat Bold';
+    font-family: 'Montserrat Black';
     box-shadow: 3px 3px 10px 0px #5dbbc3;;
 }
 

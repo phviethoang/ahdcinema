@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 import CountdownTimer2 from './CountdownTimer2'
 
-const Success = ({ onResetSuccess, useFor, transactionInfo, onPaymentSuccessOutside }) => {
+const Success = ({ onResetSuccess, useFor, transactionInfo }) => {
   // const navigate = useNavigate();
 
   const [visible, setVisible] = useState(true);
@@ -20,9 +20,6 @@ const Success = ({ onResetSuccess, useFor, transactionInfo, onPaymentSuccessOuts
       //   activeFunction();
       // }
       // navigate('/');
-      if (onPaymentSuccessOutside) {
-        onPaymentSuccessOutside();
-      }
     }, timeout);
     return () => clearTimeout(timer);
   }, []);

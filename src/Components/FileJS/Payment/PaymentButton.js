@@ -5,7 +5,7 @@ import walletIcon from '../../../img/PaymentIcon/walletIcon.png'
 
 import TransactionConfirmation from './TransactionConfirmation'
 import Success from './Success'
-const PaymentButton=({satisfied, useFor, transactionInfo, paymentData, onPaymentSuccessful, finalAmount, onPaymentSuccessOutside})=>{
+const PaymentButton=({satisfied, useFor, transactionInfo, paymentData, onPaymentSuccessful, finalAmount})=>{
     const [isChecked, setIsChecked] = useState(false);
     const[validation,setValidation]=useState(false);
     const [visible,setVisible]=useState(false);
@@ -88,7 +88,6 @@ const PaymentButton=({satisfied, useFor, transactionInfo, paymentData, onPayment
                 paymentData= {paymentData}
                 onPaymentSuccessful={onPaymentSuccessful}
                 finalAmount={finalAmount}
-                onPaymentSuccessOutside = {onPaymentSuccessOutside}
             />
         }
 
@@ -98,7 +97,6 @@ const PaymentButton=({satisfied, useFor, transactionInfo, paymentData, onPayment
                 onResetSuccess={handleTransactionConfirmation} 
                 useFor="purchasePayment"
                 transactionInfo = {transactionInfo}
-                onPaymentSuccessOutside = {onPaymentSuccessOutside}
             />
         }
         </div>

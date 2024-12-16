@@ -9,7 +9,7 @@ import TopUpModal from './TopUpModal'
 import TransactionHistoryButton from './TransactionHistoryButton'
 import TransactionHistoryModal from './TransactionHistoryModal'
 
-const WalletPage = ({ finalAmount, transactionInfo, onPaymentSuccessful, useFor, onPaymentSuccessOutside }) => {
+const WalletPage = ({ finalAmount, transactionInfo, onPaymentSuccessful, useFor}) => {
   const [balance, setBalance] = useState(500000);
   const [viewBalance, setViewBalance] = useState(false);
   const [satisfied, setSatisfied] = useState(true);
@@ -80,7 +80,6 @@ const WalletPage = ({ finalAmount, transactionInfo, onPaymentSuccessful, useFor,
                 transactionInfo={transactionInfo}
                 onPaymentSuccessful={onPaymentSuccessful}
                 finalAmount={finalAmount}
-                onPaymentSuccessOutside = {onPaymentSuccessOutside}
               />
             }
           </div>

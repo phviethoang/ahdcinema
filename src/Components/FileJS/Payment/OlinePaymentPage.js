@@ -14,7 +14,7 @@ const paymentMethods = [
   ];
 
 
-const OnlinePaymentPage=({finalAmount, useFor, onHandleTopUpSatisfied, handleTopUp, transactionInfo, onPaymentSuccessful, onPaymentSuccessOutside})=>{
+const OnlinePaymentPage=({finalAmount, useFor, onHandleTopUpSatisfied, handleTopUp, transactionInfo, onPaymentSuccessful})=>{
     // const finalAmount= finalAmount;
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
     
@@ -62,7 +62,6 @@ const OnlinePaymentPage=({finalAmount, useFor, onHandleTopUpSatisfied, handleTop
               handleTopUp={handleTopUp}
               transactionInfo={transactionInfo}
               onPaymentSuccessful={onPaymentSuccessful}
-              onPaymentSuccessOutside = {onPaymentSuccessOutside}
           />
           
         </div>

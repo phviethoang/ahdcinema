@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser,faPhone, faEnvelope, faCalendar, faIdCard } from '@fortawesome/free-solid-svg-icons'; // Import các biểu tượng cần thiết
 
 import { validateForm } from './validateForm'; // Import hàm validateForm
+import { useNavigate } from 'react-router-dom';
 export default function MemberInfo() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -169,7 +171,8 @@ export default function MemberInfo() {
     };
 
 // Hàm submit có chức năng cập nhật mật khẩu qua nút Hoàn tất
-   const handlePasswordSubmit = (e) => {
+  // Hàm submit có chức năng cập nhật mật khẩu qua nút Hoàn tất
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     const requiredFields = ['currentPassword', 'newPassword', 'confirmPassword'];
     const fieldLabels = {
@@ -184,18 +187,42 @@ export default function MemberInfo() {
         confirmPassword: '',
       });
       if(formPassword.currentPassword ==''&& formPassword.newPassword ==''&& formPassword.confirmPassword == '')
-        alert('Bạn chưa nhập thông tin');
+        alert('Yêu cầu nhập đủ các dòng');
       else if (!valid) {
         alert(firstError);
       } 
       else if (formPassword.newPassword !== formPassword.confirmPassword)
           alert('Mật khẩu mới và xác nhận mật khẩu không khớp.');
       else{
-        alert('Đổi mật khẩu thành công!');
-        setShowModal(false);
+        try {
+          const { currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword} = formPassword;
+          // Gửi request đăng nhập đến BE
+          const response = await fetch("http://localhost:5000/auth/change-password", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ currentPassword, newPassword, confirmPassword }),
+            credentials: 'include', // Gửi kèm cookie
+          });
+          console.log(response.status)
+          if (!response.ok) {
+            // Xử lý lỗi từ BE
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Lấy lại mật khẩu thất bại");
+          }
+    
+          // Lấy dữ liệu phản hồi từ BE
+          const notice = await response.json();
+          console.log(notice.message);
+          alert('Đổi mật khẩu thành công, vui lòng đăng nhập lại !');
+          // Điều hướng sang trang khác sau khi quên mật khẩu thành công
+          navigate("/Login");
+        } catch (error) {
+          console.error("Login error:", error);
+        }
       }
   };
-
    
   //Hàm đóng modal khi nhấn vào overlay hoặc nút đóng
   const closeModal = () => {

@@ -1,0 +1,504 @@
+/* PaymentPage.module.css */
+
+.paymentPage {
+    width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .heading {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .discountSection,
+  .giftSection,
+  .paymentMethodSection {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  
+  .summarySection {
+    align-items: center;
+    justify-content: center;
+    float: right;
+    width: 200px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .summarySection h3 {
+    color: #333;
+  }
+  
+  .summarySection p {
+    margin: 5px 0;
+  }
+  
+  .totalAmount {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .countdownClock {
+    text-align: center;
+    font-size: 18px;
+    background-color: #ffe4b5;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  
+  .step {
+    background-color: #c1c1c1; /* Màu nền xám */
+    color: #000; /* Màu chữ */
+    padding: 10px; /* Khoảng cách trong hộp */
+    border: 3px solid #a5a5a5; /* Viền xung quanh */
+    font-size:16px;
+  }
+  
+  
+  
+  
+  
+  .discountSection {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .mainItem {
+    border: 2px dashed red;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f7e4c4;
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius:5px;
+  }
+  .negativeMainItem {
+    font-weight: bold;
+    cursor: pointer;
+    background-color: gray;
+    color:#ccc;
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius:5px;
+  }
+  
+  .subItems {
+    background-color: #fff7e6;
+    /* padding: 10px; */
+    display: flex;
+  
+  }
+  
+  .subItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 5px 0; */
+    padding: 10px;
+    width:50%;
+  }
+  
+  /* Định dạng cho nút đăng ký */
+  .registerButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  
+  
+  .subItemSection {
+    padding: 10px;
+    flex: 1;
+    text-align: center;
+    gap:20px;
+  }
+  
+  /* Đường ngăn dọc giữa các mục */
+  .subItemSection:not(:last-child) {
+    border-right: 2px dotted #ccc;
+  }
+  
+  
+  
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  
+  
+  .paymentPage {
+    padding: 20px;
+  }
+  
+  .heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Container để chia đôi màn hình */
+  .container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Cột các bước thanh toán */
+  .paymentSteps {
+    flex: 3;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  
+  /* Các style khác */
+  .step {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .discountSection, .paymentMethodSection {
+    margin-bottom: 20px;
+  }
+  
+  .paymentMethod {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .paymentLabel {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .paymentLabel input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .agreementSection {
+    margin-top: 20px;
+  }
+  
+  .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Nền đen với độ mờ 50% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(5px);  */
+    /* Làm mờ nền phía sau */
+    z-index: 1000; /* Đảm bảo overlay nằm trên cùng */
+  }
+  
+  /* Nội dung modal */
+  .modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  /* Nút đóng modal */
+  .closeButton {
+    position: absolute;
+    top: 1vw;
+    right: 2vw;
+    font-size: 3vw;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .closeButton:hover{
+    color:red ;
+  }
+  
+  /* Styling cho form trong modal */
+  .modalContent form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .modalContent form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .modalContent form input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .modalContent form button {
+    padding: 10px 20px;
+    background-color: #2b8cda;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .modalContent form button:hover {
+    background-color: #00ced1;
+  }
+  
+  
+  
+  
+  
+  /* thông báo đăng ký Voucher */
+  .codeMessage {
+    color: red;       /* Màu chữ xanh */
+    font-weight: bold;  /* Chữ in đậm */
+    font-size: 20px;    /* Kích thước chữ */
+    margin-top: 10px;   /* Khoảng cách phía trên */
+    text-align: center; /* Canh giữa */
+  }
+  
+  
+  
+  
+  /* xổ ra những voucher đã đăng ký */
+  /* .appliedVouchers {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .voucherToggle {
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .voucherToggle:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  
+  .voucherToggle::after {
+    content: ' ▶';
+    transition: transform 0.3s ease;
+  }
+  
+  .voucherToggle.open::after {
+    transform: rotate(90deg);
+  }
+  
+  .appliedVouchers ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+  }
+  
+  .appliedVouchers.open ul {
+    max-height: 500px; 
+    padding-left: 20px;
+  }
+  
+  .appliedVoucher {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.1s ease;
+  }
+  
+  .appliedVoucher:hover {
+    background-color: #f1f1f1;
+  }
+   */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* PaymentPage.module.css */
+  
+  .appliedCodes {
+    margin-top: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    max-height: 50px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .appliedCodes.open {
+    max-height: 300px; /* Tăng chiều cao tối đa khi mở danh sách */
+  }
+  
+  .codeToggle {
+    font-weight: bold;
+    font-size:16px;
+    color: orange;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  
+  
+  .voucherList {
+    list-style: none;
+    /* padding: 50px 0; */
+    /* color:#00ced1; */
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+  
+  .voucherList.open {
+    opacity: 1;
+  }
+  
+  .appliedCode {
+    padding: 10px;
+    background-color: #fff;
+    color:#000000;
+    margin: 5px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  
+  
+  /* thông báo xác nhận hủy voucher/mã giảm giá hay không */
+  .confirmBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .confirmBox span {
+    margin-bottom: 20px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  
+  .confirmButton, .cancelButton {
+    margin: 10px 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .confirmButton {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancelButton {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .confirmButton:hover {
+    background-color: rgb(144, 238, 144);
+  }
+  
+  .cancelButton:hover {
+    background-color: rgb(255, 0, 0);
+  }
+  
+  
+  
+  /* button thanh toán */
+  
+  .paymentIcon {
+    width:150px;
+    height: 150px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin: 10px 15px;
+  }
+  
+  .paymentIcon:hover {
+    transform: scale(0.9); 
+  }
+  
+  .paymentIcon:active {
+    transform: scale(1.1); 
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  

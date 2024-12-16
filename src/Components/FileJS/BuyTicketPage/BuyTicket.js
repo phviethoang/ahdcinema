@@ -28,6 +28,8 @@ function BuyTicket() {
     const [theater, setTheater] = useState("Bạn chưa chọn rạp")
     const [time, setTime] = useState("... : ... ")
     const [date, setDate] = useState("...")
+    const [room, setRoom] = useState("Chưa có phòng chiếu")
+    const [roomId, setRoomId] = useState()
     const [promotion, setPromotion] = useState(() => {
         const storedPromotion = localStorage.getItem('promotion');
         return storedPromotion ? JSON.parse(storedPromotion) : 0; // Nếu có giá trị trong localStorage, dùng nó, nếu không mặc định là 0
@@ -79,13 +81,13 @@ function BuyTicket() {
                 <Step1 setTheater={
                     (event)=>
                     {
-                        setTheater(event.currentTarget.getAttribute('data-support'))
+                        setTheater(event.currentTarget.getAttribute('data-support2'))
                     }}
                     setDate={
                         (event) =>{
                                 setDate(
                                     // event.currentTarget.getAttribute('data-content')
-                                    sessionStorage.getItem('dateData')
+                                    sessionStorage.getItem('dateChoice')
                                 )
                         }
                     }
@@ -95,8 +97,21 @@ function BuyTicket() {
                             setTime(event.currentTarget.getAttribute('data-content'))
                         }
                     }
+                    setRoom={
+                        (event)=>{
+                            setRoom(event.currentTarget.getAttribute('data-support3'))
+                        }
+                    }
+                    setRoomId={
+                        (event)=>{
+                            setRoomId(event.currentTarget.getAttribute('data-support4'))
+                        }
+                    }
                     ></Step1>,
                 <SeatBooking
+                    showDate={date !== "..." ? date: ''}
+                    showTime={time !== "... : ... "? time: ''}
+                    screeningroomId = {roomId}
                     onSeatSelectionChange={handleSeatSelectionChange}
                     onTotalPriceChange={handleSeatTotalPriceChange}
                     allCheckedSeats={selectedSeats}
@@ -192,6 +207,7 @@ function BuyTicket() {
                     theater={theater}
                     date = {date}
                     time = {time}
+                    room = {room}
                     totalPrice={totalPrice}
                     combo={combo} 
                     selectedSeats={selectedSeats}

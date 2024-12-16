@@ -1,7 +1,7 @@
 import Content from './Cell/Content';
 import style from '../FileCSS/MoviePage.module.css'
 import image from '../../img/MovieContentPageImage/Avengers Infinity War.jpg'
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './header';
@@ -11,6 +11,29 @@ function MoviePage({}){
     const cardImg = getImg? JSON.parse(getImg):''
     const navigate = useNavigate()
     const [video, setVideo] = useState()
+     //BEGIN FETCH DATA
+    //Khai báo các mảng sẽ chứa dữ liệu fetch về
+    const [movieDetail, setMovieDetail]= useState([])
+    // Test với param giá trị bất kì, sau này chỉ cần thay nó bằng params của mình khi người dùng thực hiên hành động
+    let movie_id=1
+    // Fetch movie detail
+    useEffect(()=>{
+        fetch(`http://localhost:5000/ahd/movie-content?movie_id=${movie_id}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        setMovieDetail(data);
+    })
+    .catch(error => console.error('Error:', error));
+    },[])
+    // In ra các mảng kiểm tra
+    console.log("Done fetching data!")
+    console.log(movieDetail)
+    //END FETCH DATA
     function HandleTrailer(){
         setVideo(
             <div className = {style.videoTrailer}>

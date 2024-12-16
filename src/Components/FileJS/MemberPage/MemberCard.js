@@ -173,7 +173,6 @@ const MemberCards = () => {
             benefits: selectedCard.benefits,
             type: "upgradeMembership",
           }}
-          onPaymentSuccessOutside={handleSuccessfulPayment}
         />
       )}
     </div>

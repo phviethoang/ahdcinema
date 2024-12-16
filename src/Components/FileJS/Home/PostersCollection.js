@@ -5,7 +5,7 @@ import image4 from '../../../img/PostersCollection/image4.jpg'
 import image5 from '../../../img/PostersCollection/image5.jpg'
 import Poster from '../Cell/Poster'
 import style from '../../FileCSS/Home/PostersCollection.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import React from 'react'
 function PosterCollection(){
     const [translate, setTranslate] = useState(0);
@@ -15,6 +15,26 @@ function PosterCollection(){
     function HandlePrev(){
         setTranslate(pre=>(pre+4)%5);
     }
+    //BEGIN FETCH DATA
+    //Khai báo các mảng sẽ chứa dữ liệu fetch về
+    const [hotMovies, setHotMovies]= useState([])
+    // Fetch movie
+    useEffect(()=>{
+        fetch('http://localhost:5000/ahd/')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        setHotMovies(data);
+    })
+    .catch(error => console.error('Error:', error));
+    },[])
+    // In ra các mảng kiểm tra
+    console.log(hotMovies)
+    //END FETCH DATA
     return(
         <div className={style.container}>
             <div className={style.posterVisible}>

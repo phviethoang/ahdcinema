@@ -54,6 +54,7 @@
   position: relative;
   /* border-top:3px solid #26839b; */
   padding-top: 10vh;
+  padding-bottom: 10vh;
   border-top-left-radius: 3vw;
   box-shadow: 2px -1.5px 15px 3px #0d4654;
   background-color: white;
@@ -121,14 +122,20 @@
 .button1 {
   position: absolute;
   bottom: 10px;
-  margin-top: 5px;
+  margin-top: 20px;
   width: 90%;
-  border-radius: 8%;
+  border-radius: 15px;
   border: 2px solid #0d4654;
   font-family: 'Baloo Bold';
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   color:#0d4654;
   background: none;
+}
+.button1:hover{
+  color: aqua;
+  background-color: #26839b;
+  border-color: aqua;
 }
 /* Chọn phim đang chiếu-phim sắp chiếu*/
 .buttonsContainer {

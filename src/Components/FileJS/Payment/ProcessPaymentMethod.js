@@ -5,7 +5,7 @@ import BankSearching from './BankSearching';
 import BankCardPayment from './BankCardPayment';
 import EWalletPayment from './EWalletPayment';
 
-const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful, onPaymentSuccessOutside }) => {
+const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful}) => {
   const [selectedBank, setSelectedBank] = useState(null); // Lưu trữ ngân hàng đã chọn
   // const finalAmount = finalAmount;
   const handleBankSelect = (bank) => {
@@ -31,7 +31,6 @@ const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp
               handleTopUp={handleTopUp}
               transactionInfo={transactionInfo}
               onPaymentSuccessful={onPaymentSuccessful}
-              onPaymentSuccessOutside = {onPaymentSuccessOutside}
             />
           )}
           {selectedMethod.key === 'ATM' && selectedBank && selectedBank.name === 'Techcombank' && (
@@ -43,7 +42,6 @@ const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp
               handleTopUp={handleTopUp}
               transactionInfo={transactionInfo}
               onPaymentSuccessful={onPaymentSuccessful}
-              onPaymentSuccessOutside = {onPaymentSuccessOutside}
             />
           )}
           {selectedMethod.key === 'Visa' && selectedBank && selectedBank.name === 'MBbank' && (
@@ -55,7 +53,6 @@ const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp
               handleTopUp={handleTopUp}
               transactionInfo={transactionInfo}
               onPaymentSuccessful={onPaymentSuccessful}
-              onPaymentSuccessOutside= {onPaymentSuccessOutside}
             />
           )}
           {selectedMethod.key === 'Visa' && selectedBank && selectedBank.name === 'Techcombank' && (
@@ -67,7 +64,6 @@ const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp
               handleTopUp={handleTopUp}
               transactionInfo={transactionInfo}
               onPaymentSuccessful={onPaymentSuccessful}
-              onPaymentSuccessOutside = {onPaymentSuccessOutside}
             />
           )}
         </div>
@@ -80,7 +76,6 @@ const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp
           handleTopUp={handleTopUp}
           transactionInfo={transactionInfo}
           onPaymentSuccessful={onPaymentSuccessful}
-          onPaymentSuccessOutside = {onPaymentSuccessOutside}
         />}
     {selectedMethod && selectedMethod.key === 'MOMO'
       &&<EWalletPayment 
@@ -90,7 +85,6 @@ const ProcessPaymentMethod = ({ selectedMethod, finalAmount, useFor, handleTopUp
           handleTopUp={handleTopUp}
           transactionInfo={transactionInfo}
           onPaymentSuccessful={onPaymentSuccessful}
-          onPaymentSuccessOutside = {onPaymentSuccessOutside}
         />}
 
     {/* {useFor='ahd'&&<p>Bằng cách chọn Nạp tiền, Quý khách đồng ý với <span style={{color:"blue"}}>Điều khoản giao dịch</span> của AHD.</p>} */}

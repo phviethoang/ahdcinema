@@ -61,14 +61,29 @@
     justify-content: space-between;
     /* align-items: center; */
 }
-
+.movieInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+}
+.movieName{
+  align-content: center;
+  font-family: 'Aguda Black';
+  color: white;
+  font-size: larger;
+  padding-left: 3vw;
+}
 .section {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     padding: 10px;
     flex: 1;
     text-align: center;
+}
+.section:not(.movieInfo)
+{
+    flex-direction: column;
+    justify-content: space-between;
 }
 .section p{
     font-family: 'Montserrat';

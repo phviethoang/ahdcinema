@@ -5,9 +5,12 @@ import WalletPage from '../MemberPage/WalletPage';
 import OnlinePaymentPage from './OlinePaymentPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
 
-const PaymentTabs = ({finalAmount, transactionInfo, onPaymentSuccessOutside}) => {
+const PaymentTabs = () => {
 
+  const location = useLocation();
+  const { finalAmount, transactionInfo } = location.state || {};
   const [activeTab, setActiveTab] = useState('AHD');
   const [paymentSuccessful, setPaymentSuccessful]= useState(false);
   const [finalAmountActive,setFinalAmountActive]=useState(finalAmount)
@@ -48,13 +51,11 @@ const PaymentTabs = ({finalAmount, transactionInfo, onPaymentSuccessOutside}) =>
             transactionInfo={transactionInfo}
             onPaymentSuccessful = {handlePaymentSuccessful}
             useFor="PaymentPage"
-            onPaymentSuccessOutside = {onPaymentSuccessOutside}
           />
           :<OnlinePaymentPage
             finalAmount={finalAmountActive}
             transactionInfo={transactionInfo}
             onPaymentSuccessful = {handlePaymentSuccessful}
-            onPaymentSuccessOutside = {onPaymentSuccessOutside}
           />
         }
       </div>

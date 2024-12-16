@@ -1,41 +1,57 @@
 import React, { useState } from "react";
 import style from "../../FileCSS/LoginAndRegister/Register.module.css"; // Import file CSS để tạo giao diện giống mẫu
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../header";
 import Footer from "../footer";
+
+
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    username: "",
     password: "",
     confirmPassword: "",
-    birthday: "",
-    gender: "",
-    phoneNumber: "",
-    captcha: "",
+    fullname: "",
+    email: "",
+    phonenumber: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Lấy các trường nhập liệu từ form
-    const passwordInput = document.getElementById("password");
-    const confirmPasswordInput = document.getElementById("confirmPassword");
 
     // Nếu mật khẩu không khớp
     if (formData.password !== formData.confirmPassword) {
-      confirmPasswordInput.setCustomValidity("Mật khẩu không trùng khớp"); // Thiết lập thông báo lỗi
-    } else {
-      confirmPasswordInput.setCustomValidity(""); // Xóa thông báo lỗi nếu khớp
-      console.log("Form Data Submitted:", formData);
+      alert("Mật khẩu không trùng khớp!");
+      return;
+    } 
+    console.log("Form Data Submitted:", formData);
+    try {
+      const { username: Username, password: Password, email: Email, fullname: Fullname, phonenumber: Phonenumber } = formData;
+      // Gửi request đăng nhập đến BE
+      const response = await fetch("http://localhost:5000/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Username, Password, Email, Fullname, Phonenumber}),
+      });
+      console.log(response.status)
+      if (response.ok) {
+        const notice = await response.json();
+        console.log("Register successful!", notice);
+        navigate("/Login"); // Điều hướng đến trang login sau khi đăng ký thành công
+      } else {
+        const errorNotice = await response.json();
+        alert(errorNotice.message || "Đăng ký thất bại");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
     }
 
-    // Đảm bảo rằng form vẫn có thể submit nếu các giá trị đúng
-    confirmPasswordInput.reportValidity();
   };
 
   return (
@@ -48,8 +64,8 @@ const Register = () => {
             <label>Tên đăng nhập</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               required
             />
@@ -81,8 +97,8 @@ const Register = () => {
             <label>Họ và tên</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="fullname"
+              value={formData.fullname}
               onChange={handleChange}
               required
             />
@@ -108,78 +124,17 @@ const Register = () => {
               required
             />
           </div>
-          {/* <div className="form-group">
-            <label>Ngày sinh</label>
-            <input
-              type="date"
-              name="birthday"
-              value={formData.birthday}
-              onChange={handleChange}
-              required
-            />
-          </div> */}
-
-          {/* <div className="form-group">
-            <label>Giới tính</label>
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Chọn giới tính</option>
-              <option value="male">Nam</option>
-              <option value="female">Nữ</option>
-              <option value="other">Khác</option>
-            </select>
-          </div> */}
 
           <div className={style.formGroup}>
             <label>Số điện thoại</label>
             <input
               type="tel"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              name="phonenumber"
+              value={formData.phonenumber}
               onChange={handleChange}
               required
             />
           </div>
-          {/* <div className="form-group">
-            <label>Ngày sinh</label>
-            <input
-              type="date"
-              name="birthday"
-              value={formData.birthday}
-              onChange={handleChange}
-              required
-            />
-          </div> */}
-
-          {/* <div className="form-group">
-            <label>Giới tính</label>
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Chọn giới tính</option>
-              <option value="male">Nam</option>
-              <option value="female">Nữ</option>
-              <option value="other">Khác</option>
-            </select>
-          </div> */}
-          {/*} <div className="form-group">
-            <label>Mã xác thực</label>
-            <input
-              type="text"
-              name="captcha"
-              value={formData.captcha}
-              onChange={handleChange}
-              required
-            />
-            {/* Bạn có thể thay bằng một hình ảnh captcha thực tế 
-          </div> */}
 
           <div className={style.formGroup}>
             <label>

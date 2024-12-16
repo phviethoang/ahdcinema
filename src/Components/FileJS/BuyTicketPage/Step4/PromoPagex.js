@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PromoPage.module.css';
+import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 import CountdownTimer from '../Step3/CountdownTimer';
+import PaymentTabs from'../../Payment/PaymentTabs'
 import paymentButton from '../../../../img/PaymentIcon/paymentButton.png';
-import Notification from '../../Notification/Notitication'
-import { useNavigate} from 'react-router-dom';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 const allVouchers = [
-  { name: 'Ưu Đãi Mùa Hè Rực Rỡ', code: 'SUMMER10', discount: 10, expiryDate: '2024-08-31', status: 'Active' },
-  { name: 'Siêu Ưu Đãi Xem Phim', code: 'MOVIE20', discount: 20, expiryDate: '2025-07-15', status: 'Active' },
-  { name: 'Khuyến Mãi Đặc Biệt', code: 'SPECIAL15', discount: 15, expiryDate: '2025-06-30', status: 'Active' },
-  { name: 'Combo Hoàn Hảo', code: 'COMBO25', discount: 25, expiryDate: '2025-09-10', status: 'Active' },
-  { name: 'Ưu Đãi Lễ Hội Vui Nhộn', code: 'FESTIVE30', discount: 30, expiryDate: '2025-12-25', status: 'Active' },
-  { name: 'Chào Mừng Thành Viên Mới', code: 'WELCOME5', discount: 5, expiryDate: '2025-06-01', status: 'Active' },
-  { name: 'Ưu Đãi VIP Cao Cấp', code: 'VIP40', discount: 40, expiryDate: '2025-05-31', status: 'Active' },
-  { name: 'Mừng Sinh Nhật', code: 'BIRTHDAY10', discount: 10, expiryDate: '2025-04-15', status: 'Active' },
-  { name: 'Quà Tặng Năm Mới', code: 'NEWYEAR35', discount: 35, expiryDate: '2025-01-15', status: 'Active' },
-  { name: 'Flash Sale Cực Sốc', code: 'FLASHSALE', discount: 30, expiryDate: '2025-06-10', status: 'Active' },
-  { name: 'Ưu Đãi Flash VIP', code: 'FLASHSALEVIP', discount: 40, expiryDate: '2025-06-05', status: 'Active' }
+    { name: 'Giảm Giá Hè Tưng Bừng 2024', code: 'SUMMER10', discount: 10, expiryDate: '2024-08-31' },
+    { name: 'Giảm Giá Siêu Phim', code: 'MOVIE20', discount: 20, expiryDate: '2025-07-15' },
+    { name: 'Giảm Giá Thực Phẩm', code: 'FOOD15', discount: 15, expiryDate: '2025-06-30' },
+    { name: 'Combo Siêu Tiết Kiệm', code: 'COMBO25', discount: 25, expiryDate: '2025-09-10' },
+    { name: 'Giảm Giá Lễ Hội', code: 'FESTIVE30', discount: 30, expiryDate: '2025-12-25' },
+    { name: 'Chào Mừng Thành Viên Mới', code: 'WELCOME5', discount: 5, expiryDate: '2025-06-01' },
+    { name: 'Giảm Giá VIP Đỉnh Cao', code: 'VIP40', discount: 40, expiryDate: '2025-05-31' },
+    { name: 'Giảm Giá Sinh Nhật Khủng', code: 'BIRTHDAY10', discount: 10, expiryDate: '2025-04-15' },
+    { name: 'Giảm Giá Năm Mới Phát Tài', code: 'NEWYEAR35', discount: 35, expiryDate: '2025-01-15' },
+    { name: 'Giảm Giá Flash Sale Siêu Hấp Dẫn', code: 'FLASHSALE', discount: 30, expiryDate: '2025-06-10' },
+    { name: 'Giảm Giá Flash Sale VIP Siêu Cấp', code: 'FLASHSALEVIP', discount: 40, expiryDate: '2025-06-05' }
 ];
+
   
   // const membership={
   //   membershipLevel : "STANDARD",
@@ -34,8 +35,8 @@ const allVouchers = [
   // const membership={
   //   membershipLevel : "SILVER",
   //   benefits: [
-  //             "Vé giảm 20% tối đa 100,000VND",
-  //             "Giảm 20% giá bỏng, nước tối đa 150,000VND",
+  //             "Tặng toàn bộ bỏng nước trong 2 lần đầu mua vé",
+  //             "Giảm 70% giá bỏng, nước trong các lần tiếp theo",
   //             "Tích điểm 10% khi mua sản phẩm bất kì",
   //           ],
   //   };
@@ -43,37 +44,21 @@ const allVouchers = [
   const membership={
     membershipLevel : "GOLD",
     benefits: [
-              "Vé giảm 50% tối đa 200,000VND",
-              "Giảm 50% giá bỏng, nước tối đa 300,000VND",
+              "Vé giảm 50%",
+              "Tặng toàn bộ bỏng nước trong 2 lần đầu mua vé",
+              "Giảm 80% giá bỏng, nước trong các lần tiếp theo",
               "Tích điểm 15% khi mua sản phẩm bất kì",
               "Cơ hội nhận quà Limited"
             ],
     };
 
 const PaymentPage = ({originalPrice, seatTotalPrice, comboTotalPrice, onPaymentClick, transactionInfo }) => {
-   const navigate = useNavigate();
-
-  const [isPaymentStarted, setIsPaymentStarted] = useState(false);
-  const [notification, setNotification] = useState(null);
+  const [isPaymentComplete, setIsPaymentComplete] = useState(false);
 
   const handlePaymentClick = () => {
-    if(transactionInfo.selectedSeats.length===0||transactionInfo.selectedSeats.length>9){
-      setNotification({message:"Số ghế mua tối thiểu là 1 và tối đa là 9!", type: "error"})
-    }
-    else{
-      if(onPaymentClick) onPaymentClick();
-      setIsPaymentStarted(true);
-      navigate('/payment', {
-        state: {
-          finalAmount: (originalPrice-promotion>0?originalPrice-promotion:0).toLocaleString(),
-          transactionInfo: transactionInfo
-      }
-      });
-    } 
+    if (onPaymentClick) onPaymentClick();
+    setIsPaymentComplete(true);
   };
-  // finalAmount={(originalPrice-promotion>0?originalPrice-promotion:0).toLocaleString()}
-  //       transactionInfo={transactionInfo}
-  
 
   const [openItem, setOpenItem] = useState(null);
   const [isPreviousStepsDisabled, setIsPreviousStepsDisabled] = useState(false);
@@ -93,6 +78,7 @@ const [totalVouchers, setTotalVouchers] = useState(()=>
     }); // State lưu tổng discount của tất cả các voucher
 
   const [deleteTrigger, setDeleteTrigger] = useState(0);
+
 
 const [appliedVouchers, setAppliedVouchers] = useState(() => {
     const storedData = localStorage.getItem('promotionData');
@@ -152,7 +138,7 @@ const handleVoucherSubmit = (e) => {
     if (!voucher) {
       setVoucherMessage("Voucher không hợp lệ!");
       return;
-    } else if (voucher.status === 'inActive') {
+    } else if (voucher.used) {
       setVoucherMessage("Voucher đã được sử dụng!");
     } else if (appliedVouchers.length > 0) {
       setVoucherMessage(`Chỉ được áp dụng tối đa 1 voucher! 🤫`);
@@ -166,7 +152,7 @@ const handleVoucherSubmit = (e) => {
         isValid = true;
       
       // Đánh dấu voucher đã sử dụng và thêm vào danh sách đã áp dụng
-        voucher.status = 'inActive';
+        voucher.used = true;
         setVouchers([...vouchers]); // Cập nhật lại danh sách voucher
         setAppliedVouchers([...appliedVouchers, voucher]); // Thêm voucher vào danh sách đã áp dụng
     }
@@ -178,13 +164,13 @@ const handleVoucherSubmit = (e) => {
   };
   const handleApplyMembership = (membership)=>{
     setMembershipPromo(membership);
-    setMembershipDiscount(membership.membershipLevel === "SILVER"?{movie:20, popcorn: 20}:(membership.membershipLevel === "GOLD")?{movie:50, popcorn: 50}:null)
+    setMembershipDiscount(membership.membershipLevel === "SILVER"?{movie:0, popcorn: 100}:(membership.membershipLevel === "GOLD")?{movie:50, popcorn: 100}:null)
   }
 
 
 const handleDeleteVoucher = (index) => {
   const item = vouchers.find(c=>c.code===appliedVouchers[index].code);
-  item.status = 'Active';
+  item.used = false;
   setVouchers([...vouchers]);
 
   setTotalVouchers(prev=>prev-item.discount);
@@ -240,8 +226,9 @@ useEffect(() => {
   localStorage.setItem('membershipDiscount', JSON.stringify(membershipDiscount))
 }, [totalVouchers, membershipDiscount, deleteTrigger]);
 
-const maximumMembershipDiscount = membership.membershipLevel === "SILVER"?{movie:100000, popcorn: 150000}:(membership.membershipLevel === "GOLD")?{movie:200000, popcorn: 300000}:null;
-const promotion = (totalVouchers*originalPrice + Math.min(membershipDiscount.movie*seatTotalPrice,maximumMembershipDiscount.movie*100)+ Math.min(membershipDiscount.popcorn*comboTotalPrice,maximumMembershipDiscount.popcorn*100))*0.01;
+
+  const promotion = (totalVouchers*originalPrice + membershipDiscount.movie*seatTotalPrice+membershipDiscount.popcorn*comboTotalPrice)*0.01;
+
 
   const [isVouchersListOpen, setIsVouchersListOpen] = useState(false);
   const [isMembershipPromoListOpen, setIsMembershipPromoListOpen] = useState(false);
@@ -261,18 +248,13 @@ const promotion = (totalVouchers*originalPrice + Math.min(membershipDiscount.mov
 
   return (
     <>
-      {/* {isPaymentStarted ? (
+      {isPaymentComplete ? (
         <PaymentTabs 
         finalAmount={(originalPrice-promotion>0?originalPrice-promotion:0).toLocaleString()}
         transactionInfo={transactionInfo}
         />
-      ): */}
+      ):
     <div className={styles.paymentPage}>
-      <Notification 
-        message={notification?.message}  // Tránh lỗi khi notification là null
-        type={notification?.type}        // Tránh lỗi khi notification là null
-        onClose={() => setNotification(null)} 
-      />
       <h1 className={styles.heading}>Đừng Bỏ Lỡ Những Ưu Đãi Tốt Nhất!</h1>
       <div className={styles.container}>
         <div className={styles.paymentSteps}>
@@ -360,7 +342,7 @@ const promotion = (totalVouchers*originalPrice + Math.min(membershipDiscount.mov
                 {isMembershipPromoListOpen && (
                     <ul>
                       <li className={styles.appliedCode}>
-                        Thành viên {membership.membershipLevel} - Giảm {membershipDiscount.movie}% giá vé (tối đa {maximumMembershipDiscount.movie.toLocaleString()}đ), {membershipDiscount.popcorn}% bỏng nước (tối đa {maximumMembershipDiscount.popcorn.toLocaleString()}đ).
+                        Thành viên {membership.membershipLevel} - Giảm {membershipDiscount.movie}% giá vé, {membershipDiscount.popcorn}% bỏng nước
                         <FontAwesomeIcon style={{ color: "orange" }}  icon={faTrash}  onClick={() => handleConfirmDelete('membership', 1)}></FontAwesomeIcon>
                       </li>
                   </ul>
@@ -407,8 +389,7 @@ const promotion = (totalVouchers*originalPrice + Math.min(membershipDiscount.mov
            />
          </aside>
       </div>
-    </div>
-    {/* } */}
+    </div>}
     </>
   );
 };

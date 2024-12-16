@@ -9,7 +9,7 @@ import iconMomo from '../../../img/PaymentIcon/momoIcon.png';
 import CountdownTimer2 from './CountdownTimer2'
 import PaymentButton from './PaymentButton'
 import TopUpComplete from '../MemberPage/TopUpComplete'
-const EwalletPayment = ({ewalletSelected, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful, onPaymentSuccessOutside}) => {
+const EwalletPayment = ({ewalletSelected, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful}) => {
 
     const[satisfied, setSatisfied]=useState(false);
     const form = "Your Phone Number";
@@ -75,7 +75,7 @@ const EwalletPayment = ({ewalletSelected, finalAmount, useFor, handleTopUp, tran
            
         </div>
         {useFor==='ahd'&&<p>Bằng cách chọn Nạp tiền, Quý khách đồng ý với <span style={{color:"blue"}}>Điều khoản giao dịch</span> của AHD.</p>}
-        {!(useFor==='ahd')&&<PaymentButton satisfied={satisfied} useFor='online' transactionInfo={transactionInfo} paymentData={{paymentType: "ewallet",info: text}} onPaymentSuccessful={onPaymentSuccessful} finalAmount={finalAmount} onPaymentSuccessOutside = {onPaymentSuccessOutside}/>}
+        {!(useFor==='ahd')&&<PaymentButton satisfied={satisfied} useFor='online' transactionInfo={transactionInfo} paymentData={{paymentType: "ewallet",info: text}} onPaymentSuccessful={onPaymentSuccessful} finalAmount={finalAmount} />}
         {useFor==='ahd'&& <TopUpComplete valueInput={finalAmount} handleTopUp={handleTopUp} satisfied={satisfied} paymentData={{paymentType: "ewallet",info: text}}/>}
         {/* <div className={styles.agreementSection}>
         <label>

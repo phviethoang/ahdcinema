@@ -4,84 +4,46 @@ import { Link } from "react-router-dom";
 import Header from '../header'
 import Footer from '../footer'
 import clsx from "clsx";
-import { useState, useRef } from "react";
+import { useState, useRef} from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
+
 const PhimSapChieu = () => {
   // Mô phỏng danh sách phim đang chiếu
-  const movies = [
-    {
-      title: "NGÀY XƯA CÓ MỘT CHUYỆN TÌNH",
-      genre: "Tình cảm",
-      duration: "135 phút",
-      releaseDate: "01-11-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/m/a/main_social.jpg",
-    },
-    {
-      title: "VENOM: KÈO CUỐI",
-      genre: "Hành Động, Khoa Học Viễn Tưởng, Phiêu Lưu, Thần thoại",
-      duration: "",
-      releaseDate: "25-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/3/5/350x495_6_.jpg",
-    },
-    {
-      title: "TRÒ CHƠI NHÂN TÍNH",
-      genre: "Hồi hộp, Kinh Dị",
-      duration: "",
-      releaseDate: "25-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/4/0/406x600-exit.jpg",
-    },
-    {
-      title: "ÁC QUỶ TRUY HỒN",
-      genre: "Hồi hộp, Kinh Dị",
-      duration: "107 phút",
-      releaseDate: "25-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/p/o/poster_ac_quy_truy_hon_4_1_.jpg",
-    },
-    {
-      title: "TÍN HIỆU CẦU CỨU",
-      genre: "Bí ẩn, Hồi hộp",
-      duration: "103 phút",
-      releaseDate: "18-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/p/o/poster_tin_hieu_cau_cuu_1.jpg",
-    },
-    {
-      title: "BÓNG ĐÁ NỮ VIỆT NAM, CHUYỆN LẦN ĐẦU KỂ",
-      genre: "Phim tài liệu",
-      duration: "75 phút",
-      releaseDate: "18-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/4/0/406x600px-vn.jpg",
-    },
-    {
-      title: "BOCCHI THE ROCK! Recap Part 2",
-      genre: "Hoạt Hình",
-      duration: "75 phút",
-      releaseDate: "18-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/3/5/350x495-bocchi-p2.jpg",
-    },
-    {
-      title: "AN LẠC",
-      genre: "Tâm Lý",
-      duration: "121 phút",
-      releaseDate: "18-10-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/3/5/350x495-kankuang.jpg",
-    },
-    {
-      title: "ĐỐ ANH CÒNG ĐƯỢC TÔI",
-      genre: "Hài, Hành Động",
-      duration: "118 phút",
-      releaseDate: "27-09-2024",
-      image:
-        "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/r/s/rsz_exe_main-poster-v2.jpg",
-    },
-  ];
+    //Khai báo các mảng sẽ chứa dữ liệu fetch về
+    const navigate = useNavigate();
+    const [comingSoonMovie, setComingSoonMovie]= useState([])
+    // Fetch movie
+    useEffect(() => {
+      fetch('http://localhost:5000/ahd/coming-soon')
+          .then(response => {
+              console.log("Response status:", response.status);
+              return response.text(); // Kiểm tra nội dung raw response
+          })
+          .then(text => {
+              console.log("Raw response:", text); // In ra để kiểm tra
+              return JSON.parse(text); // Chuyển thành JSON
+          })
+          .then(data => setComingSoonMovie(data))
+          .catch(error => console.error('Error:', error));
+  }, []);
+    //END FETCH DATA
+    const convertToLocalTime = (dateString) => {
+      const date = new Date(dateString);
+      // Chuyển sang định dạng chỉ lấy ngày YYYY-MM-DD
+      return date.toLocaleString("en-CA", { timeZone: "Asia/Ho_Chi_Minh", year: 'numeric', month: '2-digit', day: '2-digit' });
+
+  };
+  const movies = comingSoonMovie.map( (each, id) =>
+  {
+    return {
+    id: each.movie_id,
+    title: each.movie_name,
+    genre: each.category,
+    duration: each.duration,
+    releaseDate: convertToLocalTime(each.start_date),
+    image: each.movie_image
+  }})
 
   const [headerShow, setHeaderShow] = useState(true)
   const header = useRef(null)
@@ -131,7 +93,11 @@ const PhimSapChieu = () => {
                     <strong>Khởi chiếu:</strong> {movie.releaseDate}
                   </p>
                 </div>
-                <button className={styles.button1}>MUA VÉ</button>
+                <button className={styles.button1}
+                  onClick={()=>{
+                    sessionStorage.setItem('movie_id', JSON.stringify(movie.id))
+                    navigate('/BuyTicket')
+                  }}>MUA VÉ</button>
               </div>
             ))}
           </div>

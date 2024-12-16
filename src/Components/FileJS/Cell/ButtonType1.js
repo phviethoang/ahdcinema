@@ -1,13 +1,16 @@
 import style from '../../FileCSS/Cell/ButtonType1.module.css'
 import clsx from 'clsx'
 import React from 'react'
-function ButtonType1({sizeStyle, id, onclick, choosen, children, support}){
+function ButtonType1({sizeStyle, id, onclick, choosen, children, support, support2, support3, support4}){
     return(
         <button 
             onClick = {onclick} 
             data-id={id}
             data-content={children}
             data-support={support}
+            data-support2={support2}
+            data-support3={support3}
+            data-support4={support4}
             key = {id} 
             className = {clsx(style.itemCover, 
             {[style.miniSquare]: sizeStyle == 'miniSquare', 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 
-const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInfo, valueInput, handleTopUp, onTransactionConfirmation, paymentData, onPaymentSuccessful, finalAmount, onPaymentSuccessOutside}) => {
+const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInfo, valueInput, handleTopUp, onTransactionConfirmation, paymentData, onPaymentSuccessful, finalAmount}) => {
   let selectedSeats = [];
   let combo = [];
   let cardType = "";
@@ -17,17 +17,17 @@ const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInf
   }
   
 
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [error, setError] = useState('');
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    if (e.target.value.trim() === '') {
-      setError('Mật khẩu không được để trống');
-    } else {
-      setError('');
-    }
-  };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  //   if (e.target.value.trim() === '') {
+  //     setError('Mật khẩu không được để trống');
+  //   } else {
+  //     setError('');
+  //   }
+  // };
 
 
   return (
@@ -148,37 +148,17 @@ const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInf
           </span>)
         }
 
-        <div className={styles.transactionPassword}>
-          <div
-            style={{ fontSize: '20px', textAlign: 'center', fontWeight: 'bold' }}
-          >
-            Bạn có chắc chắn muốn thanh toán?
-          </div>
-          <div>
-            <label htmlFor="password">Nhập mật khẩu</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              onChange={handlePasswordChange}
-              className={styles.transactionConfirmPassword}
-            />
-          </div>
-        </div>
-        <span style={{ color: 'red', fontSize: '12px' }}>{error}</span>
         <div className={styles.twoButton}>
 
           {
             useFor==='topUp'?
               <button
-                disabled={!password.trim()}
                 className={styles.confirm}
                 onClick={(e)=>{handleTopUp(); onVisibleChange(); onTransactionConfirmation() }}
               >
                 Thanh toán
               </button>
             : <button
-              disabled={!password.trim()}
               className={styles.confirm}
               onClick={(e)=>{onVisibleChange(); onTransactionConfirmation(); onPaymentSuccessful()}}
               >

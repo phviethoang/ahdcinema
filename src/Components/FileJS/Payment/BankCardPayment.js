@@ -15,7 +15,7 @@ import icon3 from '../../../img/PaymentIcon/chip.png';
 import icon4 from '../../../img/PaymentIcon/contactless.png';
 import icon5 from '../../../img/PaymentIcon/napas.png';
 
-const BankCardPayment = ({Logo,Icon1_2, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful, onPaymentSuccessOutside}) => {
+const BankCardPayment = ({Logo,Icon1_2, finalAmount, useFor, handleTopUp, transactionInfo, onPaymentSuccessful}) => {
   const [satisfied, setSatisfied]=useState(false);
   const form1 = "CARD NUMBER";
   const form2 ="VALID FROM";
@@ -338,7 +338,7 @@ const BankCardPayment = ({Logo,Icon1_2, finalAmount, useFor, handleTopUp, transa
 
     </div>
         {useFor==='ahd'&&<p>Bằng cách chọn Nạp tiền, Quý khách đồng ý với <span style={{color:"blue"}}>Điều khoản giao dịch</span> của AHD.</p>}
-        {!(useFor==='ahd')&&<PaymentButton satisfied={satisfied} useFor='online' transactionInfo={transactionInfo} paymentData={{paymentType:"bankCard",info :itemPosition}} onPaymentSuccessful={onPaymentSuccessful} finalAmount={finalAmount} onPaymentSuccessOutside = {onPaymentSuccessOutside}/>} 
+        {!(useFor==='ahd')&&<PaymentButton satisfied={satisfied} useFor='online' transactionInfo={transactionInfo} paymentData={{paymentType:"bankCard",info :itemPosition}} onPaymentSuccessful={onPaymentSuccessful} finalAmount={finalAmount}/>} 
         {useFor==='ahd'&& <TopUpComplete valueInput={finalAmount} handleTopUp={handleTopUp} satisfied={satisfied} paymentData={{paymentType:"bankCard",info :itemPosition}}/>}
               
     {/* <div className={styles.agreementSection}>

@@ -16,6 +16,7 @@ import EventDetail from './Components/FileJS/EventPage/EventDetail.js';
 import PhimDangChieu from './Components/FileJS/MovieCollectionPage/PhimDangChieu.js';
 import PhimSapChieu from './Components/FileJS/MovieCollectionPage/PhimSapChieu.js';
 import CinemaList from './Components/FileJS/Theater/CinemaList.js';
+import PaymentTabs from './Components/FileJS/Payment/PaymentTabs.js';
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,7 @@ function App() {
               <Route path = "/PhimDangChieu" element = {<PhimDangChieu></PhimDangChieu>}></Route>
               <Route path = "/PhimSapChieu" element = {<PhimSapChieu></PhimSapChieu>}></Route>
               <Route path = "/TheatersPage" element = {<CinemaList></CinemaList>}></Route>
+              <Route path = "/payment" element = {<PaymentTabs></PaymentTabs>}></Route>
             </Routes>
         </BrowserRouter>
         {/* <CinemaList></CinemaList> */}

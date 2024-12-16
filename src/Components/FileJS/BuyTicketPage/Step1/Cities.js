@@ -2,8 +2,8 @@ import { useState } from "react";
 import ButtonType1 from "../../Cell/ButtonType1";
 import React from 'react'
 import { useEffect } from "react";
-function Cities({citiesChoosen, onclick}){
-    let cities = Array.isArray(citiesChoosen) ? citiesChoosen : []
+function Cities({citiesChoosen, onclick, date}){
+    // let cities = Array.isArray(citiesChoosen) ? citiesChoosen : []
     const [cityChoice, setCityChoice] = useState(
         ()=>
         {
@@ -14,10 +14,13 @@ function Cities({citiesChoosen, onclick}){
     useEffect(()=>{
         sessionStorage.setItem('cityChoice', JSON.stringify(cityChoice))
     }, [cityChoice])
+    console.log(citiesChoosen)
     return(
-        cities.map((each,id) => 
+        citiesChoosen.map((each,id) => 
         <ButtonType1
-            id={id + each}
+            support = {each.city_id} //support chưa city_id của thành phố, truyền ra trang chính để fetch dữ liệu rạp, giờ chiếu
+            id={each.city_name + date}//id để phân biệt các nút chọn thành phố,
+                                    // phục vụ cho việc highlight 1 thành phố khi được chọn
             onclick={(event) => {
             onclick(event)
             setCityChoice(event.currentTarget.getAttribute('data-id'))            
@@ -25,7 +28,7 @@ function Cities({citiesChoosen, onclick}){
         }
         sizeStyle='flexSquare' 
         choosen={cityChoice}
-        >{each}</ButtonType1>
+        >{each.city_name}</ButtonType1>
     )
 )
 }
