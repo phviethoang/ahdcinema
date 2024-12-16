@@ -86,6 +86,7 @@ const CinemasList = () => {
     );
     setEditingCinema(null);
     setNotification({ message: "Cập nhật rạp thành công", type: "success" });
+    // đưa cinemaData lên csdl
     }
   };
 

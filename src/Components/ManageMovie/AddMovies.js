@@ -66,7 +66,15 @@ const AddMovie = ({ initialData, onSave, onCancel }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    if (name === 'duration') {
+      const intValue = parseInt(value, 10);
+      setFormData((prevData) => ({ 
+        ...prevData, 
+        [name]: isNaN(intValue) ? '' : intValue, 
+      }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
 
@@ -109,6 +117,9 @@ const AddMovie = ({ initialData, onSave, onCancel }) => {
     else {
       if (!initialData) {
         setNotification({ message: 'Thêm phim mới thành công!', type: 'success' });
+
+        console.log("formData: ", formData);
+        //  đưa formData lên csdl
       } 
       else {
         setNotification({ message: 'Cập nhật thông tin phim thành công!', type: 'success' });

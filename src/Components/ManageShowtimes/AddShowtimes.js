@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./AddShowtimes.module.css";
 import Notification from '../Notification/Notification'; 
 import {isEqual} from '../../utils/isEqual'
@@ -150,7 +150,8 @@ const AddShowtimes = () => {
         cinema_id: 3,
       },
     ]);
-  const [selectedCinema, setSelectedCinema] = useState(cinemaData[0]?.cinema_id || "");
+  // const [selectedCinema, setSelectedCinema] = useState(cinemaData[0]?.cinema_id || "");
+  const [selectedCinema, setSelectedCinema] = useState("");
   const [selectedRoom, setSelectedRoom] = useState("");
   const [selectedMovie, setSelectedMovie] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
@@ -179,8 +180,6 @@ const groupedShowtimes = cinemaData.reduce((grouped, cinema) => {
 console.log('cinemaData:', cinemaData);
 console.log('showtimes:', showtimes);
 
-console.log("haha: ",groupedShowtimes)
-
 // Hàm lấy các suất chiếu đã phân trang cho từng rạp
 const getCinemaShowtimes = (cinemaId) => {
   const cinemaShowtimes = groupedShowtimes[cinemaId] || [];
@@ -191,9 +190,8 @@ const getCinemaShowtimes = (cinemaId) => {
       if (a.screeningroom_id  !== b.screeningroom_id ) {
         return a.screeningroom_id  - b.screeningroom_id ;
       }
-      return calculateDateTime(a.show_date , a.show_date ) - calculateDateTime(b.show_date , b.show_time );
+      return calculateDateTime(a.show_date , a.show_time ) - calculateDateTime(b.show_date , b.show_time );
     });
-
   const currentPage = paginationState[cinemaId]?.currentPage || 1; // Lấy currentPage từ state
   const startIndex = (currentPage - 1) * itemsPerPage;
   return sortedShowtimes.slice(startIndex, startIndex + itemsPerPage);
@@ -233,7 +231,11 @@ const handlePrevPage = (cinemaId) => {
   const [editingShowtime, setEditingShowtime] = useState(null); // Để chỉnh sửa suất chiếu
   const [isModalOpen, setIsModalOpen] = useState(false); 
 
-  const selectedCinemaDetails = cinemaData.find(cinema => cinema.cinema_id === parseInt(selectedCinema));
+  // const selectedCinemaDetails = selectedCinema?cinemaData.find(cinema => cinema.cinema_id === parseInt(selectedCinema)):"";
+  const [selectedCinemaDetails, setSelectedCinemaDetails]=useState(0);
+  useEffect(()=>{
+    setSelectedCinemaDetails(selectedCinema?cinemaData.find(cinema => cinema.cinema_id === parseInt(selectedCinema)):"");
+  },[selectedCinema])
 
   // Kiểm tra nếu thời gian chiếu đã qua
   const isTimeInPast = (date, time) => {
@@ -294,19 +296,19 @@ const handlePrevPage = (cinemaId) => {
     }
 
     const movie = movieData.find((movie) => movie.movie_id === parseInt(selectedMovie));
-    const cinema = cinemaData.find(cinema => cinema.cinema_id === selectedCinema);
-    // console.log(cinema);
+    const cinema = cinemaData.find(cinema => cinema.cinema_id === parseInt(selectedCinema));
+    console.log("cinema: ",cinema);
     // const room = 
     const room = screeningRooms.find(room => room.screeningroom_id === parseInt(selectedRoom) && room.cinema_id === parseInt(selectedCinema));
     // console.log(room);
     const conflict = isTimeConflict(parseInt(selectedRoom), selectedDate, selectedTime, movie.duration);
     console.log("conflict: ", conflict);
     if (conflict) {
-      const movieConflict = movieData.find(movie=>movie.id===parseInt(conflict.movieId));
+      const movieConflict = movieData.find(movie=>movie.movie_id===parseInt(conflict.movieId));
       console.log("movieData: ",movieData)
       console.log("movieConflict: ",movieConflict)
       setNotification({
-        message: `Có suất chiếu trùng giờ trong phòng Screen ${room?.room_number}! Phim "${movieConflict?.movie_name}" bắt đầu lúc ${conflict.startTime} và kết thúc vào ${conflict.endTime}.`,
+        message: `Có suất chiếu trùng giờ trong phòng Screen ${room?.room_number}! Phim "${movieConflict.movie_name}" bắt đầu lúc ${conflict.startTime} và kết thúc vào ${conflict.endTime}.`,
         type: "error",
       });
       return;
@@ -315,9 +317,10 @@ const handlePrevPage = (cinemaId) => {
     const newShowtime = {
       showtime_id : showtimes.length + 1,
       show_date : selectedDate,
-      show_time : selectedTime,
+      show_time : parseInt(selectedTime),
       movie_id: movie?.movie_id,
       cinema_id :cinema?.cinema_id,
+      // cinema_id:1,
       screeningroom_id : room?.screeningroom_id,
     };
 
@@ -431,6 +434,7 @@ const handlePrevPage = (cinemaId) => {
         <div className={styles.itemFormGroup}>
           <label>Chọn rạp</label>
           <select
+            name="cinema_id"
             value={selectedCinema}
             onChange={(e) => {
               setSelectedCinema(e.target.value);
@@ -438,7 +442,7 @@ const handlePrevPage = (cinemaId) => {
             }}
           >
             <option value="">-- Chọn rạp --</option>
-            {cinemaData.map((cinema) => (
+            {cinemaData?.map((cinema) => (
               <option key={cinema.cinema_id} value={cinema.cinema_id}>
                 {cinema.cinema_name} - {cityData.find(city=>city.city_id===cinema.cinema_id).city_name}
               </option>
@@ -523,64 +527,62 @@ const handlePrevPage = (cinemaId) => {
       <table className={styles.table}>
         <thead>
           <tr>
-            {/* <th>ID</th> */}
             <th>STT</th>
             <th>Tên phim</th>
-            <th>Phòng chiếu</th>
             <th>Rạp</th>
+            <th>Phòng chiếu</th>
             <th>Ngày chiếu</th>
             <th>Giờ chiếu</th>
-            <th>Thời lượng</th>
+            <th>Thời lượng (phút)</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
-          {/* {currentShowtimes */}
-          {console.log(selectedCinemaDetails.cinema_id)}
-          {console.log(getCinemaShowtimes(selectedCinemaDetails.cinema_id))}
-          {selectedCinema &&getCinemaShowtimes(selectedCinemaDetails.cinema_id)
-          // .filter(showtime => showtime.cinemaId === selectedCinemaDetails.id)
-          .map((showtime,index) => (
-            <tr key={showtime.showtime_id}>
-              {/* <td>{showtime.id}</td> */}
-              <td>{index+1}</td>
-              <td>{movieData.find(movie=>movie.id===showtime.movie_id)?.movie_name}</td>
-              {/* <td>{cinemaRooms[showtime.cinemaId].find(room=>room.id===showtime.roomId)?.name}</td> */}
-              <td>
-                {screeningRooms
-                  .filter(room => room.cinema_id === showtime.cinema_id)  // Lọc các phòng chiếu thuộc rạp hiện tại
-                  .find(room => room.screeningroom_id === showtime.screeningroom_id) // Tìm phòng chiếu theo screeningroom_id
-                  ?.room_number} {/* Hoặc dùng tên phòng chiếu: room_name hoặc tên khác */}
-              </td>
+          {console.log("ne: ",getCinemaShowtimes(selectedCinemaDetails.cinema_id))}
+          {selectedCinema &&
+            getCinemaShowtimes(selectedCinemaDetails.cinema_id)
+              .map((showtime, index) => {
+                const movie = movieData.find(
+                  (movie) => movie.movie_id === showtime.movie_id
+                );
+                const cinema = cinemaData.find(
+                  (cinema) => cinema.cinema_id === showtime.cinema_id
+                );
+                const room = screeningRooms
+                  .filter((room) => room.cinema_id === showtime.cinema_id)
+                  .find((room) => room.screeningroom_id === showtime.screeningroom_id);
 
-              <td>{cinemaData.find(cinema=>cinema.cinema_id===showtime.cinema_id)?.cinema_name}</td>
-              <td>{showtime.show_date}</td>
-              <td>{showtime.show_time}</td>
-              {/* <td>{showtime.duration}</td> */}
-              <td>{movieData.find(movie=>movie.movie_id===showtime.movie_id).movie_name}</td>
-              <td>
-                <div className={styles.editnDeleteButton}>
-                  <button
-                    className={styles.editButton}
-                    onClick={() => handleEditShowtime(showtime)}
-                  >
-                    Sửa
-                  </button>
-                  <button
-                    className={styles.deleteButton}
-                    onClick={() => handleDeleteShowtime(showtime.id)}
-                  >
-                    Xóa
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
+                return (
+                  <tr key={showtime.showtime_id}>
+                    <td>{index + 1}</td>
+                    <td>{movie?.movie_name || "Không xác định"}</td>
+                    <td>{cinema?.cinema_name || "Không xác định"}</td>
+                    <td>{room?"Screen "+room.room_number: "Không xác định"}</td>
+                    <td>{showtime.show_date}</td>
+                    <td>{showtime.show_time}</td>
+                    <td>{movie?.duration || "N/A"}</td>
+                    <td>
+                      <div className={styles.editnDeleteButton}>
+                        <button
+                          className={styles.editButton}
+                          onClick={() => handleEditShowtime(showtime)}
+                        >
+                          Sửa
+                        </button>
+                        <button
+                          className={styles.deleteButton}
+                          onClick={() => handleDeleteShowtime(showtime.showtime_id)}
+                        >
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
         </tbody>
-
       </table>
 
-      {/* Modal chỉnh sửa suất chiếu */}
       {isModalOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
@@ -609,7 +611,7 @@ const handlePrevPage = (cinemaId) => {
                   <input
                     type="date"
                     name="date"
-                    value={editingShowtime.date}
+                    value={editingShowtime.show_date}
                     onChange={(e) => setEditingShowtime({ ...editingShowtime, show_date: e.target.value })}
                   />
                 </div>
@@ -618,7 +620,7 @@ const handlePrevPage = (cinemaId) => {
                   <input
                     type="time"
                     name="time"
-                    value={editingShowtime.time}
+                    value={editingShowtime.show_time}
                     onChange={(e) => setEditingShowtime({ ...editingShowtime, show_time: e.target.value })}
                   />
                 </div>
@@ -629,7 +631,7 @@ const handlePrevPage = (cinemaId) => {
                     value={editingShowtime.screeningroom_id }
                     onChange={(e) => setEditingShowtime({ ...editingShowtime, screeningroom_id : e.target.value })}
                   >
-                    {screeningRooms.filter(room=>room.cinema_id===selectedCinema)
+                    {screeningRooms.filter(room=>room.cinema_id===parseInt(selectedCinema))
                     .map((room) => (
                       <option key={room.screeningroom_id} value={room.screeningroom_id}>
                         Screen {room.room_number}
@@ -645,33 +647,6 @@ const handlePrevPage = (cinemaId) => {
           </div>
         </div>
       )}
-      {/* <div className={styles.pagination}>
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className={styles.pageButton}
-        >
-          &lt;
-        </button>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={`${styles.pageButton} ${
-              currentPage === index + 1 ? styles.activePage : ""
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={styles.pageButton}
-        >
-          &gt;
-        </button>
-      </div> */}
       <div className={styles.pagination}>
         <button
           onClick={() => handlePrevPage(selectedCinema)} // Chuyển về trang trước

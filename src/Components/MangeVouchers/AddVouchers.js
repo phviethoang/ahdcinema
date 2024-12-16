@@ -6,7 +6,6 @@ import { validateForm } from '../../utils/validateForm';
 const AddVouchers = ({ initialData, onSave, onCancel }) => {
   const [notification, setNotification] = useState(null);
   const [formData, setFormData] = useState({
-    voucher_id: '',
     voucher_name: '',
     voucher_code: '',
     status: 'Active',  // Mặc định là 'Active'
@@ -21,16 +20,29 @@ const AddVouchers = ({ initialData, onSave, onCancel }) => {
     }
   }, [initialData]);
 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  
+    if (name === 'voucher_value') {
+      // Chuyển giá trị voucher_value thành số nguyên
+      const intValue = parseInt(value, 10);
+  
+      // Kiểm tra xem giá trị nhập vào có phải là số hợp lệ không
+      setFormData((prevData) => ({ 
+        ...prevData, 
+        [name]: isNaN(intValue) ? '' : intValue,  // Nếu không phải số, gán giá trị rỗng
+      }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requiredFields = ['voucher_id', 'voucher_name', 'voucher_code', 'voucher_value'];
+    const requiredFields = [ 'voucher_name', 'voucher_code', 'voucher_value'];
     const fieldLabels = {
-      voucher_id: 'Mã voucher',
       voucher_name: 'Tên voucher',
       voucher_code: 'Mã code',
       expiration_date : 'Ngày hết hạn',
@@ -43,8 +55,12 @@ const AddVouchers = ({ initialData, onSave, onCancel }) => {
       setNotification({ message: firstError, type: 'error' });
     } else {
       if (!initialData) setNotification({ message: 'Thêm voucher thành công!', type: 'success' });
-      if (initialData) setNotification({ message: 'Cập nhật voucher thành công!', type: 'success' });
-      onSave(formData);
+      console.log("formData: ",formData);
+      //đưa formData lên csdl
+      if (initialData) {
+        setNotification({ message: 'Cập nhật voucher thành công!', type: 'success' });
+        onSave(formData);
+      }
     }
   };
 
@@ -68,18 +84,6 @@ const AddVouchers = ({ initialData, onSave, onCancel }) => {
       <div className={styles.AddVouchersContainer}>
         <form className={styles.AddVouchersForm} onSubmit={handleSubmit}>
         <div className={styles.formRow}>
-          <div className={styles.AddVouchersFormGroup}>
-            <label htmlFor="voucher_id">Mã voucher:</label>
-            <input
-              type="text"
-              id="voucher_id"
-              name="voucher_id"
-              value={formData.voucher_id}
-              onChange={handleInputChange}
-              placeholder="Nhập mã voucher"
-            />
-          </div>
-
           <div className={styles.AddVouchersFormGroup}>
             <label htmlFor="voucher_name">Tên voucher:</label>
             <input

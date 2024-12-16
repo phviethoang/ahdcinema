@@ -277,16 +277,26 @@ useEffect(()=>{
     console.log("formInput: ",formInput)
 },[formInput])
 
-const groupedSeats = formData.reduce((acc, seat) => {
-    //accumulator
-    // Lấy tên hàng từ seat_number (phần đầu tiên của seat_number)
-    const row = seat.seat_number.charAt(0).toUpperCase();  // Lấy chữ cái đầu tiên (A, B, C,...)
-    if (!acc[row]) {
-      acc[row] = []; // Nếu chưa có nhóm cho hàng này, tạo mới
+const [groupedSeats, setGroupedSeats] = useState({});
+useEffect(() => {
+  // Lọc ghế chỉ thuộc phòng chiếu hiện tại
+  const filteredSeats = formData?.filter(seat => seat.screeningroom_id === Number(screeningroomId));
+
+  // Nhóm ghế theo screeningroomId và theo hàng (row)
+  const groupedByScreeningRoom = filteredSeats.reduce((acc, seat) => {
+    const row = seat.seat_number.charAt(0).toUpperCase(); // Lấy tên hàng từ seat_number
+    if (!acc[seat.screeningroom_id]) {
+      acc[seat.screeningroom_id] = {}; // Nếu chưa có nhóm cho screeningroom_id này, tạo mới
     }
-    acc[row].push(seat); // Thêm ghế vào hàng tương ứng
+    if (!acc[seat.screeningroom_id][row]) {
+      acc[seat.screeningroom_id][row] = []; // Nếu chưa có nhóm cho hàng này, tạo mới
+    }
+    acc[seat.screeningroom_id][row].push(seat); // Thêm ghế vào hàng tương ứng
     return acc;
   }, {});
+  console.log("groupedByScreeningRoom: ",groupedByScreeningRoom)
+  setGroupedSeats(groupedByScreeningRoom); // Lưu vào state
+}, [formData]); // Chạy lại khi screeningroomId thay đổi
   
 
   return (
@@ -315,80 +325,90 @@ const groupedSeats = formData.reduce((acc, seat) => {
       </div>
       <div className={styles.seatMap}>
         <div className={styles.screen}>SCREEN</div>
-        {Object.entries(groupedSeats).map(([row, rowSeats]) => (
-            <div key={row} className={styles.seatRow}>
-                <div className={styles.rowLabel}>{row}</div> {/* Hiển thị tên hàng ghế */}
+          {Object.entries(groupedSeats).map(([screeningroomId, rows]) => (
+              <div key={screeningroomId} className={styles.screeningRoom}>
+                {Object.entries(rows).map(([row, rowSeats]) => {
+                  // Kiểm tra nếu rowSeats là mảng trước khi sử dụng map
+                  if (Array.isArray(rowSeats)) {
+                    return (
+                      <div key={row} className={styles.seatRow}>
+                        <div className={styles.rowLabel}>{row}</div> {/* Hiển thị tên hàng ghế */}
 
-                {rowSeats.map((seat) => (
-                <div
-                    key={seat.seat_id}
-                    className={clsx(styles.seat, {
-                        [styles.regularSeat]: seat.seat_type_id === 1,
-                        [styles.vipSeat]: seat.seat_type_id === 2,
-                        [styles.sweetboxSeat]: seat.seat_type_id === 3,
-                        [styles.unavailableSeat]: !seat.is_available,
-                      })}
-                    title={`Ghế: ${seat.seat_number}, Loại: ${seat.seat_type}`}
-                    onClick={() => handleDeleteSeat(seat.seat_id)}
-                >
-                    {seat.seat_number}
-                </div>
-                ))}
-            <div className={styles.rowLabel}>{row}</div> {/* Hiển thị tên hàng ghế */}
+                        {rowSeats.map((seat) => (
+                          <div
+                            key={seat.seat_id}
+                            className={clsx(styles.seat, {
+                              [styles.regularSeat]: seat.seat_type_id === 1,
+                              [styles.vipSeat]: seat.seat_type_id === 2,
+                              [styles.sweetboxSeat]: seat.seat_type_id === 3,
+                              [styles.unavailableSeat]: !seat.is_available,
+                            })}
+                            title={`Ghế: ${seat.seat_number}, Loại: ${seat.seat_type_id === 1 ? 'Standard' : seat.seat_type_id === 2 ? 'VIP' : 'Sweetbox'}`}
+                            onClick={() => handleDeleteSeat(seat.seat_id)}
+                          >
+                            {seat.seat_number}
+                          </div>
+                        ))}
+                        <div className={styles.rowLabel}>{row}</div> {/* Hiển thị tên hàng ghế */}
+                      </div>
+                    );
+                  } else {
+                    return null; // Tránh lỗi nếu rowSeats không phải là mảng
+                  }
+                })}
+              </div>
+          ))}
+          {isModalOpen.open&&isModalOpen.type==="regular"&&
+              <div className={styles.modalOverlay}>
+                  <div className={styles.modalContent}>
+                      <form>
+                          <div className={styles.formRow}>
+                          <div className={styles.itemFormGroup}>
+                              <label>Hàng ghế</label>
+                              <input
+                              type="text"
+                              value={formData.row}
+                              onChange={(e) => setFormInput({ ...formInput, row: e.target.value })}
+                              placeholder="Nhập hàng ghế (A-Z)"
+                              />
+                          </div>
+                          <div className={styles.itemFormGroup}>
+                              <label>Số ghế</label>
+                              <input
+                              type="number"
+                              value={formData.seatCount}
+                              onChange={(e) => setFormInput({ ...formInput, seatCount: parseInt(e.target.value) || 0 })}
+                              placeholder="Nhập số ghế"
+                              />
+                          </div>
+                          <div className={styles.itemFormGroup}>
+                              <label>Loại ghế</label>
+                              <select
+                                  value={formInput.seat_type_id}
+                                  onChange={(e) => setFormInput({ ...formInput, seat_type_id: parseInt(e.target.value) })}
+                              >
+                                  <option value="">-- Chọn loại ghế --</option>
+                                  {seatTypeData?.map((seatType) => (
+                                  <option key={seatType.seat_type_id} value={seatType.seat_type_id}>
+                                      {seatType.seat_type}
+                                  </option>
+                                  ))}
+                              </select>
+                          </div>
+                          </div>
+                          <div className={styles.formActions}>
+                          <button type="button" onClick={handleAddSeats} className={styles.saveButton}>
+                              Lưu
+                          </button>
+                          <button type="button" onClick={closeModal} className={styles.cancelButton}>
+                              Hủy
+                          </button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          }
         </div>
-        ))}
-
-    {isModalOpen.open&&isModalOpen.type==="regular"&&
-        <div className={styles.modalOverlay}>
-            <div className={styles.modalContent}>
-                <form>
-                    <div className={styles.formRow}>
-                    <div className={styles.itemFormGroup}>
-                        <label>Hàng ghế</label>
-                        <input
-                        type="text"
-                        value={formData.row}
-                        onChange={(e) => setFormInput({ ...formInput, row: e.target.value })}
-                        placeholder="Nhập hàng ghế (A-Z)"
-                        />
-                    </div>
-                    <div className={styles.itemFormGroup}>
-                        <label>Số ghế</label>
-                        <input
-                        type="number"
-                        value={formData.seatCount}
-                        onChange={(e) => setFormInput({ ...formInput, seatCount: parseInt(e.target.value) || 0 })}
-                        placeholder="Nhập số ghế"
-                        />
-                    </div>
-                    <div className={styles.itemFormGroup}>
-                        <label>Loại ghế</label>
-                        <select
-                            value={formInput.seat_type_id}
-                            onChange={(e) => setFormInput({ ...formInput, seat_type_id: parseInt(e.target.value) })}
-                        >
-                            <option value="">-- Chọn loại ghế --</option>
-                            {seatTypeData?.map((seatType) => (
-                            <option key={seatType.seat_type_id} value={seatType.seat_type_id}>
-                                {seatType.seat_type}
-                            </option>
-                            ))}
-                        </select>
-                    </div>
-                    </div>
-                    <div className={styles.formActions}>
-                    <button type="button" onClick={handleAddSeats} className={styles.saveButton}>
-                        Lưu
-                    </button>
-                    <button type="button" onClick={closeModal} className={styles.cancelButton}>
-                        Hủy
-                    </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    }
-      </div>
       <Legend/>
     </div>
   );

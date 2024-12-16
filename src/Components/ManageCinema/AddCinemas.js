@@ -64,7 +64,6 @@ const AddCinemas = ({ initialData, onSave, onCancel }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => ({ ...prevData, [name]: name === 'city_id' ? parseInt(value, 10) : value, }));
   };
 
@@ -87,13 +86,13 @@ const AddCinemas = ({ initialData, onSave, onCancel }) => {
     else {
       if(!initialData){
         setNotification({ message: 'Thêm thông tin rạp thành công!', type: 'success' });
+        console.log("formData: ", formData)
       } 
       else{
         setNotification({ message: 'Cập nhật thông tin rạp thành công!', type: 'success' });
         onSave(formData);
       }
     }
-    console.log("huhu: ",formData);
   };
   
 

@@ -120,6 +120,7 @@ const MovieList = () => {
 
       setEditingMovie(null);
       setNotification({ message: "Cập nhật phim thành công", type: "success" });
+      console.log(movieData);
     }
   };
   
