@@ -160,7 +160,7 @@ const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInf
               </button>
             : <button
               className={styles.confirm}
-              onClick={(e)=>{onVisibleChange(); onTransactionConfirmation(); onPaymentSuccessful()}}
+              onClick={(e)=>{onVisibleChange(); onTransactionConfirmation(); onPaymentSuccessful(payBy)}}
               >
               Thanh toán
               </button>

@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
     function Step1({setTheater, setTime, setDate, setRoom, setRoomId}){
         const navigate = useNavigate();
+    const tem1 = sessionStorage.getItem('cardImgData')
+    const tem2 = sessionStorage.getItem('movie_name')
+    if(tem1) sessionStorage.removeItem('cardImagData')
+    if(tem2) sessionStorage.removeItem('movie_name')
     //Các biến đại diện cho ngày được chọn, thành phố được chọn, khung giờ chiếu và rạp được chọn
     //Ngày được chọn lấy từ sessionStorage, nếu không có thì trả về rỗng
     const[dateChoice, setDateChoice] = useState(
@@ -43,8 +47,9 @@ import { useEffect } from 'react'
     const [showTimes, setShowTimes] = useState([]);
     const tem = sessionStorage.getItem('movie_id')
     const [movieId, setMovieId] = useState(tem? JSON.parse(tem):'')
+    // const movieId = tem? JSON.parse(tem):''
     // Hàm fetch data GET các ngày chiếu của phim đó
-    useEffect(() => {
+    // useEffect(() => {
     fetch(`http://localhost:5000/ahd//buyticket/movie-showdates?movie_id=${movieId}`, {
         credentials: 'include', // Đảm bảo gửi cookie
     })
@@ -83,8 +88,9 @@ import { useEffect } from 'react'
            
         })
         .catch(error => console.error('Error:', error));
-    }, [movieId]);
+    // }, [movieId]);
 
+    // if(tem) sessionStorage.removeItem('movie_id')
     const fetchData = async (url, setData) => {
         try {
         const response = await fetch(url, {

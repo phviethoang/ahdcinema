@@ -34,6 +34,19 @@ function CardsCollection({}){
     // In ra các mảng kiểm tra
     console.log(hotMovies)
     //END FETCH DATA
+    const length = hotMovies.length
+    
+    const showingCards = []
+    for(let i = 0; i< length; i++)
+    {
+        showingCards.push(
+            <div className={style.itemCover} 
+                style={{'--position':(index+i)%length, '--initPosition': i}} >
+            <Card src={hotMovies[i].movie_image} movieInfo={hotMovies[i]}></Card>   
+        </div>
+        )
+    }
+    
     return (
         <div className = {style.container}>
             <div className={style.label}>
@@ -43,45 +56,19 @@ function CardsCollection({}){
             </div>
             <button className={clsx(style.prev, style.button)} onClick={()=>
                 {
-                    setIndex((prev)=>(prev+1)%6);
+                    setIndex((prev)=>(prev+1)%length);
                 }}></button>
             <button className={clsx(style.next, style.button)} onClick={()=>
                 {
-                    setIndex(prev=>((prev+5)%6));
+                    setIndex(prev=>((prev+length-1)%length));
                 }
             }></button>
             <div className={style.cardsVisible}>
                 <div className={style.allCards} 
-                style={{transform: `translate(${translate}vw)`, '--quantity': 6}}>
-                    <div className={style.itemCover} 
-                    style={{'--position':index%6, '--initPosition': 0}} >
-                        <Card src={image1}></Card>   
-                        
-                    </div>
-                    <div className={style.itemCover} 
-                    style={{'--position': (index+1)%6, '--initPosition': 1}}>
-                               <Card src={image2} ></Card> 
-                                
-                    </div>
-                    <div className={style.itemCover}
-                     style={{'--position': (index+2)%6, '--initPosition': 2}}>
-                                 <Card src={image3} ></Card>
-                    </div>
-                    <div className={style.itemCover} 
-                    style={{'--position': (index+3)%6,  '--initPosition': 3}}>
-                                <Card src={image4} ></Card>
-                                
-                    </div>
-                    <div className={style.itemCover} 
-                    style={{'--position':(index + 4)%6, '--initPosition': 4}}>
-                                <Card src={image5} ></Card>
-                                
-                    </div>
-                    <div className={style.itemCover} 
-                    style={{'--position': (index+ 5)%6, '--initPosition': 5}}>
-                                <Card src={image6} ></Card>
-                                
-                    </div>
+                style={{transform: `translate(${translate}vw)`, '--quantity': length}}>
+                    {
+                        showingCards
+                    }
                 </div>
                 
             </div>

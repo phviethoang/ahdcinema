@@ -31,7 +31,7 @@ function TheaterAndTime({theaterChoosen, cityChoice, dateChoice, onclick}){
                                     }
                                 }
                                 sizeStyle='flexSquare' 
-                                id={each.time + cityChoice + dateChoice}
+                                id={each.time + each.name + cityChoice + dateChoice}
                                 choosen={theaterChoice}
                                 support={each}
                                 support2={each.name}

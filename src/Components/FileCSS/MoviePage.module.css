@@ -33,6 +33,7 @@
         top: 25%;
         left: 10%;
         font-family: 'Edge of the galaxy';
+        letter-spacing: 2px;
         font-size: 250%;
         text-align: left;
         position: relative;
@@ -47,7 +48,8 @@
     margin-top: 0.5%;
 }
 .title{
-    height: 12vh;
+    height: fit-content;
+    padding: 1vh;
     width: 100%;
     font-size: xx-large;
     font-family: 'Montserrat Bold','Aguda Black','Peace Sans';

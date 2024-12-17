@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ComboPage from './Step3/ComboPage';
 import SeatBooking from './Step2/SeatBooking';
 import PromoPage from './Step4/PromoPage';
@@ -9,15 +9,19 @@ import Header from '../header';
 import Footer from '../footer';
 import clsx from 'clsx';
 function BuyTicket() {
+    
     const [clearControl, setClearControl] = useState(true)
     if(clearControl){
-        sessionStorage.removeItem('dateData');
-        sessionStorage.removeItem('theatersDat');
-        sessionStorage.removeItem('citiesData');
+        sessionStorage.removeItem('dateChoice');
+        sessionStorage.removeItem('theaterChoice');
+        sessionStorage.removeItem('cityChoice');
         localStorage.clear();
         setClearControl(false);
     }
-    const [currentPageIndex, setCurrentPageIndex] = useState(0);
+    const [currentPageIndex, setCurrentPageIndex] = useState(()=>{
+        const tem = sessionStorage.getItem('step2')
+        return tem?1:0
+    });
     const [isPaymentClicked, setIsPaymentClicked] = useState(false);
     const [transitionClass, setTransitionClass] = useState(styles.enterRight); // Khởi tạo với hiệu ứng vào từ phải
     const [seatTotalPrice, setSeatTotalPrice] = useState(0);
@@ -25,33 +29,75 @@ function BuyTicket() {
     const [combo, setCombo] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [comboQuantities, setComboQuantities] = useState([]);
-    const [theater, setTheater] = useState("Bạn chưa chọn rạp")
-    const [time, setTime] = useState("... : ... ")
-    const [date, setDate] = useState("...")
-    const [room, setRoom] = useState("Chưa có phòng chiếu")
-    const [roomId, setRoomId] = useState()
+    const [theater, setTheater] = useState(()=>{
+        const tem = sessionStorage.getItem('theaterFromTheaterPage')
+        return tem? tem: "Bạn chưa chọn rạp"
+}   )
+    const [time, setTime] = useState(()=>{
+        const tem = sessionStorage.getItem('timeFromTheaterPage')
+        return tem? tem: "... : ... "
+}   )
+    const [date, setDate] = useState(()=>{
+        const tem = sessionStorage.getItem('dateFromTheaterPage')
+        return tem? tem: "..."
+}   )
+    const [room, setRoom] = useState(()=>{
+        const tem = sessionStorage.getItem('roomFromTheaterPage')
+        return tem? tem:  "Chưa có phòng chiếu"
+}  )
+
+    const [roomId, setRoomId] = useState(()=>{
+        const tem = sessionStorage.getItem('roomIdFromTheaterPage')
+        return tem? tem:  ''
+} )
+    const [image, setImage] = useState(
+        ()=>
+        {
+            let getImg = sessionStorage.getItem('cardImgData')
+            console.log(getImg)
+            if(!getImg){
+                getImg = sessionStorage.getItem('imageFromTheaterPage')
+            }
+            
+            return getImg? getImg: ''
+        }
+    )
+    const [name, setName] = useState(
+        ()=>{
+            let getName = sessionStorage.getItem('movie_name')
+            if(!getName){
+                getName = sessionStorage.getItem('nameFromTheaterPage')
+            }
+            return getName? getName: ''
+            
+        }
+    )
     const [promotion, setPromotion] = useState(() => {
         const storedPromotion = localStorage.getItem('promotion');
         return storedPromotion ? JSON.parse(storedPromotion) : 0; // Nếu có giá trị trong localStorage, dùng nó, nếu không mặc định là 0
       });
+
+    useEffect(()=>{
+        console.log(date)
+    }, [date])
     
     const goToNextPage = () => {
         if (currentPageIndex < pages.length - 1) {
             setTransitionClass(styles.exitLeft); // Set exit transition cho trang hiện tại
-            setTimeout(() => {
+            // setTimeout(() => {
                 setCurrentPageIndex(currentPageIndex + 1);
-                setTransitionClass(styles.enterRight); // Set enter transition cho trang tiếp theo
-            }, 500);
+            //     setTransitionClass(styles.enterRight); // Set enter transition cho trang tiếp theo
+            // }, 500);
         }
     };
 
     const goToPreviousPage = () => {
         if (currentPageIndex > 0) {
             setTransitionClass(styles.exitRight); // Set exit transition cho trang hiện tại
-            setTimeout(() => {
+            // setTimeout(() => {
                 setCurrentPageIndex(currentPageIndex - 1);
-                setTransitionClass(styles.enterLeft); // Set enter transition cho trang trước đó
-            }, 500);
+            //     setTransitionClass(styles.enterLeft); // Set enter transition cho trang trước đó
+            // }, 500);
         }
     };
 
@@ -86,8 +132,8 @@ function BuyTicket() {
                     setDate={
                         (event) =>{
                                 setDate(
-                                    // event.currentTarget.getAttribute('data-content')
-                                    sessionStorage.getItem('dateChoice')
+                                    event.currentTarget.getAttribute('data-date')
+                                    // sessionStorage.getItem('dateChoice')
                                 )
                         }
                     }
@@ -109,8 +155,8 @@ function BuyTicket() {
                     }
                     ></Step1>,
                 <SeatBooking
-                    showDate={date !== "..." ? date: ''}
-                    showTime={time !== "... : ... "? time: ''}
+                    showDate={date != "..." ? date: ''}
+                    showTime={time != "... : ... "? time: ''}
                     screeningroomId = {roomId}
                     onSeatSelectionChange={handleSeatSelectionChange}
                     onTotalPriceChange={handleSeatTotalPriceChange}
@@ -133,77 +179,13 @@ function BuyTicket() {
         <div className = {styles.container}>
             <Header></Header>
             <div className = {styles.progressBarBox}>
-                {/* <div className = {styles.step}>
-                    <div className = {clsx(styles.stepLabel, styles.activeText)}>Bước 1</div>
-                    <div className = {clsx(styles.stepShape, styles.active)}></div>
-                </div>
-                <div className = {styles.step}>
-                    <div className = {clsx(styles.stepLabel, 
-                        {[styles.activeText]: currentPageIndex > 0, 
-                        [styles.notActiveText]: currentPageIndex == 0})}>Bước 2</div>
-                    <div className = {clsx(styles.stepShape, 
-                        {[styles.active]: currentPageIndex > 0})}></div>
-                </div>
-                <div className = {styles.step}>
-                    <div className = {clsx(styles.stepLabel, 
-                        {[styles.activeText]: currentPageIndex > 1, 
-                        [styles.notActiveText]: currentPageIndex <= 1})}>Bước 3</div>
-                    <div className = {clsx(styles.stepShape, {[styles.active]: currentPageIndex > 1})}></div>
-                </div>
-                <div className = {styles.step}>
-                    <div className = {clsx(styles.stepLabel, 
-                        {[styles.activeText]: currentPageIndex > 2, 
-                        [styles.notActiveText]: currentPageIndex <= 2})}>Bước 4</div>
-                    <div className = {clsx(styles.stepShape, {[styles.active]: currentPageIndex >2})}></div>
-                </div> */}
             </div>
             <div className={styles.buyTicket}>
-            
-                {/* <div className={`${styles.page} ${currentPageIndex === 0 ? `${styles.active} ${transitionClass}` : ''}`}>
-                    {currentPageIndex === 0 && (
-                        <Step1 setTheater={
-                            (event)=>
-                            {
-                                setTheater(event.currentTarget.getAttribute('data-support'))
-                            }}
-                            setDate={
-                                (event) =>{
-                                        setDate(event.currentTarget.getAttribute('data-content'))
-                                }
-                            }
-                            setTime={
-                                (event)=>
-                                {
-                                    setTime(event.currentTarget.getAttribute('data-content'))
-                                }
-                            }
-                            ></Step1>
-                    )}
-                </div> */}
-                {/* <div className={`${styles.page} ${currentPageIndex === 0 ? `${styles.active} ${transitionClass}` : ''}`}>
-                    {currentPageIndex === 1 && (
-                        <SeatBooking
-                            onSeatSelectionChange={handleSeatSelectionChange}
-                            onTotalPriceChange={handleSeatTotalPriceChange}
-                            allCheckedSeats={selectedSeats}
-                        />
-                    )}
-                </div> */}
-                {/* <div className={`${styles.page} ${currentPageIndex === 1 ? `${styles.active} ${transitionClass}` : ''}`}>
-                    {currentPageIndex === 2 && (
-                        <ComboPage
-                            comboQuantities={comboQuantities}
-                            onQuantitiesChange={handleComboQuantitiesChange}
-                        />
-                    )}
-                </div> */}
-                {/* <div className={`${styles.page} ${currentPageIndex === 2 ? `${styles.active} ${transitionClass}` : ''}`}>
-                    {currentPageIndex === 3 && <PaymentPage />}
-                </div> */}
                 {pages[currentPageIndex]}
-                
             </div>
             {!isPaymentClicked &&<TicketInfo 
+                    cardImg = {image}
+                    movieName = {name}
                     theater={theater}
                     date = {date}
                     time = {time}

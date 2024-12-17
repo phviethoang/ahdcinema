@@ -54,7 +54,9 @@ function Login() {
         }
   
         // Điều hướng sang trang khác sau khi đăng nhập thành công
-        navigate("/");
+        const tem = sessionStorage.getItem('redirectedLink')
+        if(tem) navigate(tem)
+        else navigate("/");
       } catch (error) {
         console.error("Login error:", error);
         setErrorMessage(error.message || "Có lỗi xảy ra, vui lòng thử lại");

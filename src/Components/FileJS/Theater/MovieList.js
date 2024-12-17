@@ -1,66 +1,50 @@
 import React from 'react';
 import styles from '../../FileCSS/Theater/cinemaList.module.css'; // CSS để tạo kiểu
-import AHDmovie1 from '../../../img/movieImage/captain.png';
-import AHDmovie2 from '../../../img/movieImage/infinityWar.png';
-import AHDmovie3 from '../../../img/movieImage/ironMan.png';
-import AHDmovie4 from '../../../img/movieImage/spiderman.png';
-import AHDmovie5 from '../../../img/movieImage/blackPanther.png';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function MovieList({ selectedDay }) {
+export default function MovieList({ selectedDay, moviesInDay }) {
 
-    const moviesByDays = {
-        0: [
-            { title: "Captain America: The Winter Soldier", poster: AHDmovie1, showtimes: ["10:00 AM", "13:00 PM", "19:00 PM"] },
-            { title: "Avengers: Infinity War", poster: AHDmovie2, showtimes: ["11:00 AM", "16:00 PM", "21:00 PM"] }
-        ],
-        1: [
-            { title: "Iron Man", poster: AHDmovie3, showtimes: ["12:00 PM", "15:00 PM", "20:00 PM"] },
-            { title: "Spider-Man: No Way Home", poster: AHDmovie4, showtimes: ["14:00 PM", "18:00 PM"] }
-        ],
-        2: [
-            { title: "Black Panther", poster: AHDmovie5, showtimes: ["09:00 AM", "11:00 AM", "17:00 PM"] }
-        ],
-        default: []
-    };
-
-    const calculateDayDiff = (selectedDate) => {
-        const today = new Date();
-        const selected = new Date(today.getFullYear(), selectedDate.monthIndex, selectedDate.Day);
-        const diffTime = selected - today;
-        return Math.floor(diffTime / (1000 * 60 * 60 * 24)) % 5;
-    };
-
-    const dayDiff = calculateDayDiff(selectedDay);
-    const movies = moviesByDays[dayDiff] || moviesByDays.default;
-
-    return (
-        <div className={styles.movieList}>
-            <h3>Danh sách phim ngày {selectedDay.Month} {selectedDay.Day}:</h3>
-            {movies.length > 0 ? (
-                <div className={styles.movieGrid}>
-                    {movies.map((movie, index) => (
-                        <div key={index} className={styles.movieItem}>
-                            <img src={movie.poster} alt={movie.title} className={styles.poster} />
-                            <div className={styles.posterContainer}>
-                                <div className={styles.decor}></div>
-                                <div className={styles.showtimeContainer}>
-                                    <h4 className={styles.movieTitle}>{movie.title}</h4>
-                                    <h6 className={styles.subtitles}>2D Phụ Đề Anh & Việt</h6>
-                                    {movie.showtimes.map((time, timeIndex) => (
-                                        <div key={timeIndex} className={styles.showtimeBox}>
-                                            {time}
-                                        </div>
-                                    ))}
-                                </div>
-                                
-                                
-                            </div>
+    const navigate = useNavigate()
+    const movies = moviesInDay != null? moviesInDay.map((movie, index) => (
+        <div key={index} className={styles.movieItem}>
+            <img src={movie.poster} alt={movie.title} className={styles.poster} />
+            <div className={styles.posterContainer}>
+                <div className={styles.decor}></div>
+                <div className={styles.showtimeContainer}>
+                    <h4 className={styles.movieTitle}>{movie.title}</h4>
+                    <h6 className={styles.subtitles}>2D Phụ Đề Anh & Việt</h6>
+                    {movie.showtimes.map((timeAndRoom, timeIndex) => (
+                        <div key={timeIndex} 
+                        className={styles.showtimeBox}
+                        onClick={()=>
+                        {
+                            navigate('/BuyTicket')
+                            sessionStorage.setItem('nameFromTheaterPage', movie.title)
+                            sessionStorage.setItem('imageFromTheaterPage', movie.poster)
+                            sessionStorage.setItem('dateFromTheaterPage', JSON.parse(movie.show_date))
+                            sessionStorage.setItem('timeFromTheaterPage', timeAndRoom.show_time)
+                            sessionStorage.setItem('roomFromTheaterPage', timeAndRoom.room)
+                            sessionStorage.setItem('roomIdFromTheaterPage', timeAndRoom.roomId)
+                            sessionStorage.setItem('step2', 'thôi đi ngủ thôi')
+                            sessionStorage.setItem('theaterFromTheaterPage', movie.theater)
+                        }
+                        }>
+                            {timeAndRoom.show_time}
                         </div>
                     ))}
                 </div>
-            ) : (
-                <p>Không có phim nào.</p>
-            )}
+                
+                
+            </div>
+        </div>
+    )): 'Không có phim nào để hiển thị'
+    return (
+        <div className={styles.movieList}>
+            <h3>Danh sách phim ngày {selectedDay.Month} {selectedDay.Day}:</h3>
+                <div className={styles.movieGrid}>
+                    {movies}
+                </div>
         </div>
     );
 }

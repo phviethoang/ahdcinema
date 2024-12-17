@@ -10,7 +10,7 @@ import AHDtheaterImg2 from '../../../img/theaterImage/AHDtheater-2.png';
 import AHDtheaterImg3 from '../../../img/theaterImage/AHDtheater-3.png';
 import AHDtheaterImg4 from '../../../img/theaterImage/AHDtheater-4.png';
 
-function TheaterDetail() {
+function TheaterDetail({theaterChoosen}) {
   useEffect(() => {
     // Khởi tạo lại Bootstrap nếu cần thiết
     const carousel = document.querySelector('#carouselExampleCaptions');

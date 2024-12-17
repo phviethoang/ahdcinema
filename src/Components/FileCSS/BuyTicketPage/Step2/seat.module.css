@@ -122,7 +122,10 @@
     border-radius: 20px;
     color:white;
   }
-
+  .unavailableSeat{
+    background-color: gray;
+    pointer-events: none;
+  }
 .seat {
   width: 30px;
   height: 30px;
@@ -144,14 +147,8 @@
 }
 
 
-.unavailable {
-  background-color: black; /* Không thể chọn, viền màu đen */
-  color:white;
-  font-size: 10px;
-}
-
 .regular {
-  border-color: green; /* Ghế thường, viền màu xanh lá */
+  border-color: rgb(200, 200, 7); /* Ghế thường, viền màu xanh lá */
 }
 
 .vip {
@@ -160,10 +157,10 @@
 
 .sweetbox {
   color: white;
-  background-color: #8e6d98;
+  background-color: #c27ed7;
 }
 
 .checked {
-  background-color: #9d0d0d; 
+  background-color: #440d9d; 
   color: white;
 }

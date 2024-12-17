@@ -9,11 +9,15 @@ import TicketPriceTable from "./TicketPriceTable";
 import Header from '../header';
 import Footer from '../footer';
 import clsx from 'clsx'
+import DateTime from '../Cell/DateTime'
 export default function CinemaList() {
     const [selectedProvince, setSelectedProvince] = useState(null);
     const [selectedTheater, setSelectedTheater] = useState(null);
+    const [selectedDateTime, setSelectedDateTime] = useState(null)
     const [activeTab, setActiveTab] = useState('lichChieu'); 
-    
+    const [theaterChoosen, setTheaterChoosen] = useState()
+   
+
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -25,86 +29,146 @@ export default function CinemaList() {
     };
 
     const handleTheaterClick = (theater) => {
-        setSelectedTheater(selectedTheater === theater ? null : theater);
+        setSelectedTheater(selectedTheater === theater.cinema_name ? null : theater.cinema_name);
+        setTheaterChoosen(theater)
     };
 
     const [city, setCity] = useState([])
-    let cityId = 0
-    // Dữ liệu cho các tỉnh thành và rạp phim
-   
-        
-    // useEffect(()=>{
-    //     fetch('http://localhost:5000/api/cities')
-    // .then(response => {
-    //     if (!response.ok) {
-    //         throw new Error(`HTTP error! status: ${response.status}`);
-    //     }
-    //     return response.text(); // Lấy dữ liệu raw
-    // })
-    // .then(text => {
-    //     const data = text ? JSON.parse(text) : [];
-    //     setCity(data);
-    // })
-    // .catch(error => console.error('Error:', error)) 
-    // }, [])
+    useEffect(()=>{
+        fetch('http://localhost:5000/ahd/cities')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        setCity(data);
+    })
+    .catch(error => console.error('Error:', error));
+    },[])
 
-    // const provinces=city.map( (each) => {return { 
-    //     name: each.city_name,
-    //     code: each.city_id,
-    //     theaters: ()=>{
-    //         let theater
-    //         fetch(`http://localhost:5000/api/cinemas?city_id=${each.city_id}`)
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error(`HTTP error! status: ${response.status}`);
-    //             }
-    //             return response.text(); // Lấy dữ liệu raw
-    //         })
-    //         .then(text => {
-    //             theater = text ? JSON.parse(text) : [];
-    //         })
-    //         .catch(error => console.error('Error:', error))
-    //         theater = theater.map(each => each.cinema_name)
-    //         console.log(theater)
-    //     return theater 
-    //     }
-        
-    // }
-       
-    // })
-    const provinces = [
-        { name: "Hồ Chí Minh", code: "TPHoChiMinh", theaters: [
-            "AHD Hùng Vương Plaza", "AHD Crescent Mall", "AHD Thảo Điền Pearl",
-            "AHD Vincom Thủ Đức", "AHD Vivo City", "AHD Pearl Plaza",
-            "AHD Liberty Citypoint", "AHD Vincom Đồng Khởi", "AHD Menas Mall",
-            "AHD Pandora City", "AHD Aeon Tân Phú", "AHD Vincom Gò Vấp",
-            "AHD Hoàng Văn Thụ", "AHD Aeon Bình Tân", "AHD Saigonres Nguyễn Xí"
-        ]},
-        { name: "Hà Nội", code: "HaNoi", theaters: [
-            "AHD Vincom Bà Triệu", "AHD Hồ Gươm Plaza", "AHD Aeon Long Biên",
-            "AHD Vincom Nguyễn Chí Thanh", "AHD Indochine Plaza Hà Nội", "AHD Rice City",
-            "AHD Hà Nội Centerpoint", "AHD Vincom Royal City", "AHD Vincom Times City",
-            "AHD Vincom Long Biên", "AHD Mac Plaza", "AHD Trương Định Plaza",
-            "AHD Tràng Tiền Plaza", "AHD Sun Grand Thụy Khuê", "AHD Sun Grand Lương Yên"
-        ]},
-        { name: "Đà Nẵng", code: "DaNang", theaters: [
-            "AHD Vĩnh Trung Plaza", "AHD Vincom Đà Nẵng"
-        ]},
-        { name: "Hải Phòng", code: "HaiPhong", theaters: [
-            "AHD Vincom Hải Phòng", "AHD Aeon Mall Hải Phòng"
-        ]},
-        { name: "Cần Thơ", code: "CanTho", theaters: [
-            "AHD Sense City", "AHD Vincom Xuân Khánh", "AHD Vincom Hùng Vương"
-        ]}
-    ];
+    const [cinema, setCinema] = useState([])
+    useEffect(()=>{
+        fetch(`http://localhost:5000/ahd/cinemas?city_id=${selectedProvince}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        setCinema(data);
+    })
+    .catch(error => console.error('Error:', error));
+    },[selectedProvince])
 
+    const [showtime, setShowtime]=useState([])
+    useEffect(()=>{
+        if(theaterChoosen != null && selectedDateTime != null)
+        {
+            const cinema_id = theaterChoosen.cinema_id
+            const show_date = JSON.stringify(selectedDateTime)
+            fetch(`http://localhost:5000/ahd/showtimes?cinema_id=${cinema_id}&show_date=${show_date}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); 
+            })
+            .then(data => {
+                setShowtime(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+    },[selectedDateTime, theaterChoosen])
+
+
+    // thống kê showtime theo movie_id
+    function groupByMovie(showtime){
+        const result = {}
+        for( let i = 0; i< showtime.length; i++)
+        {
+            if(! ((showtime[i].movie_id) in result)){
+                result[showtime[i].movie_id] = {
+                    movie_id: showtime[i].movie_id,
+                    poster: showtime[i].movie_image,
+                    title: showtime[i].movie_name,
+                    show_date: JSON.stringify(selectedDateTime),
+                    showtimes: [{
+                        show_time: showtime[i].show_time,
+                        room: showtime[i].room_number,
+                        roomId: showtime[i].screeningroom_id
+                    }],
+                    theater: showtime[i].cinema_name
+
+                }
+            }
+            else {
+                result[showtime[i].movie_id].showtimes.push(
+                    {
+                        show_time: showtime[i].show_time,
+                        room: showtime[i].screeningroom_id
+                    }
+                )
+            }
+        }    
+        const returnResult = []
+        for(let key in result)
+        {
+            returnResult.push(result[key])
+        }
+        return returnResult
+
+    }
+    const [moviesInDay, setMoviesInDay] = useState([]) 
+    useEffect(
+        ()=>
+        {
+            if(showtime != null){
+                console.log(showtime)
+                setMoviesInDay(groupByMovie(showtime))
+                setDataShowing(
+                )
+            }
+            else{
+                setMoviesInDay(null)
+            }
+        }, [showtime]
+    )
+
+    const [dataShowing, setDataShowing] = useState( <DateScroller 
+        moviesInDay = {moviesInDay}
+        onclick={(event)=>{
+        console.log(event.currentTarget.getAttribute('data-support'))
+        setSelectedDateTime(event.currentTarget.getAttribute('data-support'))
+    }
+}/> )
+    useEffect(
+        ()=>{
+            if(activeTab === 'lichChieu' && (moviesInDay != null))
+            {
+                console.log(activeTab)
+                setDataShowing(
+                    <DateScroller 
+                        moviesInDay = {moviesInDay}
+                        onclick={(event)=>{
+                            console.log(event.currentTarget.getAttribute('data-support'))
+                            setSelectedDateTime(event.currentTarget.getAttribute('data-support'))
+                        }
+                    }/> )    
+            }
+            else if( activeTab === 'giaVe' && (moviesInDay != null))
+            {
+                setDataShowing(<TicketPriceTable/>)
+            }
+        }, [activeTab, moviesInDay]
+    )
     return (
         <div className={cinemaListStyle.theaterWrap}>
             <Header></Header>
             <div className = {cinemaListStyle.bodyContainer}>
-                 {/* <div className={cinemaListStyle.titleAhdCinema}>
-                            <h2>AHD Cinema</h2>
-                    </div> */}
                 <div className={cinemaListStyle.theaterListPreview}>
                     <div className={cinemaListStyle.theaterShowtimeTop}></div>
                    
@@ -114,13 +178,14 @@ export default function CinemaList() {
                     <div className={cinemaListStyle.mainArea}>
                         <div className={cinemaListStyle.label}>Tỉnh/ Thành phố</div>
                         <ul className={cinemaListStyle.cinemasByProvince}>
-                            {provinces.map((province) => (
+                            {city.map((province) => (
                                 <li 
-                                className = {clsx({[cinemaListStyle.choosen]: selectedProvince == province.code, 
-                                [cinemaListStyle.notChoosen]: selectedProvince !== province.code},
-                                 cinemaListStyle.button)}key={province.code} 
-                                 onClick={() => handleProvinceClick(province.code)}>
-                                    {province.name}
+                                className = {clsx({[cinemaListStyle.choosen]: selectedProvince === province.city_id, 
+                                [cinemaListStyle.notChoosen]: selectedProvince !== province.city_id},
+                                 cinemaListStyle.button)} 
+                                 key={province.city_name} 
+                                 onClick={() => handleProvinceClick(province.city_id)}>
+                                    {province.city_name}
                                 </li>
                             ))}
                         </ul>
@@ -131,15 +196,14 @@ export default function CinemaList() {
                     <div className={cinemaListStyle.cinemasArea2}>
                         <div className={cinemaListStyle.mainArea}>
                             <ul className={cinemaListStyle.cinemasList}>
-                            {selectedProvince && provinces.find(p => p.code === selectedProvince).theaters.map((theater, index) => (
-                                <li key={theater} 
+                            {selectedProvince && cinema.map((theater, index) => (
+                                <li key={theater.cinema_id} 
                                 className={
-                                    // cinemaListStyle.ahdCity1
-                                    clsx({[cinemaListStyle.choosen]: theater == selectedTheater, 
-                                        [cinemaListStyle.notChoosen]: selectedTheater !== theater},
+                                    clsx({[cinemaListStyle.choosen]: theater.cinema_name == selectedTheater, 
+                                        [cinemaListStyle.notChoosen]: selectedTheater !== theater.cinema_name},
                                          cinemaListStyle.button)
                                     } onClick={() => handleTheaterClick(theater)}>
-                                    {theater}
+                                    {theater.cinema_name}
                                 </li>
                             ))}
                             </ul>
@@ -158,7 +222,7 @@ export default function CinemaList() {
                     <div className={cinemaListStyle.mainContainer}>
                        <div className={cinemaListStyle.cinemaImage}>
                             <div className={cinemaListStyle.posterhungdzprvjp}>
-                                <TheaterDetail />
+                                <TheaterDetail/>
                             </div> 
                             <div className={cinemaListStyle.schedule}>
                             {/* <ProductCollateral />   */}
@@ -167,7 +231,7 @@ export default function CinemaList() {
                                     <li >
                                         <div className={`${cinemaListStyle.tabItem} ${activeTab === 'lichChieu'? cinemaListStyle.pointing: ''}`} 
                                         onClick={
-                                            () => handleTabClick('lichChieu')
+                                            () => setActiveTab('lichChieu')
                                         }
                                     >
                                         <span >
@@ -182,7 +246,10 @@ export default function CinemaList() {
                                         <div className={cinemaListStyle.describe}>Thông tin chi tiết giá vé</div>
                                         <div className={`${cinemaListStyle.tabItem} ${activeTab === 'giaVe'? cinemaListStyle.pointing: ''}
                                         `} 
-                                        onClick={() => handleTabClick('giaVe')}>
+                                        onClick={() =>{
+                                            setActiveTab('giaVe')
+                                            
+                                            }}>
                                             <span >
                                                 {activeTab === 'giaVe' && <FontAwesomeIcon icon={faHandPointRight} />} {/* Hiển thị icon nếu tab hiện tại */}
                                                  Giá vé
@@ -197,9 +264,20 @@ export default function CinemaList() {
                        
 
                          <div className={cinemaListStyle.tabContent}>
+                                {/* <div>
+                                    {
+                                        dataShowing
+                                    }
+                                </div> */}
                         {activeTab === 'lichChieu' && (
                             <div>
-                                <DateScroller/>
+                                <DateScroller 
+                                    moviesInDay = {moviesInDay}
+                                    onclick={(event)=>{
+                                        console.log(event.currentTarget.getAttribute('data-support'))
+                                        setSelectedDateTime(event.currentTarget.getAttribute('data-support'))
+                                    }
+                                    }/>     
                             </div>
                         )}
                         {activeTab === 'giaVe' && (

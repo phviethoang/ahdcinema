@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from "../../FileCSS/Theater/cinemaList.module.css"; // Nhập file CSS để tạo kiểu
 // MovieList
 import MovieList from "./MovieList"
-export default function DateScroller() {
+export default function DateScroller({onclick, moviesInDay}) {
     // Danh sách các ngày
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedDay, setSelectedDay] = useState(null); // Trạng thái cho ngày được chọn
-    // Hàm để lấy 30 ngày tiếp theo
+    //Hàm để lấy 15 ngày tiếp theo
     const getNext30Days = () => {
         const days = [];
         const today = new Date();
@@ -14,14 +14,16 @@ export default function DateScroller() {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", 
                         "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        for (let i = 0; i <= 30; i++) {
+        for (let i = 0; i <= 15; i++) {
             const date = new Date(today);
             date.setDate(today.getDate() + i);
             const Day = date.getDate(); // Ngày trong tháng (1-31)
             const Dweek = weekdays[date.getDay()]; // Lấy tên thứ
             const monthIndex= date.getMonth();  // Dùng để tính khoảng cách ngày
             const Month = months[date.getMonth()];
-            days.push({ Day, Dweek, Month,monthIndex });
+            const year = today.getFullYear()
+            const month = monthIndex + 1
+            days.push({ Day, Dweek, Month,month, year ,monthIndex });
         }
 
         return days;
@@ -55,8 +57,15 @@ export default function DateScroller() {
             <button  className={styles.buttonLeft} onClick={handlePrev} disabled={currentIndex === 0}>&lt;</button>
             <div className={styles.days} >
                 {next30Days.slice(currentIndex, currentIndex + 5).map((day, index) => (
-                    <div key={index} className={`${styles.dayBlock} ${selectedDay && selectedDay.Day === day.Day ? styles.selected : ''}`}
-                    onClick={() => handleDayClick(day)}>
+                    <div 
+                        key={index} 
+                        className={`${styles.dayBlock} ${selectedDay && selectedDay.Day === day.Day ? styles.selected : ''}`}
+                        onClick={(event) => {
+                            handleDayClick(day)
+                            onclick(event)
+                        }}
+                        data-support = {day.year + "-" + day.month + "-" + day.Day}
+                    >
                         <div className={styles.monthAndDweek}>
                             {day.Month}<br/>
                             {day.Dweek}
@@ -72,7 +81,7 @@ export default function DateScroller() {
         </div>
 
         {/* Hiển thị thêm thông tin nếu có ngày được chọn */}
-        {selectedDay && <MovieList selectedDay={selectedDay} />}
+        {selectedDay && <MovieList selectedDay={selectedDay} moviesInDay = {moviesInDay}/>}
         
     </div>
     );

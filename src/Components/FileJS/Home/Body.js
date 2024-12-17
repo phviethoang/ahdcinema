@@ -8,6 +8,12 @@ import Header from '../header';
 import Footer from '../footer';
 import React from 'react';
 function Body(){
+    const [reset, setReset] = useState(true)
+    if(reset)
+    {
+        sessionStorage.clear()
+        setReset(false)
+    }
     return(
         <div className={styles.container}>
             <Header></Header>

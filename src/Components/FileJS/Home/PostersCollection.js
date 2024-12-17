@@ -10,10 +10,10 @@ import React from 'react'
 function PosterCollection(){
     const [translate, setTranslate] = useState(0);
     function HandleNext(){
-        setTranslate(pre=>(pre+1)%5);
+        setTranslate(pre=>(pre+1)%3);
     }
     function HandlePrev(){
-        setTranslate(pre=>(pre+4)%5);
+        setTranslate(pre=>(pre+2)%3);
     }
     //BEGIN FETCH DATA
     //Khai báo các mảng sẽ chứa dữ liệu fetch về
@@ -33,39 +33,30 @@ function PosterCollection(){
     .catch(error => console.error('Error:', error));
     },[])
     // In ra các mảng kiểm tra
-    console.log(hotMovies)
+    const showingPosters = []
+    for(let i = 0; i< hotMovies.length; i++)
+    {
+        if(hotMovies[i].movie_name === "CÔNG TỬ BẠC LIÊU"
+            || hotMovies[i].movie_name === "KRAVEN - THỢ SĂN THỦ LĨNH"
+            || hotMovies[i].movie_name === "CHÚA TỂ CỦA NHỮNG CHIẾC NHẪN: CUỘC CHIẾN CỦA ROHIRRIM"
+        )
+        showingPosters.push(
+            <div className={style.item} key = {i}>
+                <Poster src={hotMovies[i].movie_poster} movieInfo={hotMovies[i]}></Poster>
+            </div>
+        )
+
+    }
     //END FETCH DATA
     return(
         <div className={style.container}>
             <div className={style.posterVisible}>
                 < div className={style.allPosters} 
-                style={{'--quantity':5, '--translate': translate}}
+                style={{'--quantity': showingPosters.length, '--translate': translate}}
                 >
-                    <div className={style.item} 
-                    // style={{'--position': translate -1 }}
-                    >
-                        <Poster src={image1}></Poster>
-                    </div>
-                    <div className={style.item} 
-                    // style={{'--position': translate }}
-                    >
-                        <Poster src={image2}></Poster>
-                    </div>
-                    <div className={style.item} 
-                    // style={{'--position': translate+1}}
-                    >
-                        <Poster src={image3}></Poster>
-                    </div>
-                    <div className={style.item} 
-                    // style={{'--position': translate+2}}
-                    > 
-                        <Poster src={image4}></Poster>
-                    </div>
-                    <div className={style.item} 
-                    // style={{'--position': translate+3}}
-                    >
-                        <Poster src={image5}></Poster>
-                    </div>
+                    {
+                        showingPosters
+                    }
                 </div>
             </div>
             <button className={style.nextButton} onClick={HandleNext}>&gt;</button>

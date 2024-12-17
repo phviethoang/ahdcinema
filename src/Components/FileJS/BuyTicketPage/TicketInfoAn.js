@@ -3,26 +3,35 @@ import styles from "../../FileCSS/BuyTicketPage/BuyTicket.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPointRight,faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from "react";
-const TicketInfo = ({ totalPrice, combo, selectedSeats, onNext, onPrevious, promotion, useFor, theater, time, date, room  }) => {
-    const getImg = sessionStorage.getItem('cardImgData')
-    const getName = sessionStorage.getItem('movie_name')
-    // console.log(getImg)
-    const cardImg = getImg? getImg: ''
-    const movieName = getName? getName: ''
-    console.log(cardImg)
+const TicketInfo = ({ totalPrice, combo, selectedSeats, onNext, onPrevious, promotion, useFor, theater, time, date, room, cardImg, movieName  }) => {
     const [categorizedSeats, setCategorizedSeats] = useState({});
 
-    useEffect(()=>{
-        const updatedSeats = selectedSeats.reduce((acc, seat) => {
-            if (!acc[seat.type]) {
-                acc[seat.type] = [];
+    useEffect(() => {
+        if (!Array.isArray(selectedSeats)) {
+            setCategorizedSeats({});
+            return;
+        }
+        console.log("hello: ",selectedSeats);
+        const updatedSeats = selectedSeats.reduce((acc, seatId) => {
+            console.log(acc)
+            console.log(seatId)
+            // const seat = seatData.find(seat => seat.seat_id === seatId);
+            const seat = seatId
+            const type = seat.seat_type;
+            if (!acc[type]) {
+                acc[type] = [];
             }
-            acc[seat.type].push(seat.seatNumber);
+            acc[type].push(seat.seat_number);
             return acc;
-            }, {});
+        }, {});
     
         setCategorizedSeats(updatedSeats);
-    },[selectedSeats])     
+    }, [selectedSeats]);
+      
+useEffect(()=>{
+    console.log("categorizedSeats: ",categorizedSeats);
+    console.log(categorizedSeats.Sweetbox)
+},[categorizedSeats])
 
 return (
     <div className={styles.ticketInfo}>
@@ -61,14 +70,14 @@ return (
 
                 <h3><strong>Ghế đã chọn:</strong></h3>
                 <ul>
-                    {categorizedSeats.regular && (
-                        <li>Regular: {categorizedSeats.regular.join(', ')}</li>
+                    {categorizedSeats.Standard && (
+                        <li>Regular: {categorizedSeats.Standard.join(', ')}</li>
                     )}
-                    {categorizedSeats.vip && (
-                        <li><strong>VIP:</strong> {categorizedSeats.vip.join(', ')}</li>
+                    {categorizedSeats.VIP && (
+                        <li><strong>VIP:</strong> {categorizedSeats.VIP.join(', ')}</li>
                     )}
-                    {categorizedSeats.sweetbox && (
-                        <li><strong>Sweetbox:</strong> {categorizedSeats.sweetbox.join(', ')}</li>
+                    {categorizedSeats.Sweetbox && (
+                        <li><strong>Sweetbox:</strong> {categorizedSeats.Sweetbox.join(', ')}</li>
                     )}
                 </ul>
 
