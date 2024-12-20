@@ -185,6 +185,7 @@
     margin: 5%;
     align-items: center;
 }
+
 .itemLabel{
     font-family: 'Montserrat Bold';
     color: var(--textColor);
@@ -198,4 +199,7 @@
     color: #334a52;
     text-align: center;
     font-size: small;
+}
+.categoryCollection .itemSelection{
+    min-width: 60%;
 }

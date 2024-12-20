@@ -78,8 +78,26 @@ function Login() {
     <div className = {style.container}>
       <Header></Header>
       <div className={style.loginContainer}>
+        <div className = {style.h2}>
         <h2>Đăng Nhập</h2>
-        <form onSubmit={handleSubmit}>
+
+        <div className={style.socialLogin}>
+            
+             <button className={style.googleLogin} onClick={handleGoogleLogin}>
+              <Google />
+              Google
+            </button>
+            <button className={style.facebookLogin} onClick={handleFacebookLogin}>
+              <Facebook />
+              Facebook
+            </button>
+            </div>
+          <button className={style.registerLink} onClick={()=>{navigate("/Register")}}>Đăng ký</button>
+       
+        </div>
+        
+        <form className = {style.form}
+        onSubmit={handleSubmit}>
           <div className={style.formGroup}>
             <label>Tài khoản:</label>
             <input
@@ -104,22 +122,10 @@ function Login() {
           <p className={style.forgotPasswordLink}>
             <Link to="/ForgotPassword">Quên mật khẩu</Link>
           </p>
-          <button type="submit">Đăng nhập</button>
-          <p className={style.registerLink}>
-            Bạn chưa có tài khoản? <Link to="/Register">Đăng ký</Link>
-          </p>
+          <button className = {style.submit} type="submit">Gửi</button>
+          
 
-          <div className={style.socialLogin}>
-            <div>OR</div>
-            <button className={style.googleLogin} onClick={handleGoogleLogin}>
-              <Google />
-              Continue with Google
-            </button>
-            <button className={style.facebookLogin} onClick={handleFacebookLogin}>
-              <Facebook />
-              Continue with Facebook
-            </button>
-          </div>
+          
         </form>
       </div>
       <Footer></Footer>

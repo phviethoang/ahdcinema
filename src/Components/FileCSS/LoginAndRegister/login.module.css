@@ -7,49 +7,140 @@
   align-items: center;
 }
 .loginContainer {
+  border: none;
     height: fit-content;
-    width: 400px;
-    padding: 50px;
+    min-height: 50vh;
+    width: 60vw;
+    display: flex;
+    justify-content: stretch;
     border: 0px solid #ddd;
-    border-radius: 0px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
     background-color: white; /* Màu nền bên trong form */
     margin: 10vh;
+    background: linear-gradient(to right, #436e7d, rgba(63, 110, 126, 0.0));
+
     /*text-align: center;*/ /* Căn giữa nội dung bên trong */
   }
   
-  body {
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang*/
-    /* align-items: center; Căn giữa theo chiều dọc */
-    /* background-image: url("https://img.pikbest.com/wp/202345/desktop-wallpapers-landscape-background-wallpaper_9578952.jpg!bwr800"); */
-    background-size: cover; /* Giúp hình ảnh phủ toàn bộ trang */
-    background-position: center; /* Căn giữa hình ảnh */
-    background-repeat: repeat; /* Không lặp lại hình ảnh */
-    height: 100vh; /* Chiều cao toàn trang */
-    /* margin: 10vh; Xóa khoảng trống mặc định của body */
-    overflow: scroll;
-  }
-  h2 {
+ 
+  .loginContainer .h2 {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     text-align: center;
+    width: 50%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    flex-direction: column;
+    align-items: center;
+    background:none
+    ;
   }
-  
-  .formGroup {
+
+  .registerLink{
+    position: relative;
+    top: 5vh;
+    width: fit-content;
+    align-content: center;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    padding-right: 8px;
+    padding-left: 8px;
+    height: fit-content;
+    background-color: #617f8c;
+    border-radius: 20px;
+    border: none;
+    color: rgb(50, 63, 94);
+    font-family: 'Baloo Bold';
+    font-size:small;
+    transition: all 0.2s ease;
+  }
+  .registerLink:hover{
+    transform: scale(1.1);
+    background-color: aqua;
+    color:#436e7d;
+  }
+  .loginContainer .h2 h2{
+    color: white;
+    font-family: 'Baloo Bold';
+    height: fit-content;
+    font-size: xx-large;
+  }
+  .form{
+    width: 50%;
+    border-radius: 30px;
+    min-height: 100%;
+    padding: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+  /* .formGroup {
     margin-bottom: 15px;
+  } */
+  /* .googleLogin{
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 2vh;
   }
+  .facebookLogin{
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 2vh; */
   
-  label {
+  .formGroup{
+    margin: 2vh;
+    
+  }
+  .formGroup label {
     display: block;
     margin-bottom: 5px;
+    font-family: 'Montserrat Bold';
+    color:#196a87
   }
   
-  input {
-    width: 100%;
-    padding: 8px;
+  .formGroup input {
+    width: 80%;
+    padding-left: 15px;
+    padding-right: 15px;
     box-sizing: border-box;
+    border-radius: 30px;
+    background-color: white;
+    /* color: white; */
+    box-shadow: 3px 3px 5px 1px #196a87;
+    color:#436e7d;
   }
   
+  .formGroup input:focus{
+    outline: none;
+  }
+  .submit{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #7abfd9;
+    color: rgb(12, 57, 109);
+    font-family: 'Baloo';
+    transition: all 0.2s ease;
+  }
+  .submit:hover{
+    transform: scale(1.03);
+    background-color: aqua;
+    color:#196a87;
+    border:#196a87
+  }
   .button {
     width: 100%;
     padding: 10px;
@@ -70,28 +161,37 @@
     font-size: 14px;
   }
   /* Căn chỉnh phần social login */
-  .socialLogin {
-    text-align: center;
-    margin-top: 20px;
-  }
   
+  .socialLogin{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2vh;
+    width: 80%;
+  }
   .socialLogin button {
     display: flex;
+    position: relative;
+    top: -2vh;
     align-items: center;
     justify-content: start;
-    width: 100%;
+    width: fit-content;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: white;
-    color: black;
+    padding-right: 20px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 30px;
+    background-color: rgb(9, 103, 134);
+    color: rgb(253, 253, 253);
     cursor: pointer;
     font-size: 16px;
+    margin: 1vh;
+    transition: all 0.2s ease;
   }
   .socialLogin button:hover {
-    background-color: #0056b3;
-    color: #ddd;
+    background-color: aqua;
+    border: 3px solid  #196a87;
+    color:  #196a87;
   }
   .socialLogin button img {
     width: 20px;

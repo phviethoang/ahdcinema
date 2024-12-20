@@ -1,29 +1,46 @@
 .navBar{
     width: 100vw;
+    height: 10vh;
     height: fit-content;
     position: relative;
     display: flex;
     background: linear-gradient(to bottom, #334a52,rgb(150, 175, 184, 0));
+    margin-bottom: 3vh;
 }
 
 .logo{
     /* position: absolute;
     top: 0;
     left: 0; */
-    width: 30%;
+    width: fit-content;
     height: 100%;
     margin-left: 3vw;
+    padding-right: 2vw;
+    border: none;
+    font-family: 'Aguda Black';
+    font-size: 60px;
+    letter-spacing: 0.5vw;
+    background: none;
+    -webkit-text-stroke: 3px;
+    text-align: left;
+    color: #042935;
+    transition: all 0.2s ease;
+}
+.logo:hover{
+    /* transform: scale(1.03); */
+    filter: brightness(1.2);
 }
 .logo img{
     width: 100%;
 }
 /*danh sách nut*/
 .buttonsList{
-    position: absolute;
+    position: relative;
     height: 40%;
     width: 70%;
-    top: 50%;
-    left: 30%;
+    /* top: 20%;
+    left: 30%; */
+    padding-top: 5vh;
     display: flex;
 }
 .item{
@@ -44,7 +61,7 @@
     position: relative;
     transition: color 0.2s ease, font-size o.2s ease;
 }
-.item button::after{
+/* .item button::after{
     position: absolute;
     content: '';
     height: 3px;
@@ -54,7 +71,7 @@
     background-color: #39555e;
     border-radius: 20%;
     transition: width 0.2s ease, left 0.2s ease;
-}
+} */
 .item button:hover{
     color:#005b9a;
     font-size: larger;

@@ -52,15 +52,15 @@ const Header = forwardRef(({}, ref) => {
 
     return (
         <div ref={ref} className={styles.navBar}>
-            <div className={styles.display}></div>
-            <div className={styles.hello}>AHD xin chào</div>
+            {/* <div className={styles.display}></div> */}
+            {/* <div className={styles.hello}>AHD xin chào</div> */}
             <div className={styles.logo}>
-                <img src={image} alt="logo"></img>
+                <button className= {styles.logo} onClick={() => navigate('/')}src={image} alt="logo">AHD</button>
             </div>
             <div className={styles.buttonsList}>
-                <div className={styles.item}>
+                {/* <div className={styles.item}>
                     <button onClick={() => navigate('/')}>Home</button>
-                </div>
+                </div> */}
                 <div className={styles.item}>
                     <button onClick={() => navigate('/PhimDangChieu')}>Phim</button>
                 </div>

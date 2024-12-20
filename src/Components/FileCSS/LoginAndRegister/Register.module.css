@@ -5,56 +5,122 @@
   align-items: center;
 }
 .registerForm {
-    height: min-content;
-    width: 442px;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
+  border: none;
+  height: fit-content;
+  min-height: 50vh;
+  width: 60vw;
+  display: flex;
+  justify-content: stretch;
+  border: 0px solid #ddd;
+  border-radius: 30px;
+  background-color: white; /* Màu nền bên trong form */
+  margin: 10vh;
+  background: linear-gradient(to left, #436e7d, rgba(63, 110, 126, 0.0));
+}
+  .registerForm .h2 {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     text-align: center;
-    margin-bottom: 20px;
+    width: 50%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    flex-direction: column;
+    align-items: center;
+    background:none
+    ;
   }
-  
-  .formGroup {
-    margin-bottom: 15px;
+  .h2 h2{
+    color: rgb(255, 255, 255);
+    font-family: 'Baloo Bold';
+    height: fit-content;
+    font-size: xx-large;
+  }
+  .form{
+    width: 50%;
+    border-radius: 50px;
+    min-height: 100%;
+    padding: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .formGroup{
+    margin: 2vh;
+    
   }
   
   .formGroup label {
     display: block;
-    font-weight: bold;
     margin-bottom: 5px;
+    font-family: 'Montserrat Bold';
+    color:#196a87
   }
-  
+  .loginLink{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #196a87;
+    color: white;
+    border: none;
+    font-family: 'Montserrat';
+    transition: all 0.2s ease;
+  }
+  .loginLink:hover{
+    transform: scale(1.05);
+    background-color: #7ad99b;
+
+  }
   .formGroup input,
   .formGroup select {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 3px 3px 5px 1px #196a87;
+    /* color:white;
+    background-color: #3cb184; */
+    color:#026640;
+    font-family:  'Montserrat';
   }
-  
+  .formGroup input:placeholder-shown{
+    color: rgb(123, 244, 205)
+  }
+  .formGroup input:focus, .formGroup input:-webkit-autofill, .formGroup input:-webkit-autofill:focus {
+    /* background-color: #3cb184;
+    color: white;
+    border: none; */
+    outline: none;
+    font-family: 'Montserrat';
+  }
+  .emailNote{
+    width: 100%;
+  }
   .formGroup input[type="checkbox"] {
     width: auto;
   }
   
   .submitButton {
-    width: 100%;
+    width: fit-content;
+    height: fit-content;
     padding: 10px;
-    background-color: #ff5722;
-    color: white;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+    border-radius: 20px;
+    background-color: #3aa6d1;
+    color: rgb(12, 57, 109);
+    font-family: 'Baloo';
+    transition: all 0.2s ease;
   }
   
   .submitButton:hover {
-    background-color: #e64a19;
+    background-color: aqua;
+    color:#196a87;
+    transform: scale(1.03);
   }

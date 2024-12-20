@@ -43,7 +43,7 @@ const Register = () => {
       if (response.ok) {
         const notice = await response.json();
         console.log("Register successful!", notice);
-        navigate("/Login"); // Điều hướng đến trang login sau khi đăng ký thành công
+        navigate("/login"); // Điều hướng đến trang login sau khi đăng ký thành công
       } else {
         const errorNotice = await response.json();
         alert(errorNotice.message || "Đăng ký thất bại");
@@ -58,9 +58,9 @@ const Register = () => {
     <div className = {style.container}>
       <Header></Header>
       <div className={style.registerForm}>
-        <form onSubmit={handleSubmit}>
-          <h2>Đăng Ký</h2>
-          <div className={style.formGroup}>
+        <form className={style.form} 
+        onSubmit={handleSubmit}>
+             <div className={style.formGroup}>
             <label>Tên đăng nhập</label>
             <input
               type="text"
@@ -68,6 +68,7 @@ const Register = () => {
               value={formData.username}
               onChange={handleChange}
               required
+              placeholder="Tên đăng nhập"
             />
           </div>
 
@@ -79,6 +80,7 @@ const Register = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              placeholder="Mật khẩu"
             />
           </div>
 
@@ -91,6 +93,7 @@ const Register = () => {
               onChange={handleChange}
               required
               id="confirmPassword"
+              placeholder="Xác nhận lại mật khẩu"
             />
           </div>
           <div className={style.formGroup}>
@@ -101,55 +104,64 @@ const Register = () => {
               value={formData.fullname}
               onChange={handleChange}
               required
+              placeholder="Họ và tên"
             />
           </div>
 
           <div className={style.formGroup}>
             <label style={{ margin: 0 }}>Email</label>
-            <p
-              style={{
-                fontStyle: "italic",
-                fontSize: "12px",
-                color: "#666",
-                margin: 0,
-              }}
-            >
-              *Vui lòng nhập đúng email cá nhân để khôi phục mật khẩu.
-            </p>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+              <p className = {style.emailNote}
+                style={{
+                  fontStyle: "italic",
+                  fontSize: "12px",
+                  color: "#666",
+                  margin: 0,
+                }}
+              >
+                *Vui lòng nhập đúng email cá nhân để khôi phục mật khẩu.
+              </p>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Email"
 
-          <div className={style.formGroup}>
-            <label>Số điện thoại</label>
-            <input
-              type="tel"
-              name="phonenumber"
-              value={formData.phonenumber}
-              onChange={handleChange}
-              required
-            />
-          </div>
+              />
+            </div>
 
-          <div className={style.formGroup}>
-            <label>
-              <input type="checkbox" required />
-              Tôi cam kết tuân theo chính sách bảo mật và điều khoản sử dụng
-            </label>
-          </div>
+            <div className={style.formGroup}>
+              <label>Số điện thoại</label>
+              <input
+                type="tel"
+                name="phonenumber"
+                value={formData.phonenumber}
+                onChange={handleChange}
+                required
+                placeholder="Số điện thoại"
+              />
+            </div>
 
-          <button type="submit" className={style.submitButton}>
-            Đăng Ký
-          </button>
+            <div className={style.formGroup}>
+              <label>
+                <input type="checkbox" required />
+                Tôi cam kết tuân theo chính sách bảo mật và điều khoản sử dụng
+              </label>
+            </div>
+
+            <button type="submit" className={style.submitButton}>
+              Đăng Ký
+            </button>
+            
+          
         </form>
-        <p className={style.loginLink}>
-          <Link to="/Login">Đã có tài khoản</Link>
-        </p>
+        <div className = {style.h2}>
+            <h2>Đăng Ký</h2>
+            <button onClick={()=>{navigate('/Login')}} className={style.loginLink}>
+              Đã có tài khoản
+            </button>
+          </div>
       </div>
       <Footer></Footer>
     </div>

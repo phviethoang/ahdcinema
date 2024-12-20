@@ -121,34 +121,27 @@ const ComboPage = ({ comboQuantities = [], onQuantitiesChange, sum}) => {
 
   return (
     <div className={styles.comboPage}>
-      <div>BOOKING ONLINE</div>
       <div className={styles.bookingHeader}>
-        <div className={styles.countdown}>
+         <h2 className={styles.header}>--- Combo Bắp Nước ---</h2>
+        {/* <div className={styles.countdown}>
           <div className={styles.timer}>
             <CountdownTimer initialMinutes={5} initialSeconds={0} />
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <h2>Bắp Nước</h2>
+      
       <div className={styles.products}>
         {products.map((product, index) => (
           <div key={product.id} className={styles.product}>
-            <img
+            <div className = {styles.productImage}>
+              
+              <img
               src={product.image}
               alt={product.name}
-              className={styles.productImage}
             />
-            <div className={styles.productInfo}>
-              <h3>{product.name}</h3>
-              <div>
-                {product.description.map((item, idx) => (
-                  <div key={idx}>{item}</div>
-                ))}
-              </div>
-
-              <p>Giá: {product.price.toLocaleString()} đ</p>
-              <div className={styles.quantityControls}>
+            <p>Giá: {product.price.toLocaleString()} đ</p>
+            <div className={styles.quantityControls}>
                 <button onClick={() => handleQuantityChange(index, -1)}>
                   -
                 </button>
@@ -157,6 +150,18 @@ const ComboPage = ({ comboQuantities = [], onQuantitiesChange, sum}) => {
                   +
                 </button>
               </div>
+            </div>
+            
+            <div className={styles.productInfo}>
+              <h3>{product.name}</h3>
+              <div className={styles.content}>
+                {product.description.map((item, idx) => (
+                  <div key={idx}>{item}</div>
+                ))}
+              </div>
+
+              
+              
             </div>
           </div>
         ))}
