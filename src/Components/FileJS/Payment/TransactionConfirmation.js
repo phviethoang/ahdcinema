@@ -111,8 +111,8 @@ useEffect(()=>{
             </div>
             <div className={styles.transactionConfirmationSection}>
               <strong>Combo:</strong>
-              <span className={styles.transactionConfirmationCombo}>
-                {mergedCombo.length > 0 ? mergedCombo.map(combo => `${combo.quantity} - ${combo.name}`).join(' | ') : 'Không có combo'}
+               <span className={styles.transactionConfirmationCombo}>
+                {mergedCombo.length > 0 ? mergedCombo.map(combo => {return combo.quantity>0?`${combo.quantity} - ${combo.name}`:""}).join(' | ') : 'Không có combo'}
               </span>
             </div>
             <div className={styles.transactionConfirmationSection}>
