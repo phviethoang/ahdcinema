@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 import CountdownTimer2 from './CountdownTimer2'
-
+import { useNavigate } from 'react-router-dom';
 const Success = ({ onResetSuccess, useFor, transactionInfo }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [visible, setVisible] = useState(true);
 
-  const timeout = useFor==="purchasePayment"&&transactionInfo.type==="buyTicket"?10000:2000;
+  const timeout = useFor==="purchasePayment"&&transactionInfo.ticket_id?5000:2000;
   console.log(transactionInfo)
   console.log(useFor)
   useEffect(() => {
@@ -16,10 +16,9 @@ const Success = ({ onResetSuccess, useFor, transactionInfo }) => {
       if (onResetSuccess) {
         onResetSuccess();
       }
-      // if (transactionInfo.activeFunction) {
-      //   activeFunction();
-      // }
-      // navigate('/');
+      if (transactionInfo?.ticket_id) {
+        navigate('/');
+      }
     }, timeout);
     return () => clearTimeout(timer);
   }, []);
@@ -54,7 +53,7 @@ const Success = ({ onResetSuccess, useFor, transactionInfo }) => {
             </svg>
           </div>
           <div className={styles.successText}>Giao dịch thành công</div>
-          {useFor==="purchasePayment"&&transactionInfo.type==="buyTicket"&&<p>Quay lại màn hình chính sau <CountdownTimer2 initialMinutes={0} initialSeconds={10}/></p>}
+          {useFor==="purchasePayment"&&transactionInfo.ticket_id&&<p>Quay lại màn hình chính sau <CountdownTimer2 initialMinutes={0} initialSeconds={5}/></p>}
         </div>
       </div>
     </div>

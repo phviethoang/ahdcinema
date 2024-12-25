@@ -114,8 +114,16 @@
     background-color: #334a52;
     font-family: 'Billy Bold';
     color: white;
+    /* color:#334a52; */
     text-align: center;
-
+    transition: all 0.2s ease;
+}
+.buttons button:hover{
+    color: aqua;
+    background-color:rgb(11, 59, 68);
+    /* border: 3px solid rgb(11, 90, 106); */
+    border: 3px solid aqua;
+    transform: scale(1.03);
 }
 .videoTrailer{
     position:absolute;

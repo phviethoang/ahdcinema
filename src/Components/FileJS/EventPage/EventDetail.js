@@ -30,10 +30,10 @@ const EventDetail = () => {
             dangerouslySetInnerHTML={{ __html: event.eventContent }}
           />
           <div className={styles.evContentLink}>
-            <Link to="/Login">ĐẶT VÉ THEO PHIM</Link>
+            <Link to="/PhimDangChieu">ĐẶT VÉ THEO PHIM</Link>
           </div>
           <div className={styles.evContentLink}>
-            <Link to="/Login">ĐẶT VÉ THEO RẠP</Link>
+            <Link to="/TheaterPage">ĐẶT VÉ THEO RẠP</Link>
           </div>
 
         </div>

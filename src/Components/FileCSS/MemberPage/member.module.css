@@ -366,13 +366,19 @@ input[id="email"] {
     gap: 2vw;
 }
 
-.silverCard, .goldCard {
+.silverCard, .goldCard , .platinumCard{
     border-radius: 10px;
     padding: 20px;
     width: 300px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
+}
+
+.platinumCard, .platinumBackground {
+  background: linear-gradient(45deg, #b9f1f1, #6ac9d6, #b9f1f1, #6ac9d6);
+  animation: metallicSparkle 5s infinite linear;
+  background-size: 400% 400%;
 }
 
 /* Nền và hiệu ứng lấp lánh cho Silver và Gold */

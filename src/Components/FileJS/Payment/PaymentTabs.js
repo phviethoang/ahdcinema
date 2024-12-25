@@ -14,7 +14,58 @@ const PaymentTabs = () => {
 // nếu thanh toán bằng ví => wallet_balance = wallet_balance - total_price
 // nếu thanh toán online => wallet_balance =wallet_balance
 // trả về wallet_balance
- 
+const convertToLocalTime = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleString("en-CA", { timeZone: "Asia/Ho_Chi_Minh", year: 'numeric', month: '2-digit', day: '2-digit' });
+};
+// const convertToLocalTime = (dateString) => {
+//   if (!dateString) return null; // Xử lý trường hợp không có giá trị ngày
+
+//   // Cắt chuỗi từ đầu đến trước phần giây
+//   const trimmedDateString = dateString.substring(0, dateString.indexOf("."));
+//   console.log("trimmedDateString: ", trimmedDateString)
+//   // Chuyển đổi về múi giờ "Asia/Ho_Chi_Minh"
+//   const date = new Date(trimmedDateString);
+//   return date.toLocaleString("en-CA", { 
+//     timeZone: "Asia/Ho_Chi_Minh", 
+//     year: 'numeric', 
+//     month: '2-digit', 
+//     day: '2-digit', 
+//   });
+// };
+
+// const formatDateTime = (dateTime) => {
+//   const date = new Date(dateTime);
+//   const year = date.getFullYear();
+//   const month = String(date.getMonth() + 1).padStart(2, "0"); // Tháng từ 0-11 nên cần +1
+//   const day = String(date.getDate()).padStart(2, "0");
+//   const hours = String(date.getHours()).padStart(2, "0");
+//   const minutes = String(date.getMinutes()).padStart(2, "0");
+
+//   return `${year}-${month}-${day} ${hours}:${minutes}`;
+// };
+
+// const convertToLocalTime = (dateString) => {
+//   if (!dateString) return null; // Xử lý trường hợp không có giá trị ngày
+//   const options = { 
+//     timeZone: "Asia/Ho_Chi_Minh", 
+//     year: "numeric", 
+//     month: "2-digit", 
+//     day: "2-digit", 
+//     hour: "2-digit", 
+//     minute: "2-digit", 
+//     second: "2-digit" 
+//   };
+
+//   try {
+//     const date = new Date(dateString); // Tạo đối tượng Date từ chuỗi
+//     return new Intl.DateTimeFormat("en-CA", options).format(date); // Định dạng theo múi giờ Asia/Ho_Chi_Minh
+//   } catch (error) {
+//     console.error("Invalid date format:", dateString, error);
+//     return null; // Trả về null nếu có lỗi
+//   }
+// };
+
   const location = useLocation();
   const { finalAmount, walletBance } = location.state || { finalAmount: 0, walletBance: 0 };
   console.log("finalAmount: ", finalAmount)
@@ -27,48 +78,7 @@ const PaymentTabs = () => {
   const purchase_id = params.get("purchase_id");
 
 
-//   const [transactionInfo, setTransactionInfo] = useState({})
-//   // const [bookingInfo,setBookingInfo]=useState('')
-//   const getPaymentInfo = async () => {
-//     // console.log(ticket_id)
-//     // console.log(purchase_id)
-//     try {
-//         const response = await fetch(
-//             `http://localhost:5000/ahd/payment/info?${ticket_id ? `ticket_id=${ticket_id}` : `purchase_id=${purchase_id}`}`, {
-//               credentials: 'include', // Đảm bảo gửi cookie
-//             }
-//         );
- 
-//         if (!response.ok) {
-//             throw new Error("Failed to fetch payment info");
-//         }
- 
-//         const result = await response.json();
- 
-//         if (result.type === "ticket") {
-//             console.log("Ticket Info:", result.data);
-//             setTransactionInfo(result.data)
-//         } else if (result.type === "card") {
-//             console.log("Card Info:", result.data);
-//             setTransactionInfo(result.data)
-//         }
-
-//     } catch (error) {
-//         console.error("Error fetching payment info:", error);
-//     }
-// };
-// //Thực hiện lấy thông tin thanh toán
-// useEffect(() => {   getPaymentInfo(); }, [ticket_id, purchase_id]);
-// // const CardInfo =result.data;
-// // const finalAmount = 
-// // transactionInfo.price
-
 const [finalAmountActive,setFinalAmountActive]=useState(0)
-// // const temp = transactionInfo.price
-// useState(()=>{
-//   // setFinalAmountActive(transactionInfo?transactionInfo.price:0)
-//   console.log("transactionInfo: ",transactionInfo)
-// },[transactionInfo])
 
 const [transactionInfo, setTransactionInfo] = useState({});
 
@@ -89,10 +99,19 @@ const getPaymentInfo = async () => {
     if (result.type === "ticket") {
       console.log("Ticket Info:", result.data);
       setTransactionInfo(result.data);
+      // setTransactionInfo(result.data.map((item)=>({
+      //   ...item, 
+      //   show_date : convertToLocalTime(item.show_date)
+      // })));
     } else if (result.type === "card") {
       console.log("Card Info:", result.data);
-      setTransactionInfo(result.data);
+      // setTransactionInfo(result.data.map((item)=>({
+      //   ...item, 
+      //   purchase_date : convertToLocalTime(item.purchase_date)
+      // })));
+      setTransactionInfo(result.data)
     }
+
 
   } catch (error) {
     console.error("Error fetching payment info:", error);
@@ -102,14 +121,10 @@ const getPaymentInfo = async () => {
 // Theo dõi sự thay đổi của transactionInfo
 useEffect(() => {
   console.log("Updated transactionInfo: ", transactionInfo);
-  // useEffect(() => {
-    if (transactionInfo && transactionInfo.price) {
-      setFinalAmountActive(transactionInfo.price); // Gán giá trị price cho finalAmountActive
+    if (transactionInfo && (transactionInfo.price||transactionInfo.total_price)){
+      setFinalAmountActive(transactionInfo.price||transactionInfo.total_price ); // Gán giá trị price cho finalAmountActive
     }
-  // }, [transactionInfo]); // Theo dõi sự thay đổi của transactionInfo
-  
-  // setFinalAmountActive(transactionInfo?transactionInfo.price:0)
-}, [transactionInfo]);  // Dõi theo transactionInfo khi nó thay đổi
+}, [transactionInfo]);  
 
 useEffect(() => {
   getPaymentInfo();
@@ -119,8 +134,7 @@ useEffect(() => {
 useState(()=>{
   console.log("finalAmountActive: ",finalAmountActive)
 },[finalAmountActive])
-// console.log("temp: ",temp, typeof temp)
-// console.log(finalAmount) 
+
 const handlePaymentSuccessful = async (type) => {
   try {
     console.log("type: ",type)

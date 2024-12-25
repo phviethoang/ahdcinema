@@ -1,35 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from '../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
 
 const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInfo, valueInput, handleTopUp, onTransactionConfirmation, paymentData, onPaymentSuccessful, finalAmount}) => {
-  let selectedSeats = [];
-  let combo = [];
-  let cardType = "";
-  let price = 0;
-  let duration = "";
-  let benefits = [];
-  let type = "";
-  // let activeFunction = ()=>{}
-  if (transactionInfo?.type === "buyTicket") {
-    ({ selectedSeats = [], combo = [] } = transactionInfo);
-  } else if (transactionInfo?.type === "upgradeMembership") {
-    ({ cardType = "", price = 0, duration = "", benefits = [] } = transactionInfo);
-  }
+  const convertToLocalTime = (dateString) => {
+    if (!dateString) return null; // Xử lý trường hợp không có giá trị ngày
+  
+    // Cắt chuỗi từ đầu đến trước phần giây
+    const trimmedDateString = dateString.substring(0, dateString.indexOf("."));
+    console.log("trimmedDateString: ", trimmedDateString)
+    // Chuyển đổi về múi giờ "Asia/Ho_Chi_Minh"
+    const date = new Date(trimmedDateString);
+    return date.toLocaleString("en-CA", { 
+      timeZone: "Asia/Ho_Chi_Minh", 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit', 
+    });
+  };
+  
+  const [mergedSeats, setMergedSeats]=useState([])
+
+  useEffect(() => {
+    if (transactionInfo && transactionInfo.seat_number && transactionInfo.seat_cost) {
+      const merged = transactionInfo.seat_number.map((seat_number, index) => ({
+        seat_number: seat_number,
+        seat_type : transactionInfo.seat_type[index],
+        seat_cost: transactionInfo.seat_cost[index],
+      }));
+      setMergedSeats(merged);
+    }
+  }, [transactionInfo]);
+
   
 
-  // const [password, setPassword] = useState('');
-  // const [error, setError] = useState('');
+const comboData=[
+  {id: 1, name:"MY COMBO" },
+  {id:2, name: "CONAN CARD COLLECTION COMBO NORMAL", },
+  {id:3, name: "CONAN CARD COLLECTION COMBO EPIC",},
+  {id: 4, name: "CONAN CARD COLLECTION COMBO SPECIAL",},
+  {id: 5, name: "BT21 MININI SINGLE COMBO",},
+  {id: 6, name: "BT21 MININI SINGLE COMBO",}
+]
+const [comboQuantities,setComboQuantities] = useState(()=>{
+  const storedQuantities = sessionStorage.getItem("comboPage");
+  return storedQuantities ? JSON.parse(storedQuantities) : Array(6).fill(0);
+}) 
 
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  //   if (e.target.value.trim() === '') {
-  //     setError('Mật khẩu không được để trống');
-  //   } else {
-  //     setError('');
-  //   }
-  // };
 
+const [mergedCombo,setMergedCombo]=useState([])
+// useEffect(() => {
+//   if (transactionInfo && transactionInfo.ticket_id) {
+//     const merged = comboQuantities.map((each, index) => ({
+//       quantity: each,
+//       name:comboData[index].name,
+//     }));
+//     setMergedCombo(merged);
+//   }
+//   console.log("comboQuantities: ...", comboQuantities)
+// }, [comboQuantities]);
+useEffect(() => {
+  if (transactionInfo && transactionInfo.ticket_id) {
+    const merged = comboQuantities.map((each, index) => ({
+      quantity: each,
+      name: comboData[index].name,
+    }));
+    setMergedCombo(merged);
+  }
+  console.log("comboQuantities: ...", comboQuantities);
+}, [comboQuantities, transactionInfo]);
 
+useEffect(()=>{
+  console.log("mergedCombo:... ", mergedCombo)
+},[mergedCombo])
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.transactionConfirmationContainer}>
@@ -37,28 +79,40 @@ const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInf
           &times;
         </div>
         <div className={styles.transactionConfirmationTitle}>Thông tin giao dịch</div>
-        {useFor==="purchasePayment" &&(transactionInfo?.type === "buyTicket")&&
+        {useFor==="purchasePayment" &&(transactionInfo?.ticket_id)&&
           <div className={styles.transactionConfirmationDetail}>
             <div className={styles.transactionConfirmationSection}>
-              <strong>Tên phim:</strong> [Tên phim]
+              <strong>Tên phim:</strong> {transactionInfo.movie_name}
             </div>
             <div className={styles.transactionConfirmationSection}>
-              <strong>Rạp:</strong> [Tên rạp]
+              <strong>Rạp:</strong> {transactionInfo.cinema_name}
             </div>
             <div className={styles.transactionConfirmationSection}>
               <strong>Ghế:</strong>
               <span className={styles.transactionConfirmationSeats}>
-                {selectedSeats
+                {mergedSeats.length>0&&mergedSeats
                   .map(
-                    (seat) => `${seat.seatNumber} (${seat.type}) - ${seat.price.toLocaleString()}đ`
+                    (seat) => `${seat.seat_number} - ${seat.seat_type} - ${seat.seat_cost.toLocaleString()}đ`
                   )
                   .join(' | ')}
               </span>
             </div>
             <div className={styles.transactionConfirmationSection}>
+              <strong>Rạp:</strong> {transactionInfo.cinema_name}
+            </div>
+            <div className={styles.transactionConfirmationSection}>
+              <strong>Phòng chiếu:</strong> Screen {transactionInfo.room_number}
+            </div>
+            <div className={styles.transactionConfirmationSection}>
+              <strong>Ngày chiếu:</strong> {convertToLocalTime(transactionInfo.show_date)}---<strong>Giờ chiếu:</strong>{transactionInfo.show_time}
+            </div>
+            <div className={styles.transactionConfirmationSection}>
+              <strong>Mã giảm giá:</strong> {transactionInfo.voucher_name}
+            </div>
+            <div className={styles.transactionConfirmationSection}>
               <strong>Combo:</strong>
               <span className={styles.transactionConfirmationCombo}>
-                {combo.length > 0 ? combo.join(', ') : 'Không có combo'}
+                {mergedCombo.length > 0 ? mergedCombo.map(combo => `${combo.quantity} - ${combo.name}`).join(' | ') : 'Không có combo'}
               </span>
             </div>
             <div className={styles.transactionConfirmationSection}>
@@ -67,40 +121,16 @@ const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInf
               {paymentData&&paymentData.paymentType==="ewallet"?" qua ví điện tử":''}
             </div>
             <div className={styles.transactionConfirmationSection}>
-              <strong>Tổng tiền:</strong> {finalAmount}đ
+              <strong>Tổng tiền:</strong> {finalAmount.toLocaleString()}đ
             </div>
           </div> 
         }
-        {/* {
-          useFor ==="purchasePayment"&&(transactionInfo?.type === "upgradeMembership")&&
-          <div className={styles.transactionConfirmationDetail}>
-            <div className={styles.transactionConfirmationSection}>
-                <strong>loại thẻ:</strong> <span>{transactionInfo.cardType}</span>
-            </div>
-            <div className={styles.transactionConfirmationSection}>
-                <strong>gía tiền:</strong>{transactionInfo.price.toLocaleString()}<span></span>
-            </div>
-            <div className={styles.transactionConfirmationSection}>
-                <strong>loại thẻ:</strong> <span>{transactionInfo.duration} ngày</span>
-            </div>
-            <div className={styles.transactionConfirmationSection}>
-                <strong>loại thẻ:</strong>
-                <span>
-                  <ul>
-                    {transactionInfo.benefits.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </span>
-            </div>
-            
-          </div>
-        } */}
+
         {
-          useFor === "purchasePayment" && transactionInfo?.type === "upgradeMembership" &&
+          useFor === "purchasePayment" && (transactionInfo?.purchase_id) &&
           <div className={styles.transactionConfirmationDetail}>
             <div className={styles.transactionConfirmationSection}>
-              <strong>Loại thẻ:</strong> <span>{transactionInfo.cardType}</span>
+              <strong>Loại thẻ:</strong> <span>{transactionInfo.card_type}</span>
             </div>
             <div className={styles.transactionConfirmationSection}>
               <strong>Giá tiền:</strong> <span>{transactionInfo.price.toLocaleString()}đ</span>
@@ -109,12 +139,7 @@ const TransactionConfirmation = ({onVisibleChange, payBy, useFor, transactionInf
               <strong>Thời hạn:</strong> <span>{transactionInfo.duration} ngày</span>
             </div>
             <div className={styles.transactionConfirmationSection}>
-              <strong>Ưu đãi:</strong>
-              <ul style = {{listStyleType: "none"}}>
-                {transactionInfo.benefits.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <strong>Ưu đãi:</strong><span>{transactionInfo.benefits}đ</span>
             </div>
           </div>
         }

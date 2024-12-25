@@ -145,7 +145,6 @@ const MemberCards = ({memberInfo})=>{
     const date = new Date(dateString);
     // Chuyển sang định dạng chỉ lấy ngày YYYY-MM-DD
     return date.toLocaleString("en-CA", { timeZone: "Asia/Ho_Chi_Minh", year: 'numeric', month: '2-digit', day: '2-digit' });
-
 };
 
   console.log(silverCard?.benefits)

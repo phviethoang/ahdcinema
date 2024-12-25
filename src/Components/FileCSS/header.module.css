@@ -9,24 +9,46 @@
 }
 
 .logo{
-    /* position: absolute;
-    top: 0;
-    left: 0; */
+    border: none;
+}
+.logo button{
     width: fit-content;
     height: 100%;
     margin-left: 3vw;
     padding-right: 2vw;
     border: none;
+    /* border: thick solid #39555e; */
     font-family: 'Aguda Black';
     font-size: 60px;
     letter-spacing: 0.5vw;
-    background: none;
-    -webkit-text-stroke: 3px;
+    background: linear-gradient(to right, #1082a8, #52ddc5 );
+    background-clip: text;
+    
+    /* -webkit-text-stroke: 3px #39555e; */
     text-align: left;
-    color: #042935;
+    /* color: #042935; */
+    color: transparent;
     transition: all 0.2s ease;
 }
-.logo:hover{
+.logo button::before{
+    position: relative;
+    top: -5px;
+    content: 'A';
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    padding-right: 2px;
+    font-family: 'Aguda Black';
+    font-size:40px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 4px solid #36d1e5;
+    align-content:flex-start;
+    text-align: center;
+    color: #32d1d9;
+    background-color: #4f6066;
+}
+.logo button:hover{
     /* transform: scale(1.03); */
     filter: brightness(1.2);
 }
@@ -102,6 +124,10 @@
     background: linear-gradient(to right,#65b8d2,#52ddc5 ,#f9f871) ;
     -webkit-background-clip: text;
 }
+.userAccount{
+    font-family: 'Montserrat';
+    color:#5ec2b3;
+}
 
 /*log*/
 .log{
@@ -119,8 +145,9 @@
     position: relative;
     border: none;
     background: none;
-    color:#4faea0;
+    color:#5bc4b4;
     margin-right: 2vw;
+    margin-left: 2vw;
 }
 .log button:hover{
     color:#52ddc5;

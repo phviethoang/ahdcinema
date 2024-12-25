@@ -35,31 +35,39 @@ function MoviePage({}){
     // console.log("Done fetching data!")
     // console.log(movieDetail)
     //END FETCH DATA
-    function toEmbedLink(youtubeLink){
-        const index = youtubeLink.search("youtu.be/")
-        console.log(index)
-        console.log(youtubeLink)
-        const before = youtubeLink.substring(0, 17)
-        const after = youtubeLink.substring(17, youtubeLink.length)
-        console.log( before + 'embed/' + after)
-        return before + 'embed/' + after
+    function getEmbedCode(youtubeUrl) {
+        // Regex để trích xuất video ID từ URL
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/;
+        let match = null
+        if(youtubeUrl != null)
+            match = youtubeUrl.match(regex);
+        
+        if (match && match[1]) {
+            // Lấy video ID
+            const videoId = match[1];
+            // Tạo mã nhúng
+            return <iframe className = {style.video} width="560" height="315" src={"https://www.youtube.com/embed/" + videoId} frameborder="0" allowfullscreen></iframe>
+        } else {
+            return 
+        }
     }
     function HandleTrailer(){
 
-        navigate(movieInfo.trailer_link)
-        // setVideo(
-        //     <div className = {style.videoTrailer}>
-        //         <div className={style.videoDisplay} onClick={()=>{setVideo()}}></div>
-        //         <iframe className={style.video}
-        //         // width="615" height="256"
-        //         src={toEmbedLink(movieInfo.trailer_link)} 
-        //         title="Marvel Studios&#39; Avengers: Infinity War - Cuộc Chiến Vô Cực | Trailer 2" 
-        //         frameborder="0" 
-        //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        //         referrerpolicy="strict-origin-when-cross-origin" 
-        //         allowfullscreen></iframe>
-        //     </div>
-        // )
+        // navigate(movieInfo.trailer_link)
+        setVideo(
+            <div className = {style.videoTrailer}>
+                <div className={style.videoDisplay} onClick={()=>{setVideo()}}></div>
+                {/* <iframe className={style.video}
+                // width="615" height="256"
+                src={toEmbedLink(movieInfo.trailer_link)} 
+                title="Marvel Studios&#39; Avengers: Infinity War - Cuộc Chiến Vô Cực | Trailer 2" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen></iframe> */}
+                {getEmbedCode(movieInfo.trailer_link)}
+            </div>
+        )
     }
     const convertToLocalTime = (dateString) => {
         const date = new Date(dateString);

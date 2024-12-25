@@ -72,7 +72,7 @@ const WalletPage1 = ({ finalAmount, transactionInfo, onPaymentSuccessful, useFor
   const handleTopUp = async (amount) => {
     setBalance(balance+amount)
     try {
-const response = await fetch(`http://localhost:5000/ahd/top-up-wallet?user_id=${userId}&topup_value=${amount}`, {
+      const response = await fetch(`http://localhost:5000/ahd/top-up-wallet?user_id=${userId}&topup_value=${amount}`, {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -155,7 +155,7 @@ const response = await fetch(`http://localhost:5000/ahd/top-up-wallet?user_id=${
                 useFor="ahd"
                 transactionInfo={transactionInfo}
                 onPaymentSuccessful={onPaymentSuccessful}
-finalAmount={finalAmount}
+                finalAmount={finalAmount}
                 onPaymentSuccessOutside = {onPaymentSuccessOutside}
               />
             }

@@ -88,9 +88,15 @@
   border: 5px solid black;
   border-radius: 5%;
   width: 90%;
+  cursor: pointer;
+  transition: all 0.2s ease;
   /* height: 67%;
   min-height: 67%; */
 }
+.movie img:hover{
+  border: 3px solid aqua;
+}
+
 .movieContent {
   height: fit-content;
   position: relative;

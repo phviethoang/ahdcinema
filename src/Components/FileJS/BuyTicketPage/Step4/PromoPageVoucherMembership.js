@@ -1,64 +1,186 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../../FileCSS/BuyTicketPage/Step4/PaymentPage.module.css';
+import styles from '../../../FileCSS/BuyTicketPage/Step4/PromoPage.module.css';
 import CountdownTimer from '../Step3/CountdownTimer';
-import PaymentTabs from'../../Payment/PaymentTabs'
 import paymentButton from '../../../../img/PaymentIcon/paymentButton.png';
-
+import Notification from '../../Notification/Notitication'
+import { useNavigate} from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'js-cookie'
 
 
-const allVouchers = [
-    { name: 'Giảm Giá Hè Tưng Bừng 2024', code: 'SUMMER10', discount: 10, expiryDate: '2024-08-31' },
-    { name: 'Giảm Giá Siêu Phim', code: 'MOVIE20', discount: 20, expiryDate: '2025-07-15' },
-    { name: 'Giảm Giá Thực Phẩm', code: 'FOOD15', discount: 15, expiryDate: '2025-06-30' },
-    { name: 'Combo Siêu Tiết Kiệm', code: 'COMBO25', discount: 25, expiryDate: '2025-09-10' },
-    { name: 'Giảm Giá Lễ Hội', code: 'FESTIVE30', discount: 30, expiryDate: '2025-12-25' },
-    { name: 'Chào Mừng Thành Viên Mới', code: 'WELCOME5', discount: 5, expiryDate: '2025-06-01' },
-    { name: 'Giảm Giá VIP Đỉnh Cao', code: 'VIP40', discount: 40, expiryDate: '2025-05-31' },
-    { name: 'Giảm Giá Sinh Nhật Khủng', code: 'BIRTHDAY10', discount: 10, expiryDate: '2025-04-15' },
-    { name: 'Giảm Giá Năm Mới Phát Tài', code: 'NEWYEAR35', discount: 35, expiryDate: '2025-01-15' },
-    { name: 'Giảm Giá Flash Sale Siêu Hấp Dẫn', code: 'FLASHSALE', discount: 30, expiryDate: '2025-06-10' },
-    { name: 'Giảm Giá Flash Sale VIP Siêu Cấp', code: 'FLASHSALEVIP', discount: 40, expiryDate: '2025-06-05' }
-];
-
+// const allVouchers = [
+//   { name: 'Ưu Đãi Mùa Hè Rực Rỡ', code: 'SUMMER10', discount: 10, expiryDate: '2024-08-31', status: 'Active' },
+//   { name: 'Siêu Ưu Đãi Xem Phim', code: 'MOVIE20', discount: 20, expiryDate: '2025-07-15', status: 'Active' },
+//   { name: 'Khuyến Mãi Đặc Biệt', code: 'SPECIAL15', discount: 15, expiryDate: '2025-06-30', status: 'Active' },
+//   { name: 'Combo Hoàn Hảo', code: 'COMBO25', discount: 25, expiryDate: '2025-09-10', status: 'Active' },
+//   { name: 'Ưu Đãi Lễ Hội Vui Nhộn', code: 'FESTIVE30', discount: 30, expiryDate: '2025-12-25', status: 'Active' },
+//   { name: 'Chào Mừng Thành Viên Mới', code: 'WELCOME5', discount: 5, expiryDate: '2025-06-01', status: 'Active' },
+//   { name: 'Ưu Đãi VIP Cao Cấp', code: 'VIP40', discount: 40, expiryDate: '2025-05-31', status: 'Active' },
+//   { name: 'Mừng Sinh Nhật', code: 'BIRTHDAY10', discount: 10, expiryDate: '2025-04-15', status: 'Active' },
+//   { name: 'Quà Tặng Năm Mới', code: 'NEWYEAR35', discount: 35, expiryDate: '2025-01-15', status: 'Active' },
+//   { name: 'Flash Sale Cực Sốc', code: 'FLASHSALE', discount: 30, expiryDate: '2025-06-10', status: 'Active' },
+//   { name: 'Ưu Đãi Flash VIP', code: 'FLASHSALEVIP', discount: 40, expiryDate: '2025-06-05', status: 'Active' }
+// ];
   
-  // const membership={
-  //   membershipLevel : "STANDARD",
-  //   benefits:[
+  
 
-  //   ]
-  // }
-
-  // const membershipLevel = "SILVER";
   // const membership={
-  //   membershipLevel : "SILVER",
+  //   membershipLevel : "GOLD",
   //   benefits: [
-  //             "Tặng toàn bộ bỏng nước trong 2 lần đầu mua vé",
-  //             "Giảm 70% giá bỏng, nước trong các lần tiếp theo",
-  //             "Tích điểm 10% khi mua sản phẩm bất kì",
+  //             "Vé giảm 50% tối đa 200,000VND",
+  //             "Giảm 50% giá bỏng, nước tối đa 300,000VND",
+  //             "Tích điểm 15% khi mua sản phẩm bất kì",
+  //             "Cơ hội nhận quà Limited"
   //           ],
   //   };
+  
+const PaymentPage = ({originalPrice, seatTotalPrice, comboTotalPrice, onPaymentClick, transactionInfo, totalPrice, seatId, showtimId }) => {
 
-  const membership={
-    membershipLevel : "GOLD",
-    benefits: [
-              "Vé giảm 50%",
-              "Tặng toàn bộ bỏng nước trong 2 lần đầu mua vé",
-              "Giảm 80% giá bỏng, nước trong các lần tiếp theo",
-              "Tích điểm 15% khi mua sản phẩm bất kì",
-              "Cơ hội nhận quà Limited"
-            ],
-    };
+  const postTicketInfo = async (totalPrice, userId, seatId, showtimeId, voucherId) => {
+    if (!userId) {
+      console.error("Missing user_id.");
+      alert("User ID is required to buy ticket");
+      return;
+  }
+  try {
+      const response = await fetch(`http://localhost:5000/ahd/buycard/payment?total_price=${totalPrice}&user_id=${userId}&seat_id=${seatId}&showtime_id=${showtimeId}&voucher_id=${voucherId}`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
 
-const PaymentPage = ({originalPrice, seatTotalPrice, comboTotalPrice, onPaymentClick, transactionInfo }) => {
-  const [isPaymentComplete, setIsPaymentComplete] = useState(false);
+      if (!response.ok) {
+          const error = await response.json();
+          console.error("Error post ticket information:", error);
+          alert(`Error: ${error.message || "Failed to post ticket information."}`);
+          return;
+      }
+
+      let result = await response.json();
+      return result.ticket_id;
+  } catch (error) {
+      console.error("Error during fetch:", error);
+      alert("An unexpected error occurred. Please try again later.");
+  }
+}
+   const navigate = useNavigate();
+
+  const [isPaymentStarted, setIsPaymentStarted] = useState(false);
+  const [notification, setNotification] = useState(null);
 
   const handlePaymentClick = () => {
-    if (onPaymentClick) onPaymentClick();
-    setIsPaymentComplete(true);
+
+    if(transactionInfo.selectedSeats.length===0||transactionInfo.selectedSeats.length>9){
+      setNotification({message:"Số ghế mua tối thiểu là 1 và tối đa là 9!", type: "error"})
+    }
+    else{
+      // postTicketInfo(totalPrice, userId, seatId, showtimeId, voucherId)
+      if(onPaymentClick) onPaymentClick();
+      setIsPaymentStarted(true);
+      navigate('/payment', {
+        state: {
+          finalAmount: (originalPrice-promotion>0?originalPrice-promotion:0).toLocaleString(),
+          transactionInfo: transactionInfo
+      }
+      });
+    } 
   };
+  // finalAmount={(originalPrice-promotion>0?originalPrice-promotion:0).toLocaleString()}
+  //       transactionInfo={transactionInfo}
+  
+  //BEGIN FETCH DATA
+    //Khai báo các mảng sẽ chứa dữ liệu fetch về
+    const [vouchersFetch, setVouchersFetch] = useState([]);
+    
+    // Hàm fetch data GET toàn bộ vouchers
+    useEffect(() => {
+      fetch(`http://localhost:5000/ahd//buyticket/vouchers`, {
+        credentials: 'include', // Đảm bảo gửi cookie
+      })
+        .then(response => {
+          if (!response.ok) {
+            if (response.status === 401) {
+              // Xử lý khi chưa đăng nhập
+              console.error('Unauthorized. Redirecting to login...');
+              navigate('/login'); // Chuyển hướng đến trang đăng nhập
+            }
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => setVouchersFetch(data))
+        .catch(error => console.error('Error:', error));
+    }, []);
+    // In ra các mảng kiểm tra
+    const [allVouchers, setAllVouchers] = useState([])
+    useEffect(
+      ()=>
+      {
+        setAllVouchers(vouchersFetch.map( (each) => {
+          const convertToLocalTime = (dateString) => {
+            const date = new Date(dateString);
+            // Chuyển sang định dạng chỉ lấy ngày YYYY-MM-DD
+            return date.toLocaleString("en-CA", {year: 'numeric', month: '2-digit', day: '2-digit' });
+  
+        };
+          return{
+          name: each.voucher_name,
+          code: each.voucher_code,
+          discount: each.voucher_value,
+          status: each.status,
+          expiryDate: convertToLocalTime(each.expiry_date)
+        }}))
+      }, [vouchersFetch]
+    )
+    //Khi người dùng nhập voucher, kiểm tra xem nó có trong cơ sở dữ liệu VÀ có 'Active' hay không, 
+    // nếu 'Inactive' thì thông báo "Voucher đã được sử dụng", nếu không có thì thông báo "Không tồn tại voucher"
+
+    //Khai báo các mảng sẽ chứa dữ liệu fetch về
+    const [userMemberCard, setUserMemberCard]= useState([])
+    const userId = JSON.parse(Cookies.get('user_id')?.substring(2) || '{}').user_id;
+    console.log(userId)
+    // Hàm fetch data GET user-membercard
+      useEffect(() => {
+        fetch(`http://localhost:5000/ahd/user-membercard?user_id=${userId}`, {
+          credentials: 'include', // Đảm bảo gửi cookie
+        })
+        .then(response => {
+          if (!response.ok) {
+            if (response.status === 401) {
+              // Xử lý khi chưa đăng nhập
+              console.error('Unauthorized. Redirecting to login...');
+              navigate('/login'); // Chuyển hướng đến trang đăng nhập
+            }
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => setUserMemberCard(data))
+        .catch(error => console.error('Error:', error));
+      }, [userId]);
+    //   // In ra các mảng kiểm tra
+    const [membership, setMemberShip] = useState({
+      membershipLevel: "SILVER"
+    })
+    useEffect(
+      ()=>{
+        console.log(userMemberCard)
+        if(userMemberCard)
+          // console.log(userMemberCard)
+        if(userMemberCard.card_type == 'GOLD')
+          setMemberShip({
+            membershipLevel : userMemberCard.card_type,
+            benefits: userMemberCard.benefits
+          })
+        console.log(userMemberCard.card_type === "GOLD")
+
+      }, [userMemberCard]
+    )
+
 
   const [openItem, setOpenItem] = useState(null);
   const [isPreviousStepsDisabled, setIsPreviousStepsDisabled] = useState(false);
@@ -69,7 +191,13 @@ const [voucherInput, setVoucherInput] = useState("");
 
 const [voucherMessage, setVoucherMessage] = useState("");
 
-const[vouchers, setVouchers] =useState(allVouchers);
+const[vouchers, setVouchers] =useState([]);
+      useEffect(
+        ()=>{
+          console.log(allVouchers)
+          setVouchers(allVouchers)
+        }, [allVouchers]
+      )
 
 const [totalVouchers, setTotalVouchers] = useState(()=>
     {
@@ -78,7 +206,6 @@ const [totalVouchers, setTotalVouchers] = useState(()=>
     }); // State lưu tổng discount của tất cả các voucher
 
   const [deleteTrigger, setDeleteTrigger] = useState(0);
-
 
 const [appliedVouchers, setAppliedVouchers] = useState(() => {
     const storedData = localStorage.getItem('promotionData');
@@ -129,30 +256,36 @@ const [appliedVouchers, setAppliedVouchers] = useState(() => {
     return selectedDateTime < currentDate;
   };
 
+
 const handleVoucherSubmit = (e) => {
     e.preventDefault(); // Ngăn chặn submit form mặc định và tải lại trang
   
     const voucher = vouchers.find(c => c.code === voucherInput);
+    console.log(vouchers)
+    console.log(voucher)
+    console.log(voucherInput)
     let isValid = false;
   
     if (!voucher) {
       setVoucherMessage("Voucher không hợp lệ!");
       return;
-    } else if (voucher.used) {
+    } else if (voucher.status === 'inActive') {
       setVoucherMessage("Voucher đã được sử dụng!");
     } else if (appliedVouchers.length > 0) {
       setVoucherMessage(`Chỉ được áp dụng tối đa 1 voucher! 🤫`);
       return;
-    } else if(isTimeInPast(voucher.expiryDate,"23:59")){
+    }
+     else if(isTimeInPast(voucher.expiryDate,"23:59")){
       setVoucherMessage(`Voucher đã hết hạn! 😭`);
       return;
     }
     else {
+        
         setVoucherMessage(`🎉 Áp dụng thành công Voucher ${voucher.name} với mức giảm ${voucher.discount}%!`);
         isValid = true;
       
       // Đánh dấu voucher đã sử dụng và thêm vào danh sách đã áp dụng
-        voucher.used = true;
+        voucher.status = 'inActive';
         setVouchers([...vouchers]); // Cập nhật lại danh sách voucher
         setAppliedVouchers([...appliedVouchers, voucher]); // Thêm voucher vào danh sách đã áp dụng
     }
@@ -163,14 +296,15 @@ const handleVoucherSubmit = (e) => {
     }
   };
   const handleApplyMembership = (membership)=>{
-    setMembershipPromo(membership);
-    setMembershipDiscount(membership.membershipLevel === "SILVER"?{movie:0, popcorn: 100}:(membership.membershipLevel === "GOLD")?{movie:50, popcorn: 100}:null)
+    setMembershipPromo(membership.membershipLevel == "GOLD ");
+    console.log(membership)
+    setMembershipDiscount(membership.membershipLevel == "SILVER"?{movie:20, popcorn: 20}:((membership.membershipLevel == "GOLD")?{movie:50, popcorn: 50}:null))
   }
 
 
 const handleDeleteVoucher = (index) => {
   const item = vouchers.find(c=>c.code===appliedVouchers[index].code);
-  item.used = false;
+  item.status = 'Active';
   setVouchers([...vouchers]);
 
   setTotalVouchers(prev=>prev-item.discount);
@@ -226,9 +360,8 @@ useEffect(() => {
   localStorage.setItem('membershipDiscount', JSON.stringify(membershipDiscount))
 }, [totalVouchers, membershipDiscount, deleteTrigger]);
 
-
-  const promotion = (totalVouchers*originalPrice + membershipDiscount.movie*seatTotalPrice+membershipDiscount.popcorn*comboTotalPrice)*0.01;
-
+const maximumMembershipDiscount = membership.membershipLevel == "SILVER"?{movie:100000, popcorn: 150000}:((membership.membershipLevel == "GOLD")?{movie:200000, popcorn: 300000}:null);
+const promotion = (totalVouchers*originalPrice + Math.min(membershipDiscount.movie*seatTotalPrice,maximumMembershipDiscount.movie*100)+ Math.min(membershipDiscount.popcorn*comboTotalPrice,maximumMembershipDiscount.popcorn*100))*0.01;
 
   const [isVouchersListOpen, setIsVouchersListOpen] = useState(false);
   const [isMembershipPromoListOpen, setIsMembershipPromoListOpen] = useState(false);
@@ -248,13 +381,18 @@ useEffect(() => {
 
   return (
     <>
-      {isPaymentComplete ? (
+      {/* {isPaymentStarted ? (
         <PaymentTabs 
         finalAmount={(originalPrice-promotion>0?originalPrice-promotion:0).toLocaleString()}
         transactionInfo={transactionInfo}
         />
-      ):
+      ): */}
     <div className={styles.paymentPage}>
+      <Notification 
+        message={notification?.message}  // Tránh lỗi khi notification là null
+        type={notification?.type}        // Tránh lỗi khi notification là null
+        onClose={() => setNotification(null)} 
+      />
       <h1 className={styles.heading}>Đừng Bỏ Lỡ Những Ưu Đãi Tốt Nhất!</h1>
       <div className={styles.container}>
         <div className={styles.paymentSteps}>
@@ -342,7 +480,7 @@ useEffect(() => {
                 {isMembershipPromoListOpen && (
                     <ul>
                       <li className={styles.appliedCode}>
-                        Thành viên {membership.membershipLevel} - Giảm {membershipDiscount.movie}% giá vé, {membershipDiscount.popcorn}% bỏng nước
+                        Thành viên {membership.membershipLevel} - Giảm {membershipDiscount.movie}% giá vé (tối đa {maximumMembershipDiscount.movie.toLocaleString()}đ), {membershipDiscount.popcorn}% bỏng nước (tối đa {maximumMembershipDiscount.popcorn.toLocaleString()}đ).
                         <FontAwesomeIcon style={{ color: "orange" }}  icon={faTrash}  onClick={() => handleConfirmDelete('membership', 1)}></FontAwesomeIcon>
                       </li>
                   </ul>
@@ -385,11 +523,12 @@ useEffect(() => {
             src={paymentButton} 
             alt={`paymentButton`} 
             className={styles.paymentIcon}   
-            onClick={handlePaymentClick}
+            onClick={handlePaymentClick()}
            />
          </aside>
       </div>
-    </div>}
+    </div>
+    {/* } */}
     </>
   );
 };

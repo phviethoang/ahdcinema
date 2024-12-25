@@ -49,19 +49,6 @@ const convertToLocalTime = (dateString) => {
   // Chuyển sang định dạng chỉ lấy ngày YYYY-MM-DD
   return date.toLocaleString("en-CA", { timeZone: "Asia/Ho_Chi_Minh", year: 'numeric', month: '2-digit', day: '2-digit' });
 };
-    useEffect(() => {
-      if (comingSoonMovie?.length > 0) {
-        const formattedMovies = comingSoonMovie.map((each) => ({
-          movie_id: each.movie_id,
-          movie_name: each.movie_name,
-          category: each.category,
-          duration: each.duration,
-          start_date: convertToLocalTime(each.start_date),
-          movie_image: each.movie_image,
-        }));
-        setMovieData(formattedMovies);
-      }
-    }, [comingSoonMovie]);
 
   // Quản lý sự kiện cuộn và hiển thị header
   const header = useRef(null);
@@ -114,7 +101,7 @@ const convertToLocalTime = (dateString) => {
             onClose={() => setNotification(null)} 
         /> */}
         <div className={styles.sidebar}>
-        <Navbar movieData={movieData} onFilterChange={handleFilterMovieChange} onResetFilter={handleResetFilter} confirmReset={confirmReset}></Navbar>
+        <Navbar movieData={comingSoonMovie} onFilterChange={handleFilterMovieChange} onResetFilter={handleResetFilter} confirmReset={confirmReset}></Navbar>
         </div>
 
         <div className={styles.content}>
@@ -131,7 +118,13 @@ const convertToLocalTime = (dateString) => {
             {
               (filterMovies && filterMovies.length > 0 )&&filterMovies.map((movie, index) => (
                 <div key={index} className={styles.movie}>
-                  <img src={movie.movie_image} alt={movie.movie_name} />
+                  <img 
+                     onClick={()=>{
+                      sessionStorage.setItem('movieInfo', JSON.stringify(movie))
+                      navigate('/MoviePage')
+                    }}
+                    src={movie.movie_image} 
+                    alt={movie.movie_name} />
                   <div className={styles.movieContent}>
                     <h3>{movie.movie_name}</h3>
                     <p>
@@ -141,7 +134,7 @@ const convertToLocalTime = (dateString) => {
                       <strong>Thời lượng:</strong> {movie.duration}
                     </p>
                     <p>
-                      <strong>Khởi chiếu:</strong> {movie.start_date}
+                      <strong>Khởi chiếu:</strong> {convertToLocalTime(movie.start_date)}
                     </p>
                   </div>
                   <button 

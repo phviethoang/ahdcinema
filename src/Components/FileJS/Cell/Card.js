@@ -15,7 +15,7 @@ function Card({src, movieInfo}){
                         navigate('\MoviePage')
                         sessionStorage.setItem('movieInfo', JSON.stringify(movieInfo))
                     }}>
-                        <div className={style.title}>TÊN PHIM: {movieInfo.movie_name}</div>
+                        <div className={style.title}>{movieInfo.movie_name}</div>
                     </div>
                     <button 
                         className={clsx(style.buyTicket, style.button)}
@@ -24,7 +24,7 @@ function Card({src, movieInfo}){
                             sessionStorage.setItem('cardImgData', movieInfo.movie_image)
                             sessionStorage.setItem('movie_name', movieInfo.movie_name)
                             sessionStorage.setItem('movie_id',movieInfo.movie_id )
-                            console.log(sessionStorage.getItem('cardImgData'))}}>BUY TICKET</button>
+                            console.log(sessionStorage.getItem('cardImgData'))}}>MUA VÉ</button>
 
                 </div>
             </div>

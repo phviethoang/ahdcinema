@@ -32,10 +32,10 @@ const SeatBooking = ({ onSeatSelectionChange, onTotalPriceChange, screeningroomI
 // //BEGIN FETCH DATA
 //   //Khai báo các mảng sẽ chứa dữ liệu fetch về
   const [seatData, setSeatData] = useState([]);
-  
+  const movieId = sessionStorage.getItem('movie_id')
 //   // Hàm fetch data GET thông tin phòng chiếu
   useEffect(() => {
-    fetch(`http://localhost:5000/ahd//buyticket/choose-seats?screeningroom_id=${screeningroomId}&show_date=${showDate}&show_time=${showTime}`, {
+    fetch(`http://localhost:5000/ahd//buyticket/choose-seats?screeningroom_id=${screeningroomId}&show_date=${showDate}&show_time=${showTime}&movie_id=${movieId}`, {
       credentials: 'include', // Đảm bảo gửi cookie
     })
       .then(response => {
@@ -64,7 +64,6 @@ useEffect( ()=>{
         newDictionary[seatData[i].seat_number] = seatData[i]
         return newDictionary
     })
-    
   }
 }, [seatData])
   // In ra các mảng kiểm tra
@@ -73,62 +72,54 @@ useEffect( ()=>{
 //////////////////////////////////////////
   const rows = [...new Set(seatData?.map(seat => seat.seat_number[0]))];
   
-  const [checkedSeats, setCheckedSeats] = useState(()=>
+  const [checkedSeats, setCheckedSeats] = useState(
+    ()=>
     {
-      const tem = localStorage.getItem('checkedSeats');
+      const tem = sessionStorage.getItem('checkedSeats');
       return tem? JSON.parse(tem): '';
     });
 
   useEffect(() => {
-    // Lưu trạng thái ghế đã chọn vào localStorage mỗi khi checkedSeats thay đổi
-    localStorage.setItem('checkedSeats', JSON.stringify(checkedSeats));
+    // Lưu trạng thái ghế đã chọn vào sessionStorage mỗi khi checkedSeats thay đổi
+    sessionStorage.setItem('checkedSeats', JSON.stringify(checkedSeats));
   }, [checkedSeats]);
 
-
+console.log("checkedSeats: ", checkedSeats);
 
 const toggleSeatSelection = (seat) => {
   setCheckedSeats((prevSeats) => {
     let newSeats = [...prevSeats]; // Tạo một bản sao của mảng ghế đã chọn
 
-    console.log(seat)
     // Nếu là ghế loại Sweetbox (seat_type_id === 3)
-    if (seat.seat_type_id == 3) {
+    if (seat.seat_type_id === 3) {
       const row = seat.seat_number.charAt(0).toUpperCase(); // Lấy hàng ghế (ví dụ: 'A')
       const seatsInRow = groupedSeats[seat.screeningroom_id]?.[row] || []; // Lấy danh sách ghế trong hàng
-      // const seatIndex = seatsInRow.findIndex((s) => s.seat_id === seat.seat_id); // Tìm vị trí ghế hiện tại
-      const seatIndex = parseInt(seat.seat_number.charAt(1))
-      const neighborIndex = seatIndex % 2 === 0 ? seatIndex - 1 : seatIndex + 1;
-      const cordinate = row + neighborIndex
-      const neighbor = seatDictionary[cordinate]
+      const seatIndex = seatsInRow.findIndex((s) => s.seat_id === seat.seat_id); // Tìm vị trí ghế hiện tại
+      const neighborIndex = seatIndex % 2 === 0 ? seatIndex + 1 : seatIndex - 1;
+
       // Kiểm tra nếu neighborIndex nằm trong giới hạn của mảng
-      if (neighborIndex > 0 && neighborIndex <= seatsInRow.length) {
-        // const neighborSeatId = seatsInRow[neighborIndex]?.seat_id; // Lấy seat_id của ghế neighbor
-        const neighborSeatId = neighbor.seat_id
-        const isChecked = prevSeats.includes(seat); // Kiểm tra ghế hiện tại đã được chọn chưa
+      if (neighborIndex >= 0 && neighborIndex < seatsInRow.length) {
+        const neighborSeatId = seatsInRow[neighborIndex]?.seat_id; // Lấy seat_id của ghế neighbor
+        console.log("neigbor: ", neighborSeatId)
+        const neighbor = seatData.find(s=>s.seat_id===neighborSeatId)
+        const isChecked = newSeats?.find(s=>s.seat_id===neighborSeatId) // Kiểm tra ghế hiện tại đã được chọn chưa
         if (isChecked) {
           // Nếu đang bỏ chọn, bỏ luôn neighbor nếu nó đã được chọn
-          newSeats = newSeats.filter((s) => s !== seat && s !== neighbor);
+          newSeats = newSeats.filter((s) => s.seat_id !== seat.seat_id && s.seat_id !== neighborSeatId);
         } else {
           // Nếu đang chọn, thêm cả ghế hiện tại và neighbor nếu neighbor chưa được chọn
-          // newSeats = [...newSeats, seat.seat_id];
-          newSeats = [...newSeats, seat]
-          if (neighborSeatId && 
-            // !prevSeats.includes(neighborSeatId)
-            !prevSeats.includes(neighbor)
-          ) {
-            // newSeats.push(neighborSeatId);
-            newSeats.push(neighbor)
+          newSeats = [...newSeats, seat];
+          if (neighborSeatId && !newSeats?.find(s=>s.seat_id===neighborSeatId)) {
+            newSeats.push(neighbor);
           }
         }
       }
     } else {
       // Xử lý cho các loại ghế khác (không phải Sweetbox)
-      // const isChecked = prevSeats.includes(seat.seat_id);
-      const isChecked = prevSeats.includes(seat);
+      const isChecked = newSeats?.find(s=>s.seat_id===seat.seat_id);
       newSeats = isChecked
-        ? prevSeats.filter((s) => s.seat_id !== seat.seat_id) // Nếu đã chọn, bỏ chọn
-        :[...prevSeats, seat]
-        // : [...prevSeats, seat.seat_id]; // Nếu chưa chọn, thêm vào
+        ? newSeats?.filter((s) => s.seat_id !== seat.seat_id) // Nếu đã chọn, bỏ chọn
+        : [...prevSeats, seat]; // Nếu chưa chọn, thêm vào
     }
 
     setNotification({ message: "Bạn vừa chọn ghế" });
@@ -137,17 +128,14 @@ const toggleSeatSelection = (seat) => {
 };
 
 
-
 const calculateTotalPrice = (seatsArray) => {
     return seatsArray?.reduce((total, seatId) => {
       // Tìm ghế theo seat_id
       const seat = seatId;
       if (seat) {
-        // Tìm giá ghế dựa vào seat_type_id
-        // const seatType = seatTypeData.find((type) => type.seat_type_id === seat.seat_type_id);
         const seatType = seat.seat_type
         if (seatType) {
-          total += seat.seat_cost; // Cộng giá ghế vào tổng
+          total += seat.seat_cost; 
         }
       }
       return total;
@@ -214,7 +202,9 @@ const [notification, setNotification] = useState(null);
                                   [styles.vip]: seat.seat_type_id === 2,
                                   [styles.sweetbox]: seat.seat_type_id === 3,
                                   [styles.unavailableSeat]: !seat.is_available,
-                                  [styles.checked]: checkedSeats.includes(seat),
+                                  [styles.checked]: Array.isArray(checkedSeats) 
+                                  ? checkedSeats.find(s=> s.seat_id === seat.seat_id) 
+                                  : null,
                                 })}
                                 title={`Ghế: ${seat.seat_number}, Loại: ${seat.seat_type_id === 1 ? 'Standard' : seat.seat_type_id === 2 ? 'VIP' : 'Sweetbox'}`}
                                 onClick={() => {

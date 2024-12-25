@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ComboPage from './Step3/ComboPage';
 import SeatBooking from './Step2/SeatBooking';
 import PromoPage from './Step4/PromoPage';
+// import PromoPage from './Step4/temp2';
 import Step1 from './Step1/Step1';
 import TicketInfo from './TicketInfoAn';
 import styles from '../../FileCSS/BuyTicketPage/BuyTicket.module.css';
@@ -15,6 +16,7 @@ function BuyTicket() {
         sessionStorage.removeItem('dateChoice');
         sessionStorage.removeItem('theaterChoice');
         sessionStorage.removeItem('cityChoice');
+        sessionStorage.removeItem('comboPage');
         localStorage.clear();
         setClearControl(false);
     }
@@ -22,13 +24,17 @@ function BuyTicket() {
         const tem = sessionStorage.getItem('step2')
         return tem?1:0
     });
-    const [isPaymentClicked, setIsPaymentClicked] = useState(false);
     const [transitionClass, setTransitionClass] = useState(styles.enterRight); // Khởi tạo với hiệu ứng vào từ phải
     const [seatTotalPrice, setSeatTotalPrice] = useState(0);
     const [comboTotalPrice, setComboTotalPrice] = useState(0);
     const [combo, setCombo] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [comboQuantities, setComboQuantities] = useState([]);
+
+    const [comboQuantities, setComboQuantities] = useState(() => {
+        const storedQuantities = sessionStorage.getItem("comboPage");
+        return storedQuantities ? JSON.parse(storedQuantities) : Array(6).fill(0);
+    });
+    
     const [theater, setTheater] = useState(()=>{
         const tem = sessionStorage.getItem('theaterFromTheaterPage')
         return tem? tem: "Bạn chưa chọn rạp"
@@ -84,20 +90,14 @@ function BuyTicket() {
     const goToNextPage = () => {
         if (currentPageIndex < pages.length - 1) {
             setTransitionClass(styles.exitLeft); // Set exit transition cho trang hiện tại
-            // setTimeout(() => {
                 setCurrentPageIndex(currentPageIndex + 1);
-            //     setTransitionClass(styles.enterRight); // Set enter transition cho trang tiếp theo
-            // }, 500);
         }
     };
 
     const goToPreviousPage = () => {
         if (currentPageIndex > 0) {
             setTransitionClass(styles.exitRight); // Set exit transition cho trang hiện tại
-            // setTimeout(() => {
                 setCurrentPageIndex(currentPageIndex - 1);
-            //     setTransitionClass(styles.enterLeft); // Set enter transition cho trang trước đó
-            // }, 500);
         }
     };
 
@@ -118,9 +118,7 @@ function BuyTicket() {
         setPromotion(newPromotion);
     };
 
-    const handlePaymentClick = () => {
-        setIsPaymentClicked(true);
-    };
+
 
     const totalPrice = seatTotalPrice + comboTotalPrice;
     const pages = [
@@ -133,7 +131,6 @@ function BuyTicket() {
                         (event) =>{
                                 setDate(
                                     event.currentTarget.getAttribute('data-date')
-                                    // sessionStorage.getItem('dateChoice')
                                 )
                         }
                     }
@@ -170,8 +167,6 @@ function BuyTicket() {
                     originalPrice={totalPrice}
                     seatTotalPrice={seatTotalPrice}
                     comboTotalPrice={comboTotalPrice}
-                    onPromotionUpdate={handlePromotionUpdate}
-                    onPaymentClick={handlePaymentClick}
                     transactionInfo ={{selectedSeats, combo, type:"buyTicket"}}
                     />
             ]
@@ -183,7 +178,7 @@ function BuyTicket() {
             <div className={styles.buyTicket}>
                 {pages[currentPageIndex]}
             </div>
-            {!isPaymentClicked &&<TicketInfo 
+            <TicketInfo 
                     cardImg = {image}
                     movieName = {name}
                     theater={theater}
@@ -197,7 +192,6 @@ function BuyTicket() {
                     onPrevious={goToPreviousPage} 
                     promotion={promotion}
                 />
-            }
                 <Footer></Footer>
         </div>
         

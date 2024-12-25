@@ -90,6 +90,12 @@
   width: 90%;
   height: 67%;
   min-height: 67%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.movie img:hover{
+  border: 3px solid aqua;
 }
 .movieContent {
   height: fit-content;

@@ -18,7 +18,7 @@ const products = [
               },
               {
                 id: 2,
-                name: "CONAN CARD COLLECTION COMBO",
+                name: "CONAN CARD COLLECTION COMBO NORMAL",
                 description:
                     [
                     "- 20 bộ thẻ Conan Character In Action hoặc 20 bộ thẻ Conan Character In Photo (full box)",
@@ -32,7 +32,7 @@ const products = [
               },
               {
                 id: 3,
-                name: "CONAN CARD COLLECTION COMBO",
+                name: "CONAN CARD COLLECTION COMBO EPIC",
                 description:
                 [
                   "- 10 bộ thẻ Conan Character In Action + 10 bộ thẻ Conan Character In Photo",
@@ -46,7 +46,7 @@ const products = [
               },
               {
                 id: 4,
-                name: "CONAN CARD COLLECTION COMBO",
+                name: "CONAN CARD COLLECTION COMBO SPECIAL",
                 description:
                 ["01 bộ thẻ Conan Character In Action + 01 bộ thẻ Conan Characrer In Photo",
                     "+ 01 nước ngọt siêu lớn + 01 bắp ngọt lớn",
@@ -118,30 +118,40 @@ const ComboPage = ({ comboQuantities = [], onQuantitiesChange, sum}) => {
       return newQuantities;
     });
   };
+  useEffect(() => {
+    sessionStorage.setItem("comboPage", JSON.stringify(comboQuantities));
+}, [comboQuantities]);
 
   return (
     <div className={styles.comboPage}>
+      <div>BOOKING ONLINE</div>
       <div className={styles.bookingHeader}>
-         <h2 className={styles.header}>--- Combo Bắp Nước ---</h2>
-        {/* <div className={styles.countdown}>
+        <div className={styles.countdown}>
           <div className={styles.timer}>
             <CountdownTimer initialMinutes={5} initialSeconds={0} />
           </div>
-        </div> */}
+        </div>
       </div>
 
-      
+      <h2>Bắp Nước</h2>
       <div className={styles.products}>
         {products.map((product, index) => (
           <div key={product.id} className={styles.product}>
-            <div className = {styles.productImage}>
-              
-              <img
+            <img
               src={product.image}
               alt={product.name}
+              className={styles.productImage}
             />
-            <p>Giá: {product.price.toLocaleString()} đ</p>
-            <div className={styles.quantityControls}>
+            <div className={styles.productInfo}>
+              <h3>{product.name}</h3>
+              <div>
+                {product.description.map((item, idx) => (
+                  <div key={idx}>{item}</div>
+                ))}
+              </div>
+
+              <p>Giá: {product.price.toLocaleString()} đ</p>
+              <div className={styles.quantityControls}>
                 <button onClick={() => handleQuantityChange(index, -1)}>
                   -
                 </button>
@@ -150,18 +160,6 @@ const ComboPage = ({ comboQuantities = [], onQuantitiesChange, sum}) => {
                   +
                 </button>
               </div>
-            </div>
-            
-            <div className={styles.productInfo}>
-              <h3>{product.name}</h3>
-              <div className={styles.content}>
-                {product.description.map((item, idx) => (
-                  <div key={idx}>{item}</div>
-                ))}
-              </div>
-
-              
-              
             </div>
           </div>
         ))}

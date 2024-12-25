@@ -97,6 +97,7 @@ export default function CinemaList() {
                     title: showtime[i].movie_name,
                     show_date: JSON.stringify(selectedDateTime),
                     showtimes: [{
+                        full_show_time: showtime[i],
                         show_time: showtime[i].show_time,
                         room: showtime[i].room_number,
                         roomId: showtime[i].screeningroom_id
@@ -109,7 +110,8 @@ export default function CinemaList() {
                 result[showtime[i].movie_id].showtimes.push(
                     {
                         show_time: showtime[i].show_time,
-                        room: showtime[i].screeningroom_id
+                        room: showtime[i].room_number,
+                        roomId: showtime[i].screeningroom_id
                     }
                 )
             }
@@ -127,7 +129,7 @@ export default function CinemaList() {
         ()=>
         {
             if(showtime != null){
-                console.log(showtime)
+                console.log(groupByMovie(showtime))
                 setMoviesInDay(groupByMovie(showtime))
                 setDataShowing(
                 )

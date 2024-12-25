@@ -78,6 +78,11 @@
     margin: 10px;
     position: relative;
     justify-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30px;
+    cursor: pointer;
 }
 .eachEvent::after{
     content:'';
@@ -115,14 +120,14 @@
 }
 .eventName{
     position: absolute;
-    width: 50%;
+    width: 80%;
     height: 15%;
     top: -8%;
     left: -20%;
     font-weight: bolder;
     font-family: 'Billy Bold', 'Courier New', Courier, monospace;
     -webkit-text-stroke: 2px rgb(0, 0, 0);
-    font-size: xx-large;
+    font-size: x-large;
     color:rgb(18, 231, 121);
     align-content: center;
 }

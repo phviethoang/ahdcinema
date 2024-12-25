@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function MovieList({ selectedDay, moviesInDay }) {
 
     const navigate = useNavigate()
+    console.log(moviesInDay)
     const movies = moviesInDay != null? moviesInDay.map((movie, index) => (
         <div key={index} className={styles.movieItem}>
             <img src={movie.poster} alt={movie.title} className={styles.poster} />
@@ -20,14 +21,15 @@ export default function MovieList({ selectedDay, moviesInDay }) {
                         onClick={()=>
                         {
                             navigate('/BuyTicket')
-                            sessionStorage.setItem('nameFromTheaterPage', movie.title)
-                            sessionStorage.setItem('imageFromTheaterPage', movie.poster)
+                            sessionStorage.setItem('movie_name', movie.title)
+                            sessionStorage.setItem('cardImgData', movie.poster)
                             sessionStorage.setItem('dateFromTheaterPage', JSON.parse(movie.show_date))
                             sessionStorage.setItem('timeFromTheaterPage', timeAndRoom.show_time)
                             sessionStorage.setItem('roomFromTheaterPage', timeAndRoom.room)
                             sessionStorage.setItem('roomIdFromTheaterPage', timeAndRoom.roomId)
                             sessionStorage.setItem('step2', 'thôi đi ngủ thôi')
                             sessionStorage.setItem('theaterFromTheaterPage', movie.theater)
+                            sessionStorage.setItem('movie_id', movie.movie_id)
                         }
                         }>
                             {timeAndRoom.show_time}

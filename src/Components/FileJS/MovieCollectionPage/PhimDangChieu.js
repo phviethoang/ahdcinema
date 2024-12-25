@@ -12,7 +12,6 @@ function PhimDangChieu() {
 
   const navigate = useNavigate();
   const [nowShowingMovie, setNowShowingMovie]= useState([])
-  const [movieData, setMovieData] = useState([]);
 
   // Fetch movie
   useEffect(()=>{
@@ -36,19 +35,6 @@ function PhimDangChieu() {
 
   };
 
-  useEffect(() => {
-    if (nowShowingMovie.length > 0) {
-      const formattedMovies = nowShowingMovie.map((each) => ({
-        movie_id: each.movie_id,
-        movie_name: each.movie_name,
-        category: each.category,
-        duration: each.duration,
-        start_date: convertToLocalTime(each.start_date),
-        movie_image: each.movie_image,
-      }));
-      setMovieData(formattedMovies);
-    }
-  }, [nowShowingMovie]);
   
 
 //lọc phim
@@ -83,7 +69,7 @@ const handleResetFilter = (movieList) => {
           onClose={() => setNotification(null)} 
         />
         <div className={styles.sidebar}>
-          <Navbar movieData={movieData} onFilterChange={handleFilterMovieChange} onResetFilter={handleResetFilter} confirmReset={confirmReset}></Navbar>
+          <Navbar movieData={nowShowingMovie} onFilterChange={handleFilterMovieChange} onResetFilter={handleResetFilter} confirmReset={confirmReset}></Navbar>
         </div>
         <div className={styles.content}>
           <div className={styles.buttonsContainer}>
@@ -108,7 +94,13 @@ const handleResetFilter = (movieList) => {
             {
               (filterMovies && filterMovies.length > 0 )&&filterMovies.map((movie, index) => (
                 <div key={index} className={styles.movie}>
-                  <img src={movie.movie_image} alt={movie.movie_name} />
+                  <img 
+                    onClick={()=>{
+                      sessionStorage.setItem('movieInfo', JSON.stringify(movie))
+                      navigate('/MoviePage')
+                    }}
+                    src={movie.movie_image} 
+                    alt={movie.movie_name} />
                   <div className={styles.movieContent}>
                     <h3>{movie.movie_name}</h3>
                     <p>
@@ -118,7 +110,7 @@ const handleResetFilter = (movieList) => {
                       <strong>Thời lượng:</strong> {movie.duration}
                     </p>
                     <p>
-                      <strong>Khởi chiếu:</strong> {movie.start_date}
+                      <strong>Khởi chiếu:</strong> {convertToLocalTime(movie.start_date)}
                     </p>
                   </div>
                   <button 
